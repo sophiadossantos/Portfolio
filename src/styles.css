@@ -6,16 +6,6 @@
 
 /*
  * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
  */
 
 @theme inline {
@@ -26,6 +16,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -91,10 +82,11 @@
   --sidebar-primary: oklch(0.208 0.042 265.755);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
+
+/* Dark mode */
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
@@ -121,27 +113,9 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
-}
-
-/* ---- Portfolio design system (Sophia dos Santos) ---- */
+/* ---- Portfolio design system ---- */
 
 :root {
   --radius: 0.75rem;
@@ -175,13 +149,19 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  * {
+    border-color: var(--color-border);
   }
 
   body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   h1,
@@ -195,7 +175,7 @@
   font-family: var(--font-display);
 }
 
-/* Aurora gradient of the home hero */
+/* ---- Hero ---- */
 
 .hero-aurora {
   background-color: #ffffff;
@@ -228,6 +208,8 @@
     linear-gradient(180deg, rgba(255, 255, 255, 0) 62%, #ffffff 100%);
 }
 
+/* ---- Reveal ---- */
+
 .reveal {
   opacity: 0;
   transform: translateY(22px);
@@ -240,6 +222,8 @@
   opacity: 1;
   transform: none;
 }
+
+/* ---- Scroll cards ---- */
 
 .scroll-card > div::-webkit-scrollbar {
   width: 6px;
@@ -301,6 +285,8 @@
   line-height: 1.75;
 }
 
+/* ---- About photo ---- */
+
 .about-photo {
   position: absolute;
   top: 9%;
@@ -346,6 +332,8 @@
   height: 14px;
 }
 
+/* ---- Clock ---- */
+
 .about-clock {
   position: absolute;
   top: 7%;
@@ -375,129 +363,48 @@
 
 /* ---- About links ---- */
 
-.about-link {
-  position: absolute;
-  z-index: 4;
+.about-links {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
-  width: 230px;
-  min-width: 230px;
-  min-height: 72px;
-  padding: 15px 18px;
+  gap: 12px;
+  margin-top: 80px;
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--about-blue);
-  box-shadow: 0 9px 25px
-    color-mix(in oklab, var(--foreground) 6%, transparent);
-  font-family: var(--font-display);
+  padding: 10px 20px;
+  color: var(--foreground);
   font-size: 13px;
-  font-weight: 600;
   text-decoration: none;
-  overflow: visible;
-  transform: none;
   transition:
-    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 300ms ease,
-    background-color 300ms ease;
-}
-
-.about-link span {
-  display: grid;
-  gap: 4px;
-}
-
-.about-link small {
-  position: absolute;
-  left: 18px;
-  bottom: -25px;
-  width: max-content;
-  padding: 5px 9px;
-  border: 1px solid
-    color-mix(in oklab, var(--foreground) 9%, transparent);
-  border-radius: 16px;
-  background: var(--background);
-  box-shadow: 0 6px 18px
-    color-mix(in oklab, var(--foreground) 7%, transparent);
-  color: var(--muted-foreground);
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 400;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-4px);
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
 }
 
 .about-link:hover {
-  box-shadow: 0 15px 32px
-    color-mix(in oklab, var(--foreground) 10%, transparent);
-  transform: translateY(-5px);
+  background: var(--foreground);
+  color: var(--background);
 }
 
-.about-link:hover small,
-.about-link:focus-visible small {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Portfólio */
-
-.about-link-portfolio {
-  top: 54%;
-  left: 3%;
-  background: var(--about-blue);
-}
-
-.about-link-portfolio:hover {
-  background: var(--about-blue-hover);
-}
-
-/* Vamos conversar */
-
-.about-link-chat {
-  top: 54%;
-  left: calc(3% + 250px);
-  background: var(--about-lilac);
-}
-
-.about-link-chat:hover {
-  background: var(--about-lilac-hover);
-}
-
-/* LinkedIn */
-
-.about-link-linkedin {
-  top: 54%;
-  left: calc(3% + 500px);
-  background: var(--about-violet);
-}
-
-.about-link-linkedin:hover {
-  background: var(--about-violet-hover);
-}
-
-/* Estrelinha da identidade */
-
-.about-link .about-link-star {
-  position: static;
+.about-link-star {
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   object-fit: contain;
-  opacity: 0.75;
-  pointer-events: none;
   transition:
-    opacity 240ms ease,
-    transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease;
 }
 
 .about-link:hover .about-link-star {
-  opacity: 1;
   transform: rotate(15deg) scale(1.08);
+  opacity: 0.85;
 }
 
 /* ---- About decorative elements ---- */
@@ -717,19 +624,15 @@
     font-size: 20px;
   }
 
-  /* Links empilhados no mobile */
-
-  .about-link-portfolio,
-  .about-link-chat,
-  .about-link-linkedin {
-    left: 4%;
-    right: auto;
-    width: 92%;
-    min-width: 0;
+  .about-links {
+    margin-top: 56px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .about-link-portfolio {
-    top: 55%;
+  .about-link {
+    width: auto;
   }
 
   .about-book {
@@ -738,19 +641,10 @@
     width: 92px;
   }
 
-  .about-link-chat {
-    top: 64%;
-  }
-
   .about-coffee {
     left: 2%;
     bottom: 4%;
     width: 130px;
-  }
-
-  .about-link-linkedin {
-    top: 73%;
-    bottom: auto;
   }
 
   .soundtrack-player {
