@@ -20,9 +20,14 @@ function BrasiliaClock() {
   const [time, setTime] = useState("--:--:--");
 
   useEffect(() => {
-    const update = () => setTime(BRASILIA_TIME.format(new Date()));
+    const update = () => {
+      setTime(BRASILIA_TIME.format(new Date()));
+    };
+
     update();
+
     const timer = window.setInterval(update, 1000);
+
     return () => window.clearInterval(timer);
   }, []);
 
@@ -36,6 +41,9 @@ function BrasiliaClock() {
     </div>
   );
 }
+
+const aboutLinkClass =
+  "about-link inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-[13px] transition-colors hover:bg-foreground hover:text-background";
 
 export function AboutMe() {
   return (
@@ -55,6 +63,48 @@ export function AboutMe() {
             o tempo, fui me interessando também por tudo que existe por trás de
             uma boa experiência.
           </p>
+
+          <div className="about-links">
+            <Link to="/" className={aboutLinkClass}>
+              <img
+                src="/favicon.png"
+                alt=""
+                className="about-link-star"
+                aria-hidden="true"
+              />
+              Portfólio
+            </Link>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className={aboutLinkClass}
+            >
+              <img
+                src="/favicon.png"
+                alt=""
+                className="about-link-star"
+                aria-hidden="true"
+              />
+              Vamos conversar
+            </a>
+
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              className={aboutLinkClass}
+            >
+              <img
+                src="/favicon.png"
+                alt=""
+                className="about-link-star"
+                aria-hidden="true"
+              />
+              LinkedIn
+            </a>
+          </div>
         </div>
 
         <figure className="about-photo">
@@ -73,58 +123,6 @@ export function AboutMe() {
         </figure>
 
         <BrasiliaClock />
-
-        <Link to="/" className="about-link about-link-portfolio">
-          <img
-            src="/favicon.png"
-            alt=""
-            className="about-link-star"
-            aria-hidden="true"
-          />
-
-          <span>
-            <small>ver meu trabalho</small>
-            Portfólio
-          </span>
-        </Link>
-
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="about-link about-link-chat"
-        >
-          <img
-            src="/favicon.png"
-            alt=""
-            className="about-link-star"
-            aria-hidden="true"
-          />
-
-          <span>
-            <small>fale comigo</small>
-            Vamos conversar
-          </span>
-        </a>
-
-        <a
-          href={LINKEDIN_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="about-link about-link-linkedin"
-        >
-          <img
-            src="/favicon.png"
-            alt=""
-            className="about-link-star"
-            aria-hidden="true"
-          />
-
-          <span>
-            <small>me encontre por lá</small>
-            LinkedIn
-          </span>
-        </a>
       </section>
     </Reveal>
   );
