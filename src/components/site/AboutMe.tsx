@@ -1,11 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-  ArrowUpRight,
-  ChatCircleDots,
-  LinkedinLogo,
-  MapPin,
-  Sparkle,
-} from "@phosphor-icons/react";
+import { MapPin } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
 import sophiaPhoto from "@/assets/sophia-dos-santos.jpg";
@@ -33,7 +27,10 @@ function BrasiliaClock() {
   }, []);
 
   return (
-    <div className="about-clock" aria-label={`Horário atual em Criciúma, SC: ${time}`}>
+    <div
+      className="about-clock"
+      aria-label={`Horário atual em Criciúma, SC: ${time}`}
+    >
       <span>CRICIÚMA, SC</span>
       <time>{time}</time>
     </div>
@@ -43,13 +40,20 @@ function BrasiliaClock() {
 export function AboutMe() {
   return (
     <Reveal>
-      <section id="sobre-mim" className="about-space" aria-labelledby="about-title">
+      <section
+        id="sobre-mim"
+        className="about-space"
+        aria-labelledby="about-title"
+      >
         <div className="about-intro">
           <h2 id="about-title">SOBRE MIM</h2>
+
           <p>
-            Tenho 20 anos e sou de Santa Catarina. Atualmente curso Engenharia de Software e estou construindo minha trajetória 
-            na área de Product Design. Sempre tive bastante interesse pela parte estética e, com o tempo, fui me interessando 
-            também por tudo que existe por trás de uma boa experiência.
+            Tenho 20 anos e sou de Santa Catarina. Atualmente curso Engenharia
+            de Software e estou construindo minha trajetória na área de Product
+            Design. Sempre tive bastante interesse pela parte estética e, com
+            o tempo, fui me interessando também por tudo que existe por trás de
+            uma boa experiência.
           </p>
         </div>
 
@@ -59,23 +63,29 @@ export function AboutMe() {
             alt="Sophia dos Santos sorrindo"
             loading="lazy"
           />
+
           <figcaption>
             <MapPin weight="fill" aria-hidden="true" />
             Criciúma, SC
           </figcaption>
+
           <span className="about-hover-label">essa sou eu</span>
         </figure>
 
         <BrasiliaClock />
 
         <Link to="/" className="about-link about-link-portfolio">
-          <Sparkle className="about-link-star about-link-star-one" weight="fill" aria-hidden="true" />
-          <Sparkle className="about-link-star about-link-star-two" weight="fill" aria-hidden="true" />
+          <img
+            src="/favicon.png"
+            alt=""
+            className="about-link-star"
+            aria-hidden="true"
+          />
+
           <span>
             <small>ver meu trabalho</small>
             Portfólio
           </span>
-          <ArrowUpRight aria-hidden="true" />
         </Link>
 
         <a
@@ -84,13 +94,17 @@ export function AboutMe() {
           rel="noreferrer"
           className="about-link about-link-chat"
         >
-          <Sparkle className="about-link-star about-link-star-one" weight="fill" aria-hidden="true" />
-          <Sparkle className="about-link-star about-link-star-two" weight="fill" aria-hidden="true" />
+          <img
+            src="/favicon.png"
+            alt=""
+            className="about-link-star"
+            aria-hidden="true"
+          />
+
           <span>
             <small>fale comigo</small>
             Vamos conversar
           </span>
-          <ChatCircleDots aria-hidden="true" />
         </a>
 
         <a
@@ -99,13 +113,17 @@ export function AboutMe() {
           rel="noreferrer"
           className="about-link about-link-linkedin"
         >
-          <Sparkle className="about-link-star about-link-star-one" weight="fill" aria-hidden="true" />
-          <Sparkle className="about-link-star about-link-star-two" weight="fill" aria-hidden="true" />
+          <img
+            src="/favicon.png"
+            alt=""
+            className="about-link-star"
+            aria-hidden="true"
+          />
+
           <span>
             <small>me encontre por lá</small>
             LinkedIn
           </span>
-          <LinkedinLogo weight="fill" aria-hidden="true" />
         </a>
       </section>
     </Reveal>
