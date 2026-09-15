@@ -1,10 +1,7 @@
-import { MusicNote, Pause, Play, SpeakerSlash } from "@phosphor-icons/react";
+import { Pause, Play } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button";
-
-// Adicione aqui apenas um arquivo de áudio autorizado quando ele estiver disponível.
-const AUDIO_SRC: string | null = null;
+const AUDIO_SRC = "/minecraft.mp3";
 
 export function SoundtrackPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -12,17 +9,37 @@ export function SoundtrackPlayer() {
 
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !AUDIO_SRC) return;
+    if (!audio) return;
+
     audio.volume = 0.16;
-    audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+
+    const handlePlay = () => setPlaying(true);
+    const handlePause = () => setPlaying(false);
+    const handleEnded = () => setPlaying(false);
+
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("ended", handleEnded);
+    };
   }, []);
 
   const togglePlayback = async () => {
     const audio = audioRef.current;
-    if (!audio || !AUDIO_SRC) return;
+
+    if (!audio) return;
+
     if (audio.paused) {
-      await audio.play();
-      setPlaying(true);
+      try {
+        await audio.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+      }
     } else {
       audio.pause();
       setPlaying(false);
@@ -30,25 +47,40 @@ export function SoundtrackPlayer() {
   };
 
   return (
-    <aside className="soundtrack-player" aria-label="Trilha sonora do portfólio">
-      {AUDIO_SRC ? <audio ref={audioRef} src={AUDIO_SRC} loop preload="metadata" /> : null}
-      <Button
+    <aside
+      className="soundtrack-player"
+      aria-label="Trilha sonora do portfólio"
+    >
+      <audio
+        ref={audioRef}
+        src={AUDIO_SRC}
+        loop
+        preload="metadata"
+      />
+
+      <button
         type="button"
-        variant="ghost"
-        size="icon"
         onClick={togglePlayback}
-        disabled={!AUDIO_SRC}
-        aria-label={AUDIO_SRC ? (playing ? "Pausar trilha sonora" : "Tocar trilha sonora") : "Trilha sonora ainda não disponível"}
-        title={AUDIO_SRC ? (playing ? "Pausar" : "Tocar") : "Áudio será adicionado em breve"}
+        className="soundtrack-toggle"
+        aria-label={playing ? "Pausar música" : "Tocar música"}
       >
-        {AUDIO_SRC ? playing ? <Pause weight="fill" /> : <Play weight="fill" /> : <SpeakerSlash />}
-      </Button>
-      <div>
-        <span className={playing ? "is-playing" : ""} aria-hidden="true"><i /><i /><i /></span>
-        <p>Minecraft soundtrack</p>
-        <small>{AUDIO_SRC ? (playing ? "tocando" : "pausado") : "áudio em breve"}</small>
-      </div>
-      <MusicNote aria-hidden="true" />
+        {playing ? (
+          <Pause weight="fill" />
+        ) : (
+          <Play weight="fill" />
+        )}
+      </button>
+
+      <span
+        className={`soundtrack-waves ${playing ? "is-playing" : ""}`}
+        aria-hidden="true"
+      >
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+      </span>
     </aside>
   );
 }

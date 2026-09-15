@@ -54,7 +54,12 @@ export function AboutMe() {
         aria-labelledby="about-title"
       >
         <div className="about-intro">
-          <h2 id="about-title">SOBRE MIM</h2>
+          <h2
+              id="about-title"
+              className="normal-case"
+            >
+              Sobre mim
+            </h2>
 
           <p>
             Tenho 20 anos e sou de Santa Catarina. Atualmente curso Engenharia
