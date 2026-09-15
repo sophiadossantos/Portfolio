@@ -11,13 +11,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sophia dos Santos — Product Designer UX/UI" },
+      { title: "Sophia dos Santos - Product Designer UX/UI" },
       {
         name: "description",
         content:
           "Portfólio de Sophia dos Santos, designer de produto focada em criar experiências intuitivas e centradas nas pessoas. Cursiva, Booking.com e Angeloni: em casa.",
       },
-      { property: "og:title", content: "Sophia dos Santos — Product Designer UX/UI" },
+      { property: "og:title", content: "Sophia dos Santos - Product Designer UX/UI" },
       {
         property: "og:description",
         content:
@@ -87,7 +87,7 @@ function Home() {
 
       <main id="trabalhos" className="mx-auto max-w-[1240px] px-6 pb-32 md:px-10">
         <h2 className="sr-only">Projetos</h2>
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-20">
           {PROJECTS.map((project) => (
             <Reveal key={project.to}>
               <article className="grid items-center gap-10 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-16">
