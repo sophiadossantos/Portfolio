@@ -244,8 +244,8 @@
 
 .about-space {
   position: relative;
-  min-height: 760px;
-  margin-top: 11rem;
+  min-height: 810px;
+  margin-top: 13rem;
   scroll-margin-top: 100px;
   border-top: 1px solid var(--border);
   overflow: hidden;
@@ -286,9 +286,9 @@
   text-transform: none;
 }
 
-.about-intro > p:last-child {
+.about-intro > p {
   max-width: 500px;
-  margin-top: 14px;
+  margin-top: 16px;
   color: var(--muted-foreground);
   font-size: 17px;
   line-height: 1.75;
@@ -648,7 +648,7 @@
 @media (max-width: 767px) {
   .about-space {
     min-height: auto;
-    margin-top: 8rem;
+    margin-top: 10rem;
     scroll-margin-top: 112px;
     padding-bottom: 100px;
     overflow: hidden;
@@ -667,26 +667,36 @@
     line-height: 1;
   }
 
-  .about-intro > p:last-child {
+  .about-intro > p {
     width: 100%;
     max-width: 100%;
-    margin-top: 14px;
+    margin-top: 16px;
     font-size: 15px;
     line-height: 1.7;
   }
 
   .about-links {
     display: flex;
-    margin-top: 42px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 34px;
   }
 
   .about-link {
     width: auto;
-    padding: 9px 17px;
-    font-size: 12.5px;
+    flex: 1 1 0;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .about-link-star {
+    width: 12px;
+    height: 12px;
   }
 
   .about-photo {
@@ -694,7 +704,7 @@
     top: auto;
     left: auto;
     width: 68%;
-    margin: 64px auto 0;
+    margin: 34px auto 0;
     padding: 8px 8px 10px;
     border-radius: 14px;
     transform: rotate(-3deg);
