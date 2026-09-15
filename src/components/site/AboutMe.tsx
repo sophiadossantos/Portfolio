@@ -53,13 +53,13 @@ export function AboutMe() {
         className="about-space"
         aria-labelledby="about-title"
       >
-        <div className="about-intro">
+        <div className="about-intro p-4">
           <h2
-              id="about-title"
-              className="normal-case"
-            >
-              Sobre mim
-            </h2>
+            id="about-title"
+            className="normal-case"
+          >
+            Sobre mim
+          </h2>
 
           <p>
             Tenho 20 anos e sou de Santa Catarina. Atualmente curso Engenharia
@@ -124,10 +124,10 @@ export function AboutMe() {
             Criciúma, SC
           </figcaption>
 
+          <BrasiliaClock />
+
           <span className="about-hover-label">essa sou eu</span>
         </figure>
-
-        <BrasiliaClock />
       </section>
     </Reveal>
   );

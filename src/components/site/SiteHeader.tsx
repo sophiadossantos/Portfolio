@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const NAV = [
   { label: "Sobre mim", href: "/#sobre-mim" },
@@ -11,14 +11,13 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/sophia-dos-santos";
 const EMAIL = "mailto:santossophiausa@gmail.com";
 
 type SiteHeaderProps = {
-  /** "pill" matches the home frame, "plain" matches the case study frames. */
   variant?: "pill" | "plain";
 };
 
 export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
-  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,24 +32,28 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        contactRef.current &&
-        !contactRef.current.contains(event.target as Node)
-      ) {
-        setContactOpen(false);
-      }
+    if (!mobileOpen) {
+      setContactOpen(false);
+    }
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setContactOpen(false);
+  };
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
-        scrolled
+        scrolled || mobileOpen
           ? "border-border/70 bg-background shadow-[0_1px_8px_color-mix(in_oklab,var(--foreground)_6%,transparent)]"
           : "border-transparent bg-transparent shadow-none"
       }`}
@@ -58,17 +61,19 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
       <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-5 md:px-10 md:py-7">
         <Link
           to="/"
-          className="text-[13px] font-bold tracking-tight text-foreground transition-opacity hover:opacity-60"
+          onClick={closeMobileMenu}
+          className="relative z-[61] text-[13px] font-bold tracking-tight text-foreground transition-opacity hover:opacity-60"
         >
           Sophia dos Santos
         </Link>
 
+        {/* Desktop */}
         <nav
-          className={
+          className={`hidden md:flex ${
             variant === "pill" && !scrolled
-              ? "flex items-center gap-1 rounded-full bg-background px-2 py-1.5 shadow-sm"
-              : "flex items-center gap-1"
-          }
+              ? "items-center gap-1 rounded-full bg-background px-2 py-1.5 shadow-sm"
+              : "items-center gap-1"
+          }`}
         >
           {NAV.map((item) => (
             <a
@@ -80,7 +85,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
             </a>
           ))}
 
-          <div ref={contactRef} className="relative">
+          <div className="relative">
             <button
               type="button"
               onClick={() => setContactOpen((open) => !open)}
@@ -139,6 +144,113 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
             )}
           </div>
         </nav>
+
+        {/* Mobile */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen((open) => !open)}
+          className="relative z-[61] flex h-9 w-9 items-center justify-center rounded-full text-foreground md:hidden"
+          aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={mobileOpen}
+        >
+          <span className={`hamburger ${mobileOpen ? "is-open" : ""}`}>
+            <span />
+            <span />
+          </span>
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`mobile-menu md:hidden ${
+          mobileOpen ? "is-open" : ""
+        }`}
+        aria-hidden={!mobileOpen}
+      >
+        {!contactOpen ? (
+          <div className="mobile-menu-content">
+            <a
+              href="/#sobre-mim"
+              onClick={closeMobileMenu}
+              className="mobile-menu-link"
+            >
+              Sobre mim
+            </a>
+
+            <a
+              href="#curriculo"
+              onClick={closeMobileMenu}
+              className="mobile-menu-link"
+            >
+              Currículo
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setContactOpen(true)}
+              className="mobile-menu-link mobile-menu-contact"
+            >
+              Contato
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        ) : (
+          <div className="mobile-menu-content">
+            <button
+              type="button"
+              onClick={() => setContactOpen(false)}
+              className="mobile-menu-back"
+            >
+              <span aria-hidden="true">←</span>
+              Contato
+            </button>
+
+            <div className="mobile-contact-links">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                onClick={closeMobileMenu}
+                className="mobile-contact-link"
+              >
+                <img
+                  src="/favicon.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+                WhatsApp
+              </a>
+
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noreferrer"
+                onClick={closeMobileMenu}
+                className="mobile-contact-link"
+              >
+                <img
+                  src="/favicon.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+                LinkedIn
+              </a>
+
+              <a
+                href={EMAIL}
+                onClick={closeMobileMenu}
+                className="mobile-contact-link"
+              >
+                <img
+                  src="/favicon.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+                Email
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
