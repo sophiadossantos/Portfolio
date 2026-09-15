@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -86,8 +87,6 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
-/* Dark mode */
-
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
@@ -113,6 +112,13 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
 /* ---- Portfolio design system ---- */
@@ -238,7 +244,7 @@
 
 .about-space {
   position: relative;
-  min-height: 920px;
+  min-height: 760px;
   margin-top: 11rem;
   scroll-margin-top: 100px;
   border-top: 1px solid var(--border);
@@ -272,9 +278,11 @@
 }
 
 .about-intro h2 {
-  font-size: clamp(38px, 5vw, 72px);
-  font-weight: 600;
-  line-height: 1;
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
 }
 
 .about-intro > p:last-child {
@@ -379,6 +387,7 @@
   border: 1px solid var(--border);
   padding: 10px 20px;
   color: var(--foreground);
+  font-family: var(--font-body);
   font-size: 13px;
   text-decoration: none;
   transition:
@@ -587,7 +596,7 @@
 
 @media (max-width: 767px) {
   .about-space {
-    min-height: 1250px;
+    min-height: 900px;
     margin-top: 8rem;
     scroll-margin-top: 112px;
   }
