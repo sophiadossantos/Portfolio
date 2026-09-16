@@ -2,11 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { AboutMe } from "@/components/site/AboutMe";
-import {
-  miniaturaTelaInicialAngeloniUrl,
-  miniaturaTelaInicialBookingUrl,
-  miniaturaTelaInicialCursivaUrl,
-} from "@/assets/assets";
+
+import capaCursiva from "@/assets/Cursiva/Capa - home cursiva.png";
+import capaBooking from "@/assets/Booking/Capa - home booking.png";
+import capaAngeloni from "@/assets/Angeloni/Capa - home angeloni.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +36,7 @@ const PROJECTS = [
     role: "Sistema para professores",
     description:
       "Projeto colaborativo de uma plataforma educacional que utiliza tecnologia e IA para simplificar tarefas repetitivas da rotina dos professores e tornar sua experiência mais clara e intuitiva.",
-    thumb: miniaturaTelaInicialCursivaUrl,
+    thumb: capaCursiva,
   },
   {
     to: "/booking",
@@ -45,7 +44,7 @@ const PROJECTS = [
     role: "Redesign · Web & Mobile",
     description:
       "Projeto acadêmico de redesign das principais etapas de uma experiência de reserva, explorando novas possibilidades de organização e navegação para web e mobile.",
-    thumb: miniaturaTelaInicialBookingUrl,
+    thumb: capaBooking,
   },
   {
     to: "/angeloni",
@@ -53,7 +52,7 @@ const PROJECTS = [
     role: "Experiência de compras",
     description:
       "Projeto acadêmico de uma experiência de compra personalizada, pensada para utilizar os hábitos do consumidor e tornar compras recorrentes mais rápidas e práticas.",
-    thumb: miniaturaTelaInicialAngeloniUrl,
+    thumb: capaAngeloni,
   },
 ] as const;
 
@@ -73,6 +72,7 @@ function Home() {
               </span>
             </h1>
           </Reveal>
+
           <Reveal delay={120}>
             <a
               href="#trabalhos"
@@ -87,6 +87,7 @@ function Home() {
 
       <main id="trabalhos" className="mx-auto max-w-[1240px] px-6 pb-32 md:px-10">
         <h2 className="sr-only">Projetos</h2>
+
         <div className="space-y-20">
           {PROJECTS.map((project) => (
             <Reveal key={project.to}>
@@ -95,10 +96,15 @@ function Home() {
                   <h3 className="font-display text-[22px] font-bold tracking-tight">
                     {project.name}
                   </h3>
-                  <p className="mt-1 text-[13.5px] text-muted-foreground">{project.role}</p>
+
+                  <p className="mt-1 text-[13.5px] text-muted-foreground">
+                    {project.role}
+                  </p>
+
                   <p className="mt-5 max-w-[380px] text-[13.5px] leading-[1.75] text-muted-foreground">
                     {project.description}
                   </p>
+
                   <Link
                     to={project.to}
                     className="mt-7 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-[13px] transition-colors hover:bg-foreground hover:text-background"
