@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+
 import {
   CaseHero,
   CaseSection,
@@ -29,7 +30,7 @@ import telasAngeloniSugestoes from "@/assets/Angeloni/Sugestões inteligentes - 
 import telasAngeloniTelaInicial from "@/assets/Angeloni/Tela inicial - mobile.png";
 import telasAngeloniTelaPesquisar from "@/assets/Angeloni/Tela pesquisar - mobile.png";
 
-import { miniaturaTelaInicialBookingUrl } from "@/assets/assets";
+import capaBookingHome from "@/assets/Booking/Capa - home booking.png";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
@@ -62,6 +63,7 @@ export const Route = createFileRoute("/angeloni")({
       },
     ],
   }),
+
   component: AngeloniCase,
 });
 
@@ -95,7 +97,7 @@ const SOLUTION_SCREENS = [
     alt: "Resultados da pesquisa",
   },
   {
-    src: telasAngeloniSplash,
+    src: angeloniSplash,
     alt: "Splash screen do aplicativo",
   },
 ];
@@ -257,7 +259,7 @@ function AngeloniCase() {
       <NextProject
         to="/booking"
         name="Booking.com"
-        thumb={miniaturaTelaInicialBookingUrl}
+        thumb={capaBookingHome}
       />
     </CaseShell>
   );
