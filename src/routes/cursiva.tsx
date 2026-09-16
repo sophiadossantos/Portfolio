@@ -7,29 +7,30 @@ import {
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
-import {
-  cursivaImagem1Url,
-  cursivaImagem2Url,
-  cursivaImagem3Url,
-  cursivaImagem4Url,
-  cursivaImagem5Url,
-  cursivaImagem6Url,
-  miniaturaTelaInicialAngeloniUrl,
-  telasCursivaImportarProva1Url,
-  telasCursivaLogin1Url,
-  telasCursivaOnboardingDadosPessoais1Url,
-  telasCursivaOnboardingEscola11Url,
-  telasCursivaOnboardingIniciar1Url,
-  telasCursivaOnboardingMaterias1Url,
-  telasCursivaOnboardingModalidade1Url,
-  telasCursivaOnboardingNivelDeEnsino1Url,
-  telasCursivaOnboardingPreparandoAmbiente11Url,
-  telasCursivaTelaDeProvas12Url,
-  telasCursivaTelaDeProvas31Url,
-  telasCursivaTelaDeProvas51Url,
-  telasCursivaTelaInicialAssistente2Url,
-  telasCursivaTelaInicialTour1Url,
-} from "@/assets/assets";
+
+import cursivaImagem1 from "@/assets/Cursiva/Capa.png";
+import cursivaImagem2 from "@/assets/Cursiva/Frame 170.png";
+import cursivaImagem3 from "@/assets/Cursiva/Concorrentes.png";
+import cursivaImagem4 from "@/assets/Cursiva/Figjam.png";
+import cursivaImagem5 from "@/assets/Cursiva/Dados pessoais - antes.png";
+import cursivaImagem6 from "@/assets/Cursiva/Provas - antes.png";
+
+import telasCursivaImportarProva1 from "@/assets/Cursiva/Importar prova.png";
+import telasCursivaLogin1 from "@/assets/Cursiva/Login.png";
+import telasCursivaOnboardingDadosPessoais1 from "@/assets/Cursiva/Onboarding - Dados pessoais.png";
+import telasCursivaOnboardingEscola11 from "@/assets/Cursiva/Onboarding - Escola.png";
+import telasCursivaOnboardingIniciar1 from "@/assets/Cursiva/Onboarding - Iniciar.png";
+import telasCursivaOnboardingMaterias1 from "@/assets/Cursiva/Onboarding - Matérias.png";
+import telasCursivaOnboardingModalidade1 from "@/assets/Cursiva/Onboarding - Modalidade.png";
+import telasCursivaOnboardingNivelDeEnsino1 from "@/assets/Cursiva/Onboarding - Nível de ensino.png";
+import telasCursivaOnboardingPreparandoAmbiente11 from "@/assets/Cursiva/Onboarding - Preparando ambiente.png";
+import telasCursivaTelaDeProvas12 from "@/assets/Cursiva/Tela de provas-1.png";
+import telasCursivaTelaDeProvas31 from "@/assets/Cursiva/Tela de provas-2.png";
+import telasCursivaTelaDeProvas51 from "@/assets/Cursiva/Tela de provas.png";
+import telasCursivaTelaInicialAssistente2 from "@/assets/Cursiva/Tela inicial - Assistente.png";
+import telasCursivaTelaInicialTour1 from "@/assets/Cursiva/Tela inicial - Tour.png";
+
+import miniaturaTelaInicialAngeloni from "@/assets/Angeloni/Tela Inicial.png";
 
 export const Route = createFileRoute("/cursiva")({
   head: () => ({
@@ -40,7 +41,10 @@ export const Route = createFileRoute("/cursiva")({
         content:
           "Estudo de caso da Cursiva: plataforma educacional com IA criada para simplificar a rotina de professores.",
       },
-      { property: "og:title", content: "Cursiva — Estudo de caso | Sophia dos Santos" },
+      {
+        property: "og:title",
+        content: "Cursiva — Estudo de caso | Sophia dos Santos",
+      },
       {
         property: "og:description",
         content:
@@ -54,23 +58,29 @@ export const Route = createFileRoute("/cursiva")({
 });
 
 const SOLUTION_SCREENS = [
-  { src: telasCursivaLogin1Url, alt: "Tela de login da Cursiva" },
-  { src: telasCursivaOnboardingIniciar1Url, alt: "Onboarding: iniciar" },
-  { src: telasCursivaOnboardingDadosPessoais1Url, alt: "Onboarding: dados pessoais" },
-  { src: telasCursivaOnboardingNivelDeEnsino1Url, alt: "Onboarding: nível de ensino" },
-  { src: telasCursivaOnboardingMaterias1Url, alt: "Onboarding: matérias" },
-  { src: telasCursivaOnboardingModalidade1Url, alt: "Onboarding: modalidade" },
-  { src: telasCursivaOnboardingEscola11Url, alt: "Onboarding: escola" },
+  { src: telasCursivaLogin1, alt: "Tela de login da Cursiva" },
+  { src: telasCursivaOnboardingIniciar1, alt: "Onboarding: iniciar" },
   {
-    src: telasCursivaOnboardingPreparandoAmbiente11Url,
+    src: telasCursivaOnboardingDadosPessoais1,
+    alt: "Onboarding: dados pessoais",
+  },
+  {
+    src: telasCursivaOnboardingNivelDeEnsino1,
+    alt: "Onboarding: nível de ensino",
+  },
+  { src: telasCursivaOnboardingMaterias1, alt: "Onboarding: matérias" },
+  { src: telasCursivaOnboardingModalidade1, alt: "Onboarding: modalidade" },
+  { src: telasCursivaOnboardingEscola11, alt: "Onboarding: escola" },
+  {
+    src: telasCursivaOnboardingPreparandoAmbiente11,
     alt: "Onboarding: preparando o ambiente",
   },
-  { src: telasCursivaTelaInicialTour1Url, alt: "Tela inicial com tour guiado" },
-  { src: telasCursivaTelaInicialAssistente2Url, alt: "Tela inicial com assistente" },
-  { src: telasCursivaTelaDeProvas12Url, alt: "Tela de provas" },
-  { src: telasCursivaImportarProva1Url, alt: "Importar prova" },
-  { src: telasCursivaTelaDeProvas31Url, alt: "Histórico de provas" },
-  { src: telasCursivaTelaDeProvas51Url, alt: "Prova de inglês corrigida" },
+  { src: telasCursivaTelaInicialTour1, alt: "Tela inicial com tour guiado" },
+  { src: telasCursivaTelaInicialAssistente2, alt: "Tela inicial com assistente" },
+  { src: telasCursivaTelaDeProvas12, alt: "Tela de provas" },
+  { src: telasCursivaImportarProva1, alt: "Importar prova" },
+  { src: telasCursivaTelaDeProvas31, alt: "Histórico de provas" },
+  { src: telasCursivaTelaDeProvas51, alt: "Prova de inglês corrigida" },
 ];
 
 function CursivaCase() {
@@ -89,7 +99,10 @@ function CursivaCase() {
           "Quando entrei no projeto, assumi a frente de Product Design com o objetivo de olhar para além das funcionalidades e construir uma experiência que fosse clara, intuitiva e agradável de utilizar.",
         ]}
       >
-        <PanelImage src={cursivaImagem1Url} alt="Visão geral das telas da Cursiva" />
+        <PanelImage
+          src={cursivaImagem1}
+          alt="Visão geral das telas da Cursiva"
+        />
       </CaseSection>
 
       <CaseSection
@@ -100,7 +113,10 @@ function CursivaCase() {
           "Meu desafio como designer foi encontrar esse equilíbrio: criar uma interface que orientasse quem tivesse pouca familiaridade com tecnologia, sem tornar a experiência limitada para quem já estivesse acostumado com ferramentas digitais.",
         ]}
       >
-        <PanelImage src={cursivaImagem2Url} alt="Mapa de fluxos e telas da plataforma" />
+        <PanelImage
+          src={cursivaImagem2}
+          alt="Mapa de fluxos e telas da plataforma"
+        />
       </CaseSection>
 
       <CaseSection
@@ -110,7 +126,10 @@ function CursivaCase() {
           "Esse levantamento me ajudou a identificar padrões de interação e entender quais soluções poderiam ser aproveitadas, adaptadas ou repensadas para a Cursiva.",
         ]}
       >
-        <PanelImage src={cursivaImagem3Url} alt="Referências de plataformas educacionais" />
+        <PanelImage
+          src={cursivaImagem3}
+          alt="Referências de plataformas educacionais"
+        />
       </CaseSection>
 
       <CaseSection
@@ -121,9 +140,18 @@ function CursivaCase() {
           "Também trabalhei na consistência entre as diferentes partes da plataforma, fazendo com que as telas deixassem de parecer funcionalidades isoladas e passassem a funcionar como partes de uma mesma experiência.",
         ]}
       >
-        <PanelImage src={cursivaImagem4Url} alt="Primeiras reestruturações de telas" />
-        <PanelImage src={cursivaImagem5Url} alt="Revisão do onboarding e formulários" />
-        <PanelImage src={cursivaImagem6Url} alt="Revisão das telas de provas" />
+        <PanelImage
+          src={cursivaImagem4}
+          alt="Primeiras reestruturações de telas"
+        />
+        <PanelImage
+          src={cursivaImagem5}
+          alt="Revisão do onboarding e formulários"
+        />
+        <PanelImage
+          src={cursivaImagem6}
+          alt="Revisão das telas de provas"
+        />
       </CaseSection>
 
       <CaseSection
@@ -141,7 +169,7 @@ function CursivaCase() {
       <NextProject
         to="/angeloni"
         name="Angeloni: em casa"
-        thumb={miniaturaTelaInicialAngeloniUrl}
+        thumb={miniaturaTelaInicialAngeloni}
       />
     </CaseShell>
   );

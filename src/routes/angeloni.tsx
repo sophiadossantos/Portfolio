@@ -8,22 +8,23 @@ import {
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
-import {
-  angeloniImagem1Url,
-  angeloniImagem2Url,
-  angeloniImagem3Url,
-  angeloniImagem4Url,
-  angeloniImagem5Url,
-  miniaturaTelaInicialBookingUrl,
-  telasAngeloniCadastrar1Url,
-  telasAngeloniDescricaoDoItem1Url,
-  telasAngeloniEntrar1Url,
-  telasAngeloniPesquisa1Url,
-  telasAngeloniSplashScreenAngeloni3Url,
-  telasAngeloniSugestoesInteligentes1Url,
-  telasAngeloniTelaInicialAngeloni3Url,
-  telasAngeloniTelaPesquisar1Url,
-} from "@/assets/assets";
+
+import angeloniImagem1 from "@/assets/Angeloni/Capa.png";
+import angeloniImagem2 from "@/assets/Angeloni/Figjam.png";
+import angeloniImagem3 from "@/assets/Angeloni/Detalhes do Produto.png";
+import angeloniImagem4 from "@/assets/Angeloni/Login.png";
+import angeloniImagem5 from "@/assets/Angeloni/Tela Inicial.png";
+
+import telasAngeloniCadastrar1 from "@/assets/Angeloni/Cadastrar - mobile.png";
+import telasAngeloniDescricaoDoItem1 from "@/assets/Angeloni/Descrição do item - mobile.png";
+import telasAngeloniEntrar1 from "@/assets/Angeloni/Entrar - mobile.png";
+import telasAngeloniPesquisa1 from "@/assets/Angeloni/Pesquisa - mobile.png";
+import telasAngeloniSplashScreenAngeloni3 from "@/assets/Angeloni/Splash Screen - mobile.png";
+import telasAngeloniSugestoesInteligentes1 from "@/assets/Angeloni/Sugestões inteligentes - mobile.png";
+import telasAngeloniTelaInicialAngeloni3 from "@/assets/Angeloni/Tela inicial - mobile.png";
+import telasAngeloniTelaPesquisar1 from "@/assets/Angeloni/Tela pesquisar - mobile.png";
+
+import { miniaturaTelaInicialBookingUrl } from "@/assets/assets";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
@@ -51,14 +52,32 @@ export const Route = createFileRoute("/angeloni")({
 });
 
 const SOLUTION_SCREENS = [
-  { src: telasAngeloniSplashScreenAngeloni3Url, alt: "Splash screen do aplicativo" },
-  { src: telasAngeloniEntrar1Url, alt: "Tela de entrar" },
-  { src: telasAngeloniCadastrar1Url, alt: "Tela de cadastro" },
-  { src: telasAngeloniTelaInicialAngeloni3Url, alt: "Tela inicial personalizada" },
-  { src: telasAngeloniSugestoesInteligentes1Url, alt: "Sugestões inteligentes" },
-  { src: telasAngeloniDescricaoDoItem1Url, alt: "Descrição do item" },
-  { src: telasAngeloniTelaPesquisar1Url, alt: "Tela de pesquisar" },
-  { src: telasAngeloniPesquisa1Url, alt: "Resultados da pesquisa" },
+  {
+    src: telasAngeloniSplashScreenAngeloni3,
+    alt: "Splash screen do aplicativo",
+  },
+  { src: telasAngeloniEntrar1, alt: "Tela de entrar" },
+  { src: telasAngeloniCadastrar1, alt: "Tela de cadastro" },
+  {
+    src: telasAngeloniTelaInicialAngeloni3,
+    alt: "Tela inicial personalizada",
+  },
+  {
+    src: telasAngeloniSugestoesInteligentes1,
+    alt: "Sugestões inteligentes",
+  },
+  {
+    src: telasAngeloniDescricaoDoItem1,
+    alt: "Descrição do item",
+  },
+  {
+    src: telasAngeloniTelaPesquisar1,
+    alt: "Tela de pesquisar",
+  },
+  {
+    src: telasAngeloniPesquisa1,
+    alt: "Resultados da pesquisa",
+  },
 ];
 
 function AngeloniCase() {
@@ -67,7 +86,12 @@ function AngeloniCase() {
       <CaseHero
         title="Angeloni: em casa"
         subtitle="Repensando a experiência de compras a partir dos hábitos de cada consumidor."
-        tags={["Projeto acadêmico · 2025/2026", "Product Design", "UX/UI", "Mobile"]}
+        tags={[
+          "Projeto acadêmico · 2025/2026",
+          "Product Design",
+          "UX/UI",
+          "Mobile",
+        ]}
       />
 
       <CaseSection
@@ -77,7 +101,10 @@ function AngeloniCase() {
           "A partir da liberdade da proposta, tive a ideia de criar uma experiência que aprendesse com os hábitos de cada consumidor. O sistema utilizaria o histórico de compras para tornar as próximas compras mais rápidas, práticas e personalizadas.",
         ]}
       >
-        <PanelImage src={angeloniImagem1Url} alt="Visão geral do aplicativo Angeloni: em casa" />
+        <PanelImage
+          src={angeloniImagem1}
+          alt="Visão geral do aplicativo Angeloni: em casa"
+        />
       </CaseSection>
 
       <CaseSection
@@ -88,7 +115,10 @@ function AngeloniCase() {
           "Naquele momento, a interface fazia sentido para mim. Foi somente depois de continuar estudando que comecei a perceber que algumas escolhas poderiam ser melhores.",
         ]}
       >
-        <PanelImage src={angeloniImagem2Url} alt="Telas da primeira versão do projeto" />
+        <PanelImage
+          src={angeloniImagem2}
+          alt="Telas da primeira versão do projeto"
+        />
       </CaseSection>
 
       <CaseSection
@@ -99,7 +129,10 @@ function AngeloniCase() {
           "Foi nesse momento que decidi não apenas ajustar a interface, mas refazer o projeto com aquilo que eu havia aprendido.",
         ]}
       >
-        <PanelImage src={angeloniImagem3Url} alt="Mapa completo das telas da primeira versão" />
+        <PanelImage
+          src={angeloniImagem3}
+          alt="Mapa completo das telas da primeira versão"
+        />
       </CaseSection>
 
       <CaseSection
@@ -112,15 +145,16 @@ function AngeloniCase() {
         <div className="grid gap-6 md:grid-cols-2">
           <Panel>
             <img
-              src={angeloniImagem4Url}
+              src={angeloniImagem4}
               alt="Telas da versão 1: entrada e splash"
               loading="lazy"
               className="block w-full"
             />
           </Panel>
+
           <Panel>
             <img
-              src={angeloniImagem5Url}
+              src={angeloniImagem5}
               alt="Telas da versão 2: entrada e tela inicial"
               loading="lazy"
               className="block w-full"
@@ -141,7 +175,11 @@ function AngeloniCase() {
         <ScreenGrid items={SOLUTION_SCREENS} columns={3} />
       </CaseSection>
 
-      <NextProject to="/booking" name="Booking.com" thumb={miniaturaTelaInicialBookingUrl} />
+      <NextProject
+        to="/booking"
+        name="Booking.com"
+        thumb={miniaturaTelaInicialBookingUrl}
+      />
     </CaseShell>
   );
 }
