@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 
 const NAV = [
   { label: "Sobre mim", href: "/#sobre-mim" },
-  { label: "Currículo", href: "#curriculo" },
+  {
+  label: "Currículo",
+  href: "https://drive.google.com/file/d/1Cicpm-LeuSxQ5y9JuzlSKneEu4_Z9zYx/view?usp=sharing",
+  },
 ];
 
 const WHATSAPP_URL = "https://wa.me/5548998380521";
@@ -178,7 +181,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
             </a>
 
             <a
-              href="#curriculo"
+              href="https://drive.google.com/file/d/1Cicpm-LeuSxQ5y9JuzlSKneEu4_Z9zYx/view?usp=sharing"
               onClick={closeMobileMenu}
               className="mobile-menu-link"
             >
