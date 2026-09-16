@@ -4,33 +4,39 @@ import {
   CaseSection,
   CaseShell,
   NextProject,
+  Panel,
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
 
-import cursivaImagem1 from "@/assets/Cursiva/Capa.png";
-import cursivaImagem2 from "@/assets/Cursiva/Frame 170.png";
-import cursivaImagem3 from "@/assets/Cursiva/Concorrentes.png";
-import cursivaImagem4 from "@/assets/Cursiva/Figjam.png";
-import cursivaImagem5 from "@/assets/Cursiva/Dados pessoais - antes.png";
-import cursivaImagem6 from "@/assets/Cursiva/Provas - antes.png";
+import cursivaCapa from "@/assets/Cursiva/Capa.png";
+import cursivaFigjam from "@/assets/Cursiva/Figjam.png";
+import cursivaConcorrentes from "@/assets/Cursiva/Concorrentes.png";
 
-import telasCursivaImportarProva1 from "@/assets/Cursiva/Importar prova.png";
-import telasCursivaLogin1 from "@/assets/Cursiva/Login.png";
-import telasCursivaOnboardingDadosPessoais1 from "@/assets/Cursiva/Onboarding - Dados pessoais.png";
-import telasCursivaOnboardingEscola11 from "@/assets/Cursiva/Onboarding - Escola.png";
-import telasCursivaOnboardingIniciar1 from "@/assets/Cursiva/Onboarding - Iniciar.png";
-import telasCursivaOnboardingMaterias1 from "@/assets/Cursiva/Onboarding - Matérias.png";
-import telasCursivaOnboardingModalidade1 from "@/assets/Cursiva/Onboarding - Modalidade.png";
-import telasCursivaOnboardingNivelDeEnsino1 from "@/assets/Cursiva/Onboarding - Nível de ensino.png";
-import telasCursivaOnboardingPreparandoAmbiente11 from "@/assets/Cursiva/Onboarding - Preparando ambiente.png";
-import telasCursivaTelaDeProvas12 from "@/assets/Cursiva/Tela de provas-1.png";
-import telasCursivaTelaDeProvas31 from "@/assets/Cursiva/Tela de provas-2.png";
-import telasCursivaTelaDeProvas51 from "@/assets/Cursiva/Tela de provas.png";
-import telasCursivaTelaInicialAssistente2 from "@/assets/Cursiva/Tela inicial - Assistente.png";
-import telasCursivaTelaInicialTour1 from "@/assets/Cursiva/Tela inicial - Tour.png";
+import cursivaLoginAntes from "@/assets/Cursiva/Login - antes.png";
+import cursivaLogin from "@/assets/Cursiva/Login.png";
 
-import miniaturaTelaInicialAngeloni from "@/assets/Angeloni/Tela Inicial.png";
+import cursivaDadosPessoaisAntes from "@/assets/Cursiva/Dados pessoais - antes.png";
+import cursivaDadosPessoais from "@/assets/Cursiva/Onboarding - Dados pessoais.png";
+
+import cursivaProvasAntes from "@/assets/Cursiva/Provas - antes.png";
+import cursivaProvas from "@/assets/Cursiva/Tela de provas-1.png";
+
+import telasCursivaImportarProva from "@/assets/Cursiva/Importar prova.png";
+import telasCursivaLogin from "@/assets/Cursiva/Login.png";
+import telasCursivaOnboardingDadosPessoais from "@/assets/Cursiva/Onboarding - Dados pessoais.png";
+import telasCursivaOnboardingEscola from "@/assets/Cursiva/Onboarding - Escola.png";
+import telasCursivaOnboardingIniciar from "@/assets/Cursiva/Onboarding - Iniciar.png";
+import telasCursivaOnboardingMaterias from "@/assets/Cursiva/Onboarding - Matérias.png";
+import telasCursivaOnboardingModalidade from "@/assets/Cursiva/Onboarding - Modalidade.png";
+import telasCursivaOnboardingNivelDeEnsino from "@/assets/Cursiva/Onboarding - Nível de ensino.png";
+import telasCursivaOnboardingPreparandoAmbiente from "@/assets/Cursiva/Onboarding - Preparando ambiente.png";
+import telasCursivaTelaDeProvas from "@/assets/Cursiva/Tela de provas.png";
+import telasCursivaTelaDeProvas2 from "@/assets/Cursiva/Tela de provas-2.png";
+import telasCursivaTelaInicialAssistente from "@/assets/Cursiva/Tela inicial - Assistente.png";
+import telasCursivaTelaInicialTour from "@/assets/Cursiva/Tela inicial - Tour.png";
+
+import angeloniCapa from "@/assets/Angeloni/Capa.png";
 
 export const Route = createFileRoute("/cursiva")({
   head: () => ({
@@ -58,30 +64,95 @@ export const Route = createFileRoute("/cursiva")({
 });
 
 const SOLUTION_SCREENS = [
-  { src: telasCursivaLogin1, alt: "Tela de login da Cursiva" },
-  { src: telasCursivaOnboardingIniciar1, alt: "Onboarding: iniciar" },
   {
-    src: telasCursivaOnboardingDadosPessoais1,
+    src: telasCursivaLogin,
+    alt: "Tela de login da Cursiva",
+  },
+  {
+    src: telasCursivaOnboardingIniciar,
+    alt: "Onboarding: iniciar",
+  },
+  {
+    src: telasCursivaOnboardingDadosPessoais,
     alt: "Onboarding: dados pessoais",
   },
   {
-    src: telasCursivaOnboardingNivelDeEnsino1,
+    src: telasCursivaOnboardingNivelDeEnsino,
     alt: "Onboarding: nível de ensino",
   },
-  { src: telasCursivaOnboardingMaterias1, alt: "Onboarding: matérias" },
-  { src: telasCursivaOnboardingModalidade1, alt: "Onboarding: modalidade" },
-  { src: telasCursivaOnboardingEscola11, alt: "Onboarding: escola" },
   {
-    src: telasCursivaOnboardingPreparandoAmbiente11,
+    src: telasCursivaOnboardingMaterias,
+    alt: "Onboarding: matérias",
+  },
+  {
+    src: telasCursivaOnboardingModalidade,
+    alt: "Onboarding: modalidade",
+  },
+  {
+    src: telasCursivaOnboardingEscola,
+    alt: "Onboarding: escola",
+  },
+  {
+    src: telasCursivaOnboardingPreparandoAmbiente,
     alt: "Onboarding: preparando o ambiente",
   },
-  { src: telasCursivaTelaInicialTour1, alt: "Tela inicial com tour guiado" },
-  { src: telasCursivaTelaInicialAssistente2, alt: "Tela inicial com assistente" },
-  { src: telasCursivaTelaDeProvas12, alt: "Tela de provas" },
-  { src: telasCursivaImportarProva1, alt: "Importar prova" },
-  { src: telasCursivaTelaDeProvas31, alt: "Histórico de provas" },
-  { src: telasCursivaTelaDeProvas51, alt: "Prova de inglês corrigida" },
+  {
+    src: telasCursivaTelaInicialTour,
+    alt: "Tela inicial com tour guiado",
+  },
+  {
+    src: telasCursivaTelaInicialAssistente,
+    alt: "Tela inicial com assistente",
+  },
+  {
+    src: telasCursivaTelaDeProvas,
+    alt: "Tela de provas",
+  },
+  {
+    src: telasCursivaImportarProva,
+    alt: "Tela de importar prova",
+  },
+  {
+    src: telasCursivaTelaDeProvas2,
+    alt: "Histórico de provas",
+  },
+  {
+    src: "@/assets/Cursiva/Analisando prova.png",
+    alt: "Análise de prova",
+  },
 ];
+
+function ComparisonPanel({
+  left,
+  right,
+  leftAlt,
+  rightAlt,
+}: {
+  left: string;
+  right: string;
+  leftAlt: string;
+  rightAlt: string;
+}) {
+  return (
+    <Panel>
+      <div className="grid items-center gap-5 md:grid-cols-2">
+        <img
+          src={left}
+          alt={leftAlt}
+          loading="lazy"
+          className="block h-auto max-h-[360px] w-full object-contain"
+        />
+
+        <img
+          src={right}
+          alt={rightAlt}
+          loading="lazy"
+          className="block h-auto max-h-[360px] w-full object-contain"
+        />
+      </div>
+    </Panel>
+  );
+}
 
 function CursivaCase() {
   return (
@@ -100,7 +171,7 @@ function CursivaCase() {
         ]}
       >
         <PanelImage
-          src={cursivaImagem1}
+          src={cursivaCapa}
           alt="Visão geral das telas da Cursiva"
         />
       </CaseSection>
@@ -114,7 +185,7 @@ function CursivaCase() {
         ]}
       >
         <PanelImage
-          src={cursivaImagem2}
+          src={cursivaFigjam}
           alt="Mapa de fluxos e telas da plataforma"
         />
       </CaseSection>
@@ -127,7 +198,7 @@ function CursivaCase() {
         ]}
       >
         <PanelImage
-          src={cursivaImagem3}
+          src={cursivaConcorrentes}
           alt="Referências de plataformas educacionais"
         />
       </CaseSection>
@@ -140,17 +211,25 @@ function CursivaCase() {
           "Também trabalhei na consistência entre as diferentes partes da plataforma, fazendo com que as telas deixassem de parecer funcionalidades isoladas e passassem a funcionar como partes de uma mesma experiência.",
         ]}
       >
-        <PanelImage
-          src={cursivaImagem4}
-          alt="Primeiras reestruturações de telas"
+        <ComparisonPanel
+          left={cursivaLoginAntes}
+          right={cursivaLogin}
+          leftAlt="Tela de login da versão anterior"
+          rightAlt="Tela de login reconstruída"
         />
-        <PanelImage
-          src={cursivaImagem5}
-          alt="Revisão do onboarding e formulários"
+
+        <ComparisonPanel
+          left={cursivaDadosPessoaisAntes}
+          right={cursivaDadosPessoais}
+          leftAlt="Tela de dados pessoais da versão anterior"
+          rightAlt="Tela de dados pessoais reconstruída"
         />
-        <PanelImage
-          src={cursivaImagem6}
-          alt="Revisão das telas de provas"
+
+        <ComparisonPanel
+          left={cursivaProvasAntes}
+          right={cursivaProvas}
+          leftAlt="Tela de provas da versão anterior"
+          rightAlt="Tela de provas reconstruída"
         />
       </CaseSection>
 
@@ -169,7 +248,7 @@ function CursivaCase() {
       <NextProject
         to="/angeloni"
         name="Angeloni: em casa"
-        thumb={miniaturaTelaInicialAngeloni}
+        thumb={angeloniCapa}
       />
     </CaseShell>
   );

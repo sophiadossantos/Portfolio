@@ -9,27 +9,34 @@ import {
   ScreenGrid,
 } from "@/components/site/CaseLayout";
 
-import angeloniImagem1 from "@/assets/Angeloni/Capa.png";
-import angeloniImagem2 from "@/assets/Angeloni/Figjam.png";
-import angeloniImagem3 from "@/assets/Angeloni/Detalhes do Produto.png";
-import angeloniImagem4 from "@/assets/Angeloni/Login.png";
-import angeloniImagem5 from "@/assets/Angeloni/Tela Inicial.png";
+import angeloniCapa from "@/assets/Angeloni/Capa.png";
+import angeloniFigjam from "@/assets/Angeloni/Figjam.png";
 
-import telasAngeloniCadastrar1 from "@/assets/Angeloni/Cadastrar - mobile.png";
-import telasAngeloniDescricaoDoItem1 from "@/assets/Angeloni/Descrição do item - mobile.png";
-import telasAngeloniEntrar1 from "@/assets/Angeloni/Entrar - mobile.png";
-import telasAngeloniPesquisa1 from "@/assets/Angeloni/Pesquisa - mobile.png";
-import telasAngeloniSplashScreenAngeloni3 from "@/assets/Angeloni/Splash Screen - mobile.png";
-import telasAngeloniSugestoesInteligentes1 from "@/assets/Angeloni/Sugestões inteligentes - mobile.png";
-import telasAngeloniTelaInicialAngeloni3 from "@/assets/Angeloni/Tela inicial - mobile.png";
-import telasAngeloniTelaPesquisar1 from "@/assets/Angeloni/Tela pesquisar - mobile.png";
+import angeloniLogin from "@/assets/Angeloni/Login.png";
+import angeloniTelaInicial from "@/assets/Angeloni/Tela Inicial.png";
+import angeloniPesquisa from "@/assets/Angeloni/Pesquisa - mobile.png";
+import angeloniDetalhesProduto from "@/assets/Angeloni/Detalhes do Produto.png";
+import angeloniCarrinho from "@/assets/Angeloni/Carrinho 6.png";
+
+import angeloniSplash from "@/assets/Angeloni/Splash Screen - mobile.png";
+import angeloniTelaInicialMobile from "@/assets/Angeloni/Tela inicial - mobile.png";
+
+import telasAngeloniCadastrar from "@/assets/Angeloni/Cadastrar - mobile.png";
+import telasAngeloniDescricao from "@/assets/Angeloni/Descrição do item - mobile.png";
+import telasAngeloniEntrar from "@/assets/Angeloni/Entrar - mobile.png";
+import telasAngeloniPesquisa from "@/assets/Angeloni/Pesquisa - mobile.png";
+import telasAngeloniSugestoes from "@/assets/Angeloni/Sugestões inteligentes - mobile.png";
+import telasAngeloniTelaInicial from "@/assets/Angeloni/Tela inicial - mobile.png";
+import telasAngeloniTelaPesquisar from "@/assets/Angeloni/Tela pesquisar - mobile.png";
 
 import { miniaturaTelaInicialBookingUrl } from "@/assets/assets";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
     meta: [
-      { title: "Angeloni: em casa — Estudo de caso | Sophia dos Santos" },
+      {
+        title: "Angeloni: em casa — Estudo de caso | Sophia dos Santos",
+      },
       {
         name: "description",
         content:
@@ -37,15 +44,22 @@ export const Route = createFileRoute("/angeloni")({
       },
       {
         property: "og:title",
-        content: "Angeloni: em casa — Estudo de caso | Sophia dos Santos",
+        content:
+          "Angeloni: em casa — Estudo de caso | Sophia dos Santos",
       },
       {
         property: "og:description",
         content:
           "Da primeira versão à nova experiência: hierarquia, espaçamento e personalização em um app de supermercado.",
       },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
+      {
+        property: "og:type",
+        content: "article",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
     ],
   }),
   component: AngeloniCase,
@@ -53,32 +67,71 @@ export const Route = createFileRoute("/angeloni")({
 
 const SOLUTION_SCREENS = [
   {
-    src: telasAngeloniSplashScreenAngeloni3,
-    alt: "Splash screen do aplicativo",
+    src: telasAngeloniEntrar,
+    alt: "Tela de entrar",
   },
-  { src: telasAngeloniEntrar1, alt: "Tela de entrar" },
-  { src: telasAngeloniCadastrar1, alt: "Tela de cadastro" },
   {
-    src: telasAngeloniTelaInicialAngeloni3,
+    src: telasAngeloniCadastrar,
+    alt: "Tela de cadastro",
+  },
+  {
+    src: telasAngeloniTelaInicial,
     alt: "Tela inicial personalizada",
   },
   {
-    src: telasAngeloniSugestoesInteligentes1,
+    src: telasAngeloniSugestoes,
     alt: "Sugestões inteligentes",
   },
   {
-    src: telasAngeloniDescricaoDoItem1,
+    src: telasAngeloniDescricao,
     alt: "Descrição do item",
   },
   {
-    src: telasAngeloniTelaPesquisar1,
+    src: telasAngeloniTelaPesquisar,
     alt: "Tela de pesquisar",
   },
   {
-    src: telasAngeloniPesquisa1,
+    src: telasAngeloniPesquisa,
     alt: "Resultados da pesquisa",
   },
+  {
+    src: telasAngeloniSplash,
+    alt: "Splash screen do aplicativo",
+  },
 ];
+
+function ImageRow({
+  images,
+}: {
+  images: Array<{
+    src: string;
+    alt: string;
+  }>;
+}) {
+  return (
+    <Panel>
+      <div
+        className={`grid items-center gap-5 ${
+          images.length === 2
+            ? "md:grid-cols-2"
+            : images.length === 5
+              ? "md:grid-cols-5"
+              : "md:grid-cols-3"
+        }`}
+      >
+        {images.map((image) => (
+          <img
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            className="block h-auto max-h-[420px] w-full object-contain"
+          />
+        ))}
+      </div>
+    </Panel>
+  );
+}
 
 function AngeloniCase() {
   return (
@@ -102,7 +155,7 @@ function AngeloniCase() {
         ]}
       >
         <PanelImage
-          src={angeloniImagem1}
+          src={angeloniCapa}
           alt="Visão geral do aplicativo Angeloni: em casa"
         />
       </CaseSection>
@@ -115,9 +168,29 @@ function AngeloniCase() {
           "Naquele momento, a interface fazia sentido para mim. Foi somente depois de continuar estudando que comecei a perceber que algumas escolhas poderiam ser melhores.",
         ]}
       >
-        <PanelImage
-          src={angeloniImagem2}
-          alt="Telas da primeira versão do projeto"
+        <ImageRow
+          images={[
+            {
+              src: angeloniLogin,
+              alt: "Tela de login do aplicativo",
+            },
+            {
+              src: angeloniTelaInicial,
+              alt: "Tela inicial do aplicativo",
+            },
+            {
+              src: angeloniPesquisa,
+              alt: "Resultados de pesquisa",
+            },
+            {
+              src: angeloniDetalhesProduto,
+              alt: "Detalhes do produto",
+            },
+            {
+              src: angeloniCarrinho,
+              alt: "Carrinho de compras",
+            },
+          ]}
         />
       </CaseSection>
 
@@ -130,7 +203,7 @@ function AngeloniCase() {
         ]}
       >
         <PanelImage
-          src={angeloniImagem3}
+          src={angeloniFigjam}
           alt="Mapa completo das telas da primeira versão"
         />
       </CaseSection>
@@ -142,25 +215,31 @@ function AngeloniCase() {
           "A diferença entre as duas versões acabou mostrando muito do meu próprio processo de aprendizado. A V2 passou a ter mais respiro, uma hierarquia mais clara e um uso mais intencional das cores, tornando a interface menos carregada e mais fácil de acompanhar.",
         ]}
       >
-        <div className="grid gap-6 md:grid-cols-2">
-          <Panel>
-            <img
-              src={angeloniImagem4}
-              alt="Telas da versão 1: entrada e splash"
-              loading="lazy"
-              className="block w-full"
-            />
-          </Panel>
+        <ImageRow
+          images={[
+            {
+              src: angeloniLogin,
+              alt: "Tela de login da primeira versão",
+            },
+            {
+              src: angeloniSplash,
+              alt: "Tela inicial da primeira versão",
+            },
+          ]}
+        />
 
-          <Panel>
-            <img
-              src={angeloniImagem5}
-              alt="Telas da versão 2: entrada e tela inicial"
-              loading="lazy"
-              className="block w-full"
-            />
-          </Panel>
-        </div>
+        <ImageRow
+          images={[
+            {
+              src: angeloniTelaInicial,
+              alt: "Tela inicial da nova versão",
+            },
+            {
+              src: angeloniTelaInicialMobile,
+              alt: "Tela inicial mobile da nova versão",
+            },
+          ]}
+        />
       </CaseSection>
 
       <CaseSection

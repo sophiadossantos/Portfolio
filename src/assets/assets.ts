@@ -17,7 +17,7 @@ import telasBookingInicioWebBooking from "./Booking/telas-booking-inicio-web-boo
 
 import miniaturaTelaInicialBooking from "./miniatura-tela-inicial-booking.png";
 
-import miniaturaTelaInicialAngeloni from "./Angeloni/Tela Inicial.png";
+import miniaturaTelaInicialAngeloni from "./Angeloni/Capa.png";
 import miniaturaTelaInicialCursiva from "./Cursiva/Tela inicial - Tour.png";
 
 export const bookingImagem1Url = bookingImagem1;
