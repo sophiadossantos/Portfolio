@@ -122,7 +122,7 @@ function Home() {
 
                 <Link
                   to={project.to}
-                  className="group order-first block overflow-hidden md:order-none"
+                  className="group block overflow-hidden"
                   aria-label={`Ver estudo de caso ${project.name}`}
                 >
                   <ResponsiveImage

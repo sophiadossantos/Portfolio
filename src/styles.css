@@ -783,11 +783,27 @@
   }
 }
 
+/* Em tablets, o balão do "Sobre mim" abre para a esquerda para não passar da tela. */
+@media (min-width: 768px) and (max-width: 899px) {
+  .about-links .contact-bubble-menu {
+    right: 0;
+    left: auto;
+    transform-origin: calc(100% - 34px) top;
+  }
+
+  .about-links .contact-bubble-menu::before {
+    right: 24px;
+    left: auto;
+  }
+}
+
 /* ---- Mobile ---- */
 
 @media (max-width: 767px) {
   .about-space {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     min-height: 0;
     height: auto;
     margin-top: 5rem;
@@ -804,6 +820,10 @@
     height: auto;
     min-height: 0;
     padding: 0 16px;
+  }
+
+  .about-photo {
+    order: -1;
   }
 
   .about-intro > p {
