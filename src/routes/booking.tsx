@@ -11,7 +11,12 @@ import {
   ScreenGrid,
 } from "@/components/site/CaseLayout";
 
-import { ImageGallery } from "@/components/site/ImageGallery";
+import {
+  ComparisonGallery,
+  ImageGallery,
+  type ComparisonPair,
+  type GalleryItem,
+} from "@/components/site/ImageGallery";
 
 import {
   bookingImagem1Url,
@@ -98,30 +103,36 @@ const ORIGINAL_MOBILE_SCREENS = [
   },
 ];
 
-const SOLUTION_SCREENS = [
+const SOLUTION_SCREENS: GalleryItem[] = [
   {
     src: telasBookingInicioWebBookingUrl,
     alt: "Página inicial redesenhada — web",
+    frame: "web",
   },
   {
     src: telasBookingBuscaDeAcomodacoesWebUrl,
     alt: "Busca de acomodações — web",
+    frame: "web",
   },
   {
     src: telasBookingDetalhesDaAcomodacaoWebUrl,
     alt: "Detalhes da acomodação — web",
+    frame: "web",
   },
   {
     src: telasBookingInicioBookingUrl,
     alt: "Página inicial redesenhada — mobile",
+    frame: "mobile",
   },
   {
     src: telasBookingBuscaDeAcomodacoesMobileUrl,
     alt: "Busca de acomodações — mobile",
+    frame: "mobile",
   },
   {
     src: telasBookingDetalhesDaAcomodacaoMobileUrl,
     alt: "Detalhes da acomodação — mobile",
+    frame: "mobile",
   },
 ];
 
@@ -161,45 +172,38 @@ const MOBILE_COMPARISONS: Array<[string, string, string]> = [
   ],
 ];
 
-function BookingComparison({
-  before,
-  after,
-  label,
-  device,
-}: {
-  before: string;
-  after: string;
-  label: string;
-  device: "web" | "mobile";
-}) {
-  const deviceLabel = device === "web" ? "web" : "mobile";
+const ORIGINAL_SCREENS: GalleryItem[] = [
+  ...ORIGINAL_WEB_SCREENS.map((screen) => ({ ...screen, frame: "web" as const })),
+  ...ORIGINAL_MOBILE_SCREENS.map((screen) => ({ ...screen, frame: "mobile" as const })),
+];
 
-  return (
-    <div>
-      <p className="mb-3 text-[13px] font-medium">
-        {label} · {device === "web" ? "Web" : "Mobile"}
-      </p>
-
-      <ImageGallery
-        variant="comparison"
-        items={[
-          {
-            src: before,
-            alt: `${label}: interface original em ${deviceLabel}`,
-            title: "Antes",
-            caption: `${label} — versão original para ${deviceLabel}`,
-          },
-          {
-            src: after,
-            alt: `${label}: interface redesenhada em ${deviceLabel}`,
-            title: "Depois",
-            caption: `${label} — versão redesenhada para ${deviceLabel}`,
-          },
-        ]}
-      />
-    </div>
-  );
+function toPairs(
+  comparisons: Array<[string, string, string]>,
+  frame: "web" | "mobile",
+): ComparisonPair[] {
+  return comparisons.map(([before, after, label]) => ({
+    label: `${label} · ${frame === "web" ? "Web" : "Mobile"}`,
+    before: {
+      src: before,
+      alt: `${label}: interface original em ${frame}`,
+      title: "Antes",
+      caption: `${label} — versão original para ${frame}`,
+      frame,
+    },
+    after: {
+      src: after,
+      alt: `${label}: interface redesenhada em ${frame}`,
+      title: "Depois",
+      caption: `${label} — versão redesenhada para ${frame}`,
+      frame,
+    },
+  }));
 }
+
+const COMPARISON_PAIRS = [
+  ...toPairs(WEB_COMPARISONS, "web"),
+  ...toPairs(MOBILE_COMPARISONS, "mobile"),
+];
 
 function BookingCase() {
   return (
@@ -236,25 +240,7 @@ function BookingCase() {
           "A partir dessa análise, selecionei três páginas principais e comecei a observar como as informações e ações estavam organizadas em cada uma delas.",
         ]}
       >
-        <Panel>
-          <div className="space-y-3">
-            <div>
-              <h3 className="mb-3 text-sm font-semibold">
-                Experiência original · Web
-              </h3>
-
-              <ImageGallery items={ORIGINAL_WEB_SCREENS} />
-            </div>
-
-            <div className="pt-5">
-              <h3 className="mb-3 text-sm font-semibold">
-                Experiência original · Mobile
-              </h3>
-
-              <ImageGallery items={ORIGINAL_MOBILE_SCREENS} />
-            </div>
-          </div>
-        </Panel>
+        <ImageGallery items={ORIGINAL_SCREENS} />
       </CaseSection>
 
       <CaseSection
@@ -280,32 +266,7 @@ function BookingCase() {
         ]}
       >
         <Panel>
-          <div className="mb-5 grid grid-cols-2 gap-3 text-center text-[12px] font-semibold uppercase text-muted-foreground">
-            <p>Antes</p>
-            <p>Depois</p>
-          </div>
-
-          <div className="space-y-8">
-            {WEB_COMPARISONS.map(([before, after, label]) => (
-              <BookingComparison
-                key={`${label}-web`}
-                before={before}
-                after={after}
-                label={label}
-                device="web"
-              />
-            ))}
-
-            {MOBILE_COMPARISONS.map(([before, after, label]) => (
-              <BookingComparison
-                key={`${label}-mobile`}
-                before={before}
-                after={after}
-                label={label}
-                device="mobile"
-              />
-            ))}
-          </div>
+          <ComparisonGallery pairs={COMPARISON_PAIRS} />
         </Panel>
       </CaseSection>
 

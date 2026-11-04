@@ -5,9 +5,9 @@ import {
   CaseHero,
   CaseSection,
   CaseShell,
+  ComparisonPanel,
   NextProject,
   PanelImage,
-  ScreenGrid,
 } from "@/components/site/CaseLayout";
 
 import { ImageGallery } from "@/components/site/ImageGallery";
@@ -32,7 +32,7 @@ import telasAngeloniSugestoes from "@/assets/optimized/Angeloni/sugestoes-inteli
 import telasAngeloniTelaInicial from "@/assets/optimized/Angeloni/tela-inicial-mobile-large.webp";
 import telasAngeloniTelaPesquisar from "@/assets/optimized/Angeloni/tela-pesquisar-mobile-large.webp";
 
-import { miniaturaTelaInicialCursivaUrl } from "@/assets/assets";
+import capaCursiva from "@/assets/optimized/Cursiva/capa-home-cursiva-large.webp";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
@@ -103,10 +103,7 @@ function ImageRow({
   }>;
 }) {
   return (
-    <ImageGallery
-      items={images}
-      variant={images.length === 2 ? "carousel" : "default"}
-    />
+    <ImageGallery items={images.map((image) => ({ ...image, frame: "mobile" as const }))} />
   );
 }
 
@@ -193,30 +190,20 @@ function AngeloniCase() {
           "A diferença entre as duas versões acabou mostrando muito do meu próprio processo de aprendizado. A V2 passou a ter mais respiro, uma hierarquia mais clara e um uso mais intencional das cores, tornando a interface menos carregada e mais fácil de acompanhar.",
         ]}
       >
-        <ImageRow
-          images={[
-            {
-              src: angeloniLogin,
-              alt: "Tela de login da primeira versão",
-            },
-            {
-              src: angeloniSplash,
-              alt: "Splash screen da primeira versão",
-            },
-          ]}
+        <ComparisonPanel
+          left={angeloniLogin}
+          right={angeloniSplash}
+          leftAlt="Tela de login da primeira versão"
+          rightAlt="Splash screen da nova versão"
+          frame="mobile"
         />
 
-        <ImageRow
-          images={[
-            {
-              src: angeloniTelaInicial,
-              alt: "Tela inicial da versão anterior",
-            },
-            {
-              src: angeloniTelaInicialMobile,
-              alt: "Tela inicial mobile da nova versão",
-            },
-          ]}
+        <ComparisonPanel
+          left={angeloniTelaInicial}
+          right={angeloniTelaInicialMobile}
+          leftAlt="Tela inicial da versão anterior"
+          rightAlt="Tela inicial da nova versão"
+          frame="mobile"
         />
       </CaseSection>
 
@@ -229,13 +216,13 @@ function AngeloniCase() {
           "Também aprendi a questionar mais minhas próprias decisões e a entender que uma interface não precisa apenas funcionar ou parecer bonita. Cada escolha visual pode ajudar, ou dificultar, a forma como alguém entende e utiliza um produto.",
         ]}
       >
-        <ScreenGrid items={SOLUTION_SCREENS} columns={3} />
+        <ImageRow images={SOLUTION_SCREENS} />
       </CaseSection>
 
       <NextProject
         to="/cursiva"
         name="Cursiva"
-        thumb={miniaturaTelaInicialCursivaUrl}
+        thumb={capaCursiva}
       />
     </CaseShell>
   );

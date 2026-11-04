@@ -57,11 +57,20 @@ import image18Large from "./Booking/booking-imagem-2-large.webp";
 import image18W400 from "./Booking/booking-imagem-2-400.webp";
 import image18W800 from "./Booking/booking-imagem-2-800.webp";
 import image19Large from "./Booking/card-interativo-captura-de-tela-busca-de-acomodacoes-large.webp";
+import image19W400 from "./Booking/card-interativo-captura-de-tela-busca-de-acomodacoes-400.webp";
+import image19W800 from "./Booking/card-interativo-captura-de-tela-busca-de-acomodacoes-800.webp";
 import image20Large from "./Booking/card-interativo-captura-de-tela-inicio-large.webp";
+import image20W400 from "./Booking/card-interativo-captura-de-tela-inicio-400.webp";
+import image20W800 from "./Booking/card-interativo-captura-de-tela-inicio-800.webp";
 import image21Large from "./Booking/card-interativo-group-1-large.webp";
+import image21W400 from "./Booking/card-interativo-group-1-400.webp";
 import image22Large from "./Booking/card-interativo-group-2-large.webp";
+import image22W400 from "./Booking/card-interativo-group-2-400.webp";
 import image23Large from "./Booking/card-interativo-group-4-large.webp";
+import image23W400 from "./Booking/card-interativo-group-4-400.webp";
 import image24Large from "./Booking/card-interativo-screencapture-booking-hotel-br-sete-ilhas-pt-br-html-2026-08-26-21-16-12-1-large.webp";
+import image24W400 from "./Booking/card-interativo-screencapture-booking-hotel-br-sete-ilhas-pt-br-html-2026-08-26-21-16-12-1-400.webp";
+import image24W800 from "./Booking/card-interativo-screencapture-booking-hotel-br-sete-ilhas-pt-br-html-2026-08-26-21-16-12-1-800.webp";
 import image25Large from "./Booking/telas-booking-busca-de-acomodacoes-mobile-large.webp";
 import image26Large from "./Booking/telas-booking-busca-de-acomodacoes-web-large.webp";
 import image26W400 from "./Booking/telas-booking-busca-de-acomodacoes-web-400.webp";
@@ -178,12 +187,12 @@ export const imageMeta: Record<string, ImageMeta> = {
   [image16Large]: { srcSet: `${image16W400} 400w, ${image16W800} 800w, ${image16Large} 1600w`, width: 1600, height: 1190 },
   [image17Large]: { srcSet: `${image17W400} 400w, ${image17W800} 800w, ${image17Large} 1199w`, width: 1199, height: 351 },
   [image18Large]: { srcSet: `${image18W400} 400w, ${image18W800} 800w, ${image18Large} 1199w`, width: 1199, height: 535 },
-  [image19Large]: { srcSet: `${image19Large} 347w`, width: 347, height: 441 },
-  [image20Large]: { srcSet: `${image20Large} 347w`, width: 347, height: 441 },
-  [image21Large]: { srcSet: `${image21Large} 185w`, width: 185, height: 441 },
-  [image22Large]: { srcSet: `${image22Large} 185w`, width: 185, height: 441 },
-  [image23Large]: { srcSet: `${image23Large} 185w`, width: 185, height: 441 },
-  [image24Large]: { srcSet: `${image24Large} 347w`, width: 347, height: 441 },
+  [image19Large]: { srcSet: `${image19W400} 400w, ${image19W800} 800w, ${image19Large} 1440w`, width: 1440, height: 1400 },
+  [image20Large]: { srcSet: `${image20W400} 400w, ${image20W800} 800w, ${image20Large} 1600w`, width: 1600, height: 3999 },
+  [image21Large]: { srcSet: `${image21W400} 400w, ${image21Large} 582w`, width: 582, height: 1825 },
+  [image22Large]: { srcSet: `${image22W400} 400w, ${image22Large} 786w`, width: 786, height: 3390 },
+  [image23Large]: { srcSet: `${image23W400} 400w, ${image23Large} 590w`, width: 590, height: 2344 },
+  [image24Large]: { srcSet: `${image24W400} 400w, ${image24W800} 800w, ${image24Large} 1600w`, width: 1600, height: 4444 },
   [image25Large]: { srcSet: `${image25Large} 393w`, width: 393, height: 1603 },
   [image26Large]: { srcSet: `${image26W400} 400w, ${image26W800} 800w, ${image26Large} 1440w`, width: 1440, height: 3014 },
   [image27Large]: { srcSet: `${image27Large} 393w`, width: 393, height: 3833 },

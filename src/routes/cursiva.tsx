@@ -5,13 +5,12 @@ import {
   CaseHero,
   CaseSection,
   CaseShell,
+  ComparisonPanel,
   NextProject,
-  Panel,
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
 
-import { ImageGallery } from "@/components/site/ImageGallery";
 
 import cursivaCapa from "@/assets/optimized/Cursiva/capa-large.webp";
 import cursivaFigjam from "@/assets/optimized/Cursiva/figjam-large.webp";
@@ -125,40 +124,6 @@ const SOLUTION_SCREENS = [
     alt: "Análise de prova",
   },
 ];
-
-function ComparisonPanel({
-  left,
-  right,
-  leftAlt,
-  rightAlt,
-}: {
-  left: string;
-  right: string;
-  leftAlt: string;
-  rightAlt: string;
-}) {
-  return (
-    <Panel>
-      <ImageGallery
-        variant="comparison"
-        items={[
-          {
-            src: left,
-            alt: leftAlt,
-            title: "Antes",
-            caption: leftAlt,
-          },
-          {
-            src: right,
-            alt: rightAlt,
-            title: "Depois",
-            caption: rightAlt,
-          },
-        ]}
-      />
-    </Panel>
-  );
-}
 
 function CursivaCase() {
   return (

@@ -14,7 +14,50 @@ export type GalleryItem = {
   alt: string;
   title?: string;
   caption?: string;
+  /**
+   * Enquadra a tela numa proporção fixa, mostrando o topo. Mantém telas de alturas
+   * diferentes no mesmo tamanho; a tela inteira aparece ao ampliar.
+   */
+  frame?: keyof typeof FRAME_RATIO | undefined;
 };
+
+/** Proporções das telas da Cursiva (web) e do iPhone (mobile). */
+const FRAME_RATIO = { web: "1600 / 1138", mobile: "1179 / 2556" } as const;
+
+function GalleryImage({
+  item,
+  sizes,
+  className = "",
+}: {
+  item: GalleryItem;
+  sizes: string;
+  className?: string;
+}) {
+  if (!item.frame) {
+    return (
+      <ResponsiveImage
+        sizes={sizes}
+        src={item.src}
+        alt={item.alt}
+        className={`h-full w-full object-contain ${className}`}
+      />
+    );
+  }
+
+  return (
+    <span
+      className="mx-auto block h-full max-w-full overflow-hidden rounded-lg bg-white"
+      style={{ aspectRatio: FRAME_RATIO[item.frame] }}
+    >
+      <ResponsiveImage
+        sizes={sizes}
+        src={item.src}
+        alt={item.alt}
+        className={`h-full w-full object-cover object-top ${className}`}
+      />
+    </span>
+  );
+}
 
 type ImageGalleryProps = {
   items: GalleryItem[];
@@ -58,9 +101,9 @@ export function ImageGallery({
     };
   }, [expanded, items.length]);
 
-  if (!items.length) return null;
-
   const activeImage = items[activeIndex];
+
+  if (!activeImage) return null;
 
   function previous() {
     setActiveIndex(
@@ -90,11 +133,10 @@ export function ImageGallery({
               aria-label={`Ampliar ${item.title ?? item.alt}`}
             >
               <div className="flex h-[220px] items-center justify-center overflow-hidden rounded-xl border border-border bg-muted sm:h-[300px] lg:h-[360px]">
-                <ResponsiveImage
+                <GalleryImage
                   sizes="(min-width: 1240px) 570px, 50vw"
-                  src={item.src}
-                  alt={item.alt}
-                  className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.02]"
+                  item={item}
+                  className="transition duration-300 group-hover:scale-[1.02]"
                 />
               </div>
 
@@ -254,12 +296,10 @@ export function ImageGallery({
             aria-label="Ampliar imagem"
             className="h-full w-full cursor-zoom-in"
           >
-            <ResponsiveImage
+            <GalleryImage
               sizes="(min-width: 1240px) 1160px, 100vw"
               key={activeImage.src}
-              src={activeImage.src}
-              alt={activeImage.alt}
-              className="h-full w-full object-contain"
+              item={activeImage}
             />
           </button>
 
@@ -316,7 +356,7 @@ export function ImageGallery({
                     sizes="120px"
                     src={item.src}
                     alt={item.alt}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-top"
                   />
                 </button>
               );
@@ -379,6 +419,8 @@ function Lightbox({
 }: LightboxProps) {
   const activeImage = items[activeIndex];
 
+  if (!activeImage) return null;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8"
@@ -431,16 +473,28 @@ function Lightbox({
           </div>
         </div>
 
-        <div className="flex min-h-0 w-full flex-1 items-center justify-center">
-          <ResponsiveImage
-            sizes="100vw"
-            loading="eager"
-            key={activeImage.src}
-            src={activeImage.src}
-            alt={activeImage.alt}
-            className="max-h-full max-w-full object-contain"
-          />
-        </div>
+        {activeImage.frame ? (
+          <div key={activeImage.src} className="min-h-0 w-full flex-1 overflow-y-auto">
+            <ResponsiveImage
+              sizes="100vw"
+              loading="eager"
+              src={activeImage.src}
+              alt={activeImage.alt}
+              className="mx-auto block h-auto max-w-full"
+            />
+          </div>
+        ) : (
+          <div className="flex min-h-0 w-full flex-1 items-center justify-center">
+            <ResponsiveImage
+              sizes="100vw"
+              loading="eager"
+              key={activeImage.src}
+              src={activeImage.src}
+              alt={activeImage.alt}
+              className="max-h-full max-w-full object-contain"
+            />
+          </div>
+        )}
 
         {items.length > 1 && (
           <div className="flex max-w-full gap-2 overflow-x-auto py-2">
@@ -468,5 +522,59 @@ function Lightbox({
         )}
       </div>
     </div>
+  );
+}
+
+export type ComparisonPair = {
+  label: string;
+  before: GalleryItem;
+  after: GalleryItem;
+};
+
+/** Antes/depois lado a lado, passando para os lados entre os pares. */
+export function ComparisonGallery({ pairs }: { pairs: ComparisonPair[] }) {
+  const [index, setIndex] = useState(0);
+  const pair = pairs[index];
+
+  if (!pair) return null;
+
+  function go(step: number) {
+    setIndex((current) => (current + step + pairs.length) % pairs.length);
+  }
+
+  return (
+    <section>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <p className="min-w-0 truncate text-sm font-medium">{pair.label}</p>
+
+        <div className="flex shrink-0 items-center gap-2">
+          <span className="text-xs text-muted-foreground">
+            {index + 1} / {pairs.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            aria-label="Comparação anterior"
+            className="rounded-full border border-border bg-background p-2 transition-colors hover:bg-foreground hover:text-background"
+          >
+            <CaretLeft size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            aria-label="Próxima comparação"
+            className="rounded-full border border-border bg-background p-2 transition-colors hover:bg-foreground hover:text-background"
+          >
+            <CaretRight size={16} />
+          </button>
+        </div>
+      </div>
+
+      <ImageGallery
+        key={pair.label}
+        variant="comparison"
+        items={[pair.before, pair.after]}
+      />
+    </section>
   );
 }

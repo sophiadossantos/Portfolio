@@ -1,5 +1,5 @@
 
-import { ImageGallery } from "./ImageGallery";
+import { ImageGallery, type GalleryItem } from "./ImageGallery";
 import { ResponsiveImage } from "./ResponsiveImage";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
@@ -132,10 +132,36 @@ export function PanelImage({
   );
 }
 
+export function ComparisonPanel({
+  left,
+  right,
+  leftAlt,
+  rightAlt,
+  frame,
+}: {
+  left: string;
+  right: string;
+  leftAlt: string;
+  rightAlt: string;
+  frame?: GalleryItem["frame"];
+}) {
+  return (
+    <Panel>
+      <ImageGallery
+        variant="comparison"
+        items={[
+          { src: left, alt: leftAlt, title: "Antes", caption: leftAlt, frame },
+          { src: right, alt: rightAlt, title: "Depois", caption: rightAlt, frame },
+        ]}
+      />
+    </Panel>
+  );
+}
+
 export function ScreenGrid({
   items,
 }: {
-  items: { src: string; alt: string }[];
+  items: GalleryItem[];
   columns?: 2 | 3;
 }) {
   return <ImageGallery items={items} />;
