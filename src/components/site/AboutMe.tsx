@@ -3,11 +3,10 @@ import { MapPin } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
 import sophiaPhoto from "@/assets/optimized/sophia-dos-santos-large.webp";
+import { ContactDropdown } from "@/components/site/ContactDropdown";
+import { LINKEDIN_URL } from "@/components/site/contacts";
 import { Reveal } from "@/components/site/Reveal";
 import { ResponsiveImage } from "@/components/site/ResponsiveImage";
-
-const WHATSAPP_URL = "https://wa.me/5548998380521";
-const LINKEDIN_URL = "https://www.linkedin.com/in/sophia-dos-santos";
 
 const BRASILIA_TIME = new Intl.DateTimeFormat("pt-BR", {
   timeZone: "America/Sao_Paulo",
@@ -63,15 +62,15 @@ export function AboutMe() {
           </h2>
 
           <p>
-            Tenho 20 anos e sou de Santa Catarina. Atualmente curso Engenharia
-            de Software e estou construindo minha trajetória na área de Product
-            Design. Sempre tive bastante interesse pela parte estética e, com
-            o tempo, fui me interessando também por tudo que existe por trás de
-            uma boa experiência.
+            Tenho 20 anos, sou de Santa Catarina e curso Engenharia de Software. Sempre me
+            interessei pela parte estética das coisas e, com o tempo, fui percebendo que o que
+            mais me prende é o que existe por trás de uma boa experiência: entender como as
+            pessoas pensam e transformar isso em interfaces claras. Hoje estou construindo minha
+            trajetória em Product Design, unindo o olhar visual com a base técnica da engenharia.
           </p>
 
           <div className="about-links">
-            <Link to="/" className={aboutLinkClass}>
+            <Link to="/" hash="trabalhos" className={aboutLinkClass}>
               <img
                 src="/favicon.png"
                 width={14}
@@ -83,22 +82,7 @@ export function AboutMe() {
               Portfólio
             </Link>
 
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className={aboutLinkClass}
-            >
-              <img
-                src="/favicon.png"
-                width={14}
-                height={14}
-                alt=""
-                className="about-link-star"
-                aria-hidden="true"
-              />
-              Vamos conversar
-            </a>
+            <ContactDropdown className={aboutLinkClass} />
 
             <a
               href={LINKEDIN_URL}

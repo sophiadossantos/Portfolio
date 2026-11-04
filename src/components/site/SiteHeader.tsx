@@ -1,17 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
+import { ContactDropdown } from "./ContactDropdown";
+import { EMAIL_URL, LINKEDIN_URL, RESUME_URL, WHATSAPP_URL } from "./contacts";
+
 const NAV = [
   { label: "Sobre mim", href: "/#sobre-mim" },
   {
   label: "Currículo",
-  href: "https://drive.google.com/file/d/1Cicpm-LeuSxQ5y9JuzlSKneEu4_Z9zYx/view?usp=sharing",
+  href: RESUME_URL,
   },
 ];
 
-const WHATSAPP_URL = "https://wa.me/5548998380521";
-const LINKEDIN_URL = "https://www.linkedin.com/in/sophia-dos-santos";
-const EMAIL = "mailto:santossophiausa@gmail.com";
 
 type SiteHeaderProps = {
   variant?: "pill" | "plain";
@@ -88,70 +88,13 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
             </a>
           ))}
 
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setContactOpen((open) => !open)}
-              aria-expanded={contactOpen}
-              aria-haspopup="true"
-              className="rounded-full px-3.5 py-1.5 text-[13px] text-foreground/80 transition-colors hover:text-foreground"
-            >
-              Contato
-            </button>
-
-            {contactOpen && (
-              <div className="absolute right-0 top-full mt-3 w-[220px] rounded-2xl border border-border bg-background p-2 shadow-[0_10px_30px_color-mix(in_oklab,var(--foreground)_9%,transparent)]">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] transition-colors hover:bg-muted"
-                >
-                  <img
-                    src="/favicon.png"
-                    width={14}
-                    height={14}
-                    alt=""
-                    className="h-3.5 w-3.5 object-contain"
-                    aria-hidden="true"
-                  />
-                  WhatsApp
-                </a>
-
-                <a
-                  href={LINKEDIN_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] transition-colors hover:bg-muted"
-                >
-                  <img
-                    src="/favicon.png"
-                    width={14}
-                    height={14}
-                    alt=""
-                    className="h-3.5 w-3.5 object-contain"
-                    aria-hidden="true"
-                  />
-                  LinkedIn
-                </a>
-
-                <a
-                  href={EMAIL}
-                  className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] transition-colors hover:bg-muted"
-                >
-                  <img
-                    src="/favicon.png"
-                    width={14}
-                    height={14}
-                    alt=""
-                    className="h-3.5 w-3.5 object-contain"
-                    aria-hidden="true"
-                  />
-                  Email
-                </a>
-              </div>
-            )}
-          </div>
+          <ContactDropdown
+            label="Contato"
+            withStar={false}
+            align="right"
+            compact
+            className="rounded-full px-3.5 py-1.5 text-[13px] text-foreground/80 transition-colors hover:text-foreground"
+          />
         </nav>
 
         {/* Mobile */}
@@ -187,7 +130,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
             </a>
 
             <a
-              href="https://drive.google.com/file/d/1Cicpm-LeuSxQ5y9JuzlSKneEu4_Z9zYx/view?usp=sharing"
+              href={RESUME_URL}
               onClick={closeMobileMenu}
               className="mobile-menu-link"
             >
@@ -250,7 +193,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
               </a>
 
               <a
-                href={EMAIL}
+                href={EMAIL_URL}
                 onClick={closeMobileMenu}
                 className="mobile-contact-link"
               >
@@ -261,7 +204,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
                   alt=""
                   aria-hidden="true"
                 />
-                Email
+                E-mail
               </a>
             </div>
           </div>

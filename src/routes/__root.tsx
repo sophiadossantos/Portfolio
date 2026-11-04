@@ -10,6 +10,7 @@ import {
 import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { Footer } from "../components/site/Footer";
 import { SoundtrackPlayer } from "../components/site/SoundtrackPlayer";
 
 function NotFoundComponent() {
@@ -122,6 +123,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Footer />
       <SoundtrackPlayer />
     </QueryClientProvider>
   );
