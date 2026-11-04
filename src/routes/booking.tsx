@@ -29,36 +29,27 @@ import {
   telasBookingInicioBookingUrl,
   telasBookingInicioWebBookingUrl,
 } from "@/assets/assets";
-import angeloniCapa from "@/assets/Angeloni/Capa.png";
+import angeloniCapa from "@/assets/optimized/Angeloni/capa-large.webp";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
-      {
-        title: "Booking.com — Redesign | Sophia dos Santos",
-      },
+      { title: "Booking.com — Redesign · Sophia dos Santos" },
       {
         name: "description",
         content:
-          "Estudo de caso do redesign das principais páginas da experiência de reserva do Booking.com para web e mobile.",
+          "Redesign das três principais páginas da jornada de reserva do Booking.com, para web e mobile.",
       },
-      {
-        property: "og:title",
-        content: "Booking.com — Redesign | Sophia dos Santos",
-      },
+      { property: "og:title", content: "Booking.com — Redesign · Sophia dos Santos" },
       {
         property: "og:description",
         content:
-          "Redesign de uma experiência de reserva: análise das páginas atuais e nova organização visual para web e mobile.",
+          "Redesign das três principais páginas da jornada de reserva do Booking.com, para web e mobile.",
       },
-      {
-        property: "og:type",
-        content: "article",
-      },
-      {
-        name: "twitter:card",
-        content: "summary_large_image",
-      },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://sophiadossantos.com/og-image.png" },
+      { name: "twitter:image", content: "https://sophiadossantos.com/og-image.png" },
     ],
   }),
 
@@ -233,6 +224,7 @@ function BookingCase() {
       >
         <PanelImage
           src={bookingImagem1Url}
+          priority
           alt="Visão geral do redesign em web e mobile"
         />
       </CaseSection>

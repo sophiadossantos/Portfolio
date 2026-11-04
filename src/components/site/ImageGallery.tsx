@@ -7,6 +7,8 @@ import {
   X,
 } from "@phosphor-icons/react";
 
+import { ResponsiveImage } from "./ResponsiveImage";
+
 export type GalleryItem = {
   src: string;
   alt: string;
@@ -88,7 +90,8 @@ export function ImageGallery({
               aria-label={`Ampliar ${item.title ?? item.alt}`}
             >
               <div className="flex h-[220px] items-center justify-center overflow-hidden rounded-xl border border-border bg-muted sm:h-[300px] lg:h-[360px]">
-                <img
+                <ResponsiveImage
+                  sizes="(min-width: 1240px) 570px, 50vw"
                   src={item.src}
                   alt={item.alt}
                   className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.02]"
@@ -157,7 +160,8 @@ export function ImageGallery({
                           : "brightness(0.72)",
                     }}
                   >
-                    <img
+                    <ResponsiveImage
+                      sizes="(min-width: 1240px) 880px, 76vw"
                       src={item.src}
                       alt={item.alt}
                       className="h-full w-full object-contain"
@@ -250,7 +254,8 @@ export function ImageGallery({
             aria-label="Ampliar imagem"
             className="h-full w-full cursor-zoom-in"
           >
-            <img
+            <ResponsiveImage
+              sizes="(min-width: 1240px) 1160px, 100vw"
               key={activeImage.src}
               src={activeImage.src}
               alt={activeImage.alt}
@@ -307,7 +312,8 @@ export function ImageGallery({
                   aria-label={`Ver imagem ${itemIndex + 1}`}
                   className="h-[72px] overflow-hidden rounded-lg border-2 border-transparent opacity-75 transition hover:border-primary hover:opacity-100 sm:h-[90px]"
                 >
-                  <img
+                  <ResponsiveImage
+                    sizes="120px"
                     src={item.src}
                     alt={item.alt}
                     className="h-full w-full object-cover"
@@ -426,7 +432,9 @@ function Lightbox({
         </div>
 
         <div className="flex min-h-0 w-full flex-1 items-center justify-center">
-          <img
+          <ResponsiveImage
+            sizes="100vw"
+            loading="eager"
             key={activeImage.src}
             src={activeImage.src}
             alt={activeImage.alt}
@@ -448,7 +456,8 @@ function Lightbox({
                     : "border-transparent opacity-50 hover:opacity-100"
                 }`}
               >
-                <img
+                <ResponsiveImage
+                  sizes="96px"
                   src={item.src}
                   alt={item.alt}
                   className="h-full w-full object-cover"

@@ -12,57 +12,47 @@ import {
 
 import { ImageGallery } from "@/components/site/ImageGallery";
 
-import angeloniCapa from "@/assets/Angeloni/Capa.png";
-import angeloniFigjam from "@/assets/Angeloni/Figjam.png";
+import angeloniCapa from "@/assets/optimized/Angeloni/capa-large.webp";
+import angeloniFigjam from "@/assets/optimized/Angeloni/figjam-large.webp";
 
-import angeloniLogin from "@/assets/Angeloni/Login.png";
-import angeloniTelaInicial from "@/assets/Angeloni/Tela Inicial.png";
-import angeloniPesquisa from "@/assets/Angeloni/Pesquisa - mobile.png";
-import angeloniDetalhesProduto from "@/assets/Angeloni/Detalhes do Produto.png";
-import angeloniCarrinho from "@/assets/Angeloni/Carrinho 6.png";
+import angeloniLogin from "@/assets/optimized/Angeloni/login-large.webp";
+import angeloniTelaInicial from "@/assets/optimized/Angeloni/tela-inicial-large.webp";
+import angeloniPesquisa from "@/assets/optimized/Angeloni/pesquisa-mobile-large.webp";
+import angeloniDetalhesProduto from "@/assets/optimized/Angeloni/detalhes-do-produto-large.webp";
+import angeloniCarrinho from "@/assets/optimized/Angeloni/carrinho-6-large.webp";
 
-import angeloniSplash from "@/assets/Angeloni/Splash Screen - mobile.png";
-import angeloniTelaInicialMobile from "@/assets/Angeloni/Tela inicial - mobile.png";
+import angeloniSplash from "@/assets/optimized/Angeloni/splash-screen-mobile-large.webp";
+import angeloniTelaInicialMobile from "@/assets/optimized/Angeloni/tela-inicial-mobile-large.webp";
 
-import telasAngeloniCadastrar from "@/assets/Angeloni/Cadastrar - mobile.png";
-import telasAngeloniDescricao from "@/assets/Angeloni/Descrição do item - mobile.png";
-import telasAngeloniEntrar from "@/assets/Angeloni/Entrar - mobile.png";
-import telasAngeloniPesquisa from "@/assets/Angeloni/Pesquisa - mobile.png";
-import telasAngeloniSugestoes from "@/assets/Angeloni/Sugestões inteligentes - mobile.png";
-import telasAngeloniTelaInicial from "@/assets/Angeloni/Tela inicial - mobile.png";
-import telasAngeloniTelaPesquisar from "@/assets/Angeloni/Tela pesquisar - mobile.png";
+import telasAngeloniCadastrar from "@/assets/optimized/Angeloni/cadastrar-mobile-large.webp";
+import telasAngeloniDescricao from "@/assets/optimized/Angeloni/descricao-do-item-mobile-large.webp";
+import telasAngeloniEntrar from "@/assets/optimized/Angeloni/entrar-mobile-large.webp";
+import telasAngeloniPesquisa from "@/assets/optimized/Angeloni/pesquisa-mobile-large.webp";
+import telasAngeloniSugestoes from "@/assets/optimized/Angeloni/sugestoes-inteligentes-mobile-large.webp";
+import telasAngeloniTelaInicial from "@/assets/optimized/Angeloni/tela-inicial-mobile-large.webp";
+import telasAngeloniTelaPesquisar from "@/assets/optimized/Angeloni/tela-pesquisar-mobile-large.webp";
 
 import { miniaturaTelaInicialCursivaUrl } from "@/assets/assets";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
     meta: [
-      {
-        title: "Angeloni: em casa — Estudo de caso | Sophia dos Santos",
-      },
+      { title: "Angeloni: em casa — Estudo de caso · Sophia dos Santos" },
       {
         name: "description",
         content:
-          "Estudo de caso do Angeloni: em casa, uma experiência de compras personalizada a partir dos hábitos de cada consumidor.",
+          "Da V1 à V2: como refiz um app de compras personalizado depois de aprofundar meus estudos em UX/UI.",
       },
-      {
-        property: "og:title",
-        content:
-          "Angeloni: em casa — Estudo de caso | Sophia dos Santos",
-      },
+      { property: "og:title", content: "Angeloni: em casa — Estudo de caso · Sophia dos Santos" },
       {
         property: "og:description",
         content:
-          "Da primeira versão à nova experiência: hierarquia, espaçamento e personalização em um app de supermercado.",
+          "Da V1 à V2: como refiz um app de compras personalizado depois de aprofundar meus estudos em UX/UI.",
       },
-      {
-        property: "og:type",
-        content: "article",
-      },
-      {
-        name: "twitter:card",
-        content: "summary_large_image",
-      },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://sophiadossantos.com/og-image.png" },
+      { name: "twitter:image", content: "https://sophiadossantos.com/og-image.png" },
     ],
   }),
 
@@ -143,6 +133,7 @@ function AngeloniCase() {
       >
         <PanelImage
           src={angeloniCapa}
+          priority
           alt="Visão geral do aplicativo Angeloni: em casa"
         />
       </CaseSection>

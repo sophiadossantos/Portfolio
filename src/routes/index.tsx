@@ -1,29 +1,32 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 import { Reveal } from "@/components/site/Reveal";
 import { AboutMe } from "@/components/site/AboutMe";
 
-import capaCursiva from "@/assets/Cursiva/Capa - home cursiva.png";
-import capaBooking from "@/assets/Booking/Capa - home booking.png";
-import capaAngeloni from "@/assets/Angeloni/Capa - home angeloni.png";
+import capaCursiva from "@/assets/optimized/Cursiva/capa-home-cursiva-large.webp";
+import capaBooking from "@/assets/optimized/Booking/capa-home-booking-large.webp";
+import capaAngeloni from "@/assets/optimized/Angeloni/capa-home-angeloni-large.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sophia dos Santos - Product Designer UX/UI" },
+      { title: "Sophia dos Santos — Product Designer UX/UI" },
       {
         name: "description",
         content:
-          "Portfólio de Sophia dos Santos, designer de produto focada em criar experiências intuitivas e centradas nas pessoas. Cursiva, Booking.com e Angeloni: em casa.",
+          "Portfólio de Sophia dos Santos, designer de produto em formação. Estudos de caso de UX/UI: Cursiva, redesign do Booking.com e Angeloni: em casa.",
       },
-      { property: "og:title", content: "Sophia dos Santos - Product Designer UX/UI" },
+      { property: "og:title", content: "Sophia dos Santos — Product Designer UX/UI" },
       {
         property: "og:description",
         content:
-          "Estudos de caso de UX/UI e Product Design: Cursiva, redesign do Booking.com e Angeloni: em casa.",
+          "Portfólio de Sophia dos Santos, designer de produto em formação. Estudos de caso de UX/UI: Cursiva, redesign do Booking.com e Angeloni: em casa.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://sophiadossantos.com/og-image.png" },
+      { name: "twitter:image", content: "https://sophiadossantos.com/og-image.png" },
     ],
   }),
   component: Home,
@@ -89,7 +92,7 @@ function Home() {
         <h2 className="sr-only">Projetos</h2>
 
         <div className="space-y-20">
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, index) => (
             <Reveal key={project.to}>
               <article className="grid items-center gap-10 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-16">
                 <div>
@@ -119,10 +122,11 @@ function Home() {
                   className="group block overflow-hidden"
                   aria-label={`Ver estudo de caso ${project.name}`}
                 >
-                  <img
+                  <ResponsiveImage
                     src={project.thumb}
                     alt={`Prévia das telas do projeto ${project.name}`}
-                    loading="lazy"
+                    priority={index === 0}
+                    sizes="(min-width: 768px) 756px, 100vw"
                     className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.015]"
                   />
                 </Link>

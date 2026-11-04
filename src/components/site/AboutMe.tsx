@@ -2,8 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { MapPin } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
-import sophiaPhoto from "@/assets/sophia-dos-santos.jpg";
+import sophiaPhoto from "@/assets/optimized/sophia-dos-santos-large.webp";
 import { Reveal } from "@/components/site/Reveal";
+import { ResponsiveImage } from "@/components/site/ResponsiveImage";
 
 const WHATSAPP_URL = "https://wa.me/5548998380521";
 const LINKEDIN_URL = "https://www.linkedin.com/in/sophia-dos-santos";
@@ -73,6 +74,8 @@ export function AboutMe() {
             <Link to="/" className={aboutLinkClass}>
               <img
                 src="/favicon.png"
+                width={14}
+                height={14}
                 alt=""
                 className="about-link-star"
                 aria-hidden="true"
@@ -88,6 +91,8 @@ export function AboutMe() {
             >
               <img
                 src="/favicon.png"
+                width={14}
+                height={14}
                 alt=""
                 className="about-link-star"
                 aria-hidden="true"
@@ -103,6 +108,8 @@ export function AboutMe() {
             >
               <img
                 src="/favicon.png"
+                width={14}
+                height={14}
                 alt=""
                 className="about-link-star"
                 aria-hidden="true"
@@ -113,10 +120,10 @@ export function AboutMe() {
         </div>
 
         <figure className="about-photo">
-          <img
+          <ResponsiveImage
             src={sophiaPhoto}
             alt="Sophia dos Santos sorrindo"
-            loading="lazy"
+            sizes="290px"
           />
 
           <figcaption>

@@ -109,6 +109,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
                 >
                   <img
                     src="/favicon.png"
+                    width={14}
+                    height={14}
                     alt=""
                     className="h-3.5 w-3.5 object-contain"
                     aria-hidden="true"
@@ -124,6 +126,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
                 >
                   <img
                     src="/favicon.png"
+                    width={14}
+                    height={14}
                     alt=""
                     className="h-3.5 w-3.5 object-contain"
                     aria-hidden="true"
@@ -137,6 +141,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
                 >
                   <img
                     src="/favicon.png"
+                    width={14}
+                    height={14}
                     alt=""
                     className="h-3.5 w-3.5 object-contain"
                     aria-hidden="true"
@@ -218,6 +224,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
               >
                 <img
                   src="/favicon.png"
+                  width={14}
+                  height={14}
                   alt=""
                   aria-hidden="true"
                 />
@@ -233,6 +241,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
               >
                 <img
                   src="/favicon.png"
+                  width={14}
+                  height={14}
                   alt=""
                   aria-hidden="true"
                 />
@@ -246,6 +256,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
               >
                 <img
                   src="/favicon.png"
+                  width={14}
+                  height={14}
                   alt=""
                   aria-hidden="true"
                 />

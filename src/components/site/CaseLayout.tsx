@@ -1,5 +1,6 @@
 
 import { ImageGallery } from "./ImageGallery";
+import { ResponsiveImage } from "./ResponsiveImage";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
@@ -110,17 +111,20 @@ export function Panel({
 export function PanelImage({
   src,
   alt,
+  priority = false,
 }: {
   src: string;
   alt: string;
+  priority?: boolean;
 }) {
   return (
     <Reveal>
       <div className="overflow-hidden rounded-2xl bg-panel">
-        <img
+        <ResponsiveImage
           src={src}
           alt={alt}
-          loading="lazy"
+          priority={priority}
+          sizes="(min-width: 1240px) 1160px, 100vw"
           className="block w-full"
         />
       </div>
@@ -151,10 +155,10 @@ export function NextProject({
       <section className="mt-24 border-t border-border pt-12">
         <div className="grid items-center gap-8 md:grid-cols-[1fr_1fr]">
           <Link to={to} className="group block overflow-hidden">
-            <img
+            <ResponsiveImage
               src={thumb}
+              sizes="(min-width: 768px) 560px, 100vw"
               alt={`Prévia do projeto ${name}`}
-              loading="lazy"
               className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.015]"
             />
           </Link>

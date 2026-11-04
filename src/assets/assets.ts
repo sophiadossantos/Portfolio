@@ -1,24 +1,24 @@
-import bookingImagem1 from "./Booking/booking-imagem-1.png";
-import bookingImagem2 from "./Booking/booking-imagem-2.png";
+import bookingImagem1 from "./optimized/Booking/booking-imagem-1-large.webp";
+import bookingImagem2 from "./optimized/Booking/booking-imagem-2-large.webp";
 
-import cardInterativoCapturaDeTelaBuscaDeAcomodacoes from "./Booking/card-interativo-captura-de-tela-busca-de-acomodacoes.png";
-import cardInterativoCapturaDeTelaInicio from "./Booking/card-interativo-captura-de-tela-inicio.png";
-import cardInterativoGroup1 from "./Booking/card-interativo-group-1.png";
-import cardInterativoGroup2 from "./Booking/card-interativo-group-2.png";
-import cardInterativoGroup4 from "./Booking/card-interativo-group-4.png";
-import cardInterativoScreencaptureBookingHotelBrSeteIlhasPtBrHtml202608262116121 from "./Booking/card-interativo-screencapture-booking-hotel-br-sete-ilhas-pt-br-html-2026-08-26-21-16-12-1.png";
+import cardInterativoCapturaDeTelaBuscaDeAcomodacoes from "./optimized/Booking/card-interativo-captura-de-tela-busca-de-acomodacoes-large.webp";
+import cardInterativoCapturaDeTelaInicio from "./optimized/Booking/card-interativo-captura-de-tela-inicio-large.webp";
+import cardInterativoGroup1 from "./optimized/Booking/card-interativo-group-1-large.webp";
+import cardInterativoGroup2 from "./optimized/Booking/card-interativo-group-2-large.webp";
+import cardInterativoGroup4 from "./optimized/Booking/card-interativo-group-4-large.webp";
+import cardInterativoScreencaptureBookingHotelBrSeteIlhasPtBrHtml202608262116121 from "./optimized/Booking/card-interativo-screencapture-booking-hotel-br-sete-ilhas-pt-br-html-2026-08-26-21-16-12-1-large.webp";
 
-import telasBookingBuscaDeAcomodacoesMobile from "./Booking/telas-booking-busca-de-acomodacoes-mobile.png";
-import telasBookingBuscaDeAcomodacoesWeb from "./Booking/telas-booking-busca-de-acomodacoes-web.png";
-import telasBookingDetalhesDaAcomodacaoMobile from "./Booking/telas-booking-detalhes-da-acomodacao-mobile.png";
-import telasBookingDetalhesDaAcomodacaoWeb from "./Booking/telas-booking-detalhes-da-acomodacao-web.png";
-import telasBookingInicioBooking from "./Booking/telas-booking-inicio-booking.png";
-import telasBookingInicioWebBooking from "./Booking/telas-booking-inicio-web-booking.png";
+import telasBookingBuscaDeAcomodacoesMobile from "./optimized/Booking/telas-booking-busca-de-acomodacoes-mobile-large.webp";
+import telasBookingBuscaDeAcomodacoesWeb from "./optimized/Booking/telas-booking-busca-de-acomodacoes-web-large.webp";
+import telasBookingDetalhesDaAcomodacaoMobile from "./optimized/Booking/telas-booking-detalhes-da-acomodacao-mobile-large.webp";
+import telasBookingDetalhesDaAcomodacaoWeb from "./optimized/Booking/telas-booking-detalhes-da-acomodacao-web-large.webp";
+import telasBookingInicioBooking from "./optimized/Booking/telas-booking-inicio-booking-large.webp";
+import telasBookingInicioWebBooking from "./optimized/Booking/telas-booking-inicio-web-booking-large.webp";
 
-import miniaturaTelaInicialBooking from "./miniatura-tela-inicial-booking.png";
+import miniaturaTelaInicialBooking from "./optimized/miniatura-tela-inicial-booking-large.webp";
 
-import miniaturaTelaInicialAngeloni from "./Angeloni/Capa.png";
-import miniaturaTelaInicialCursiva from "./Cursiva/Tela inicial - Tour.png";
+import miniaturaTelaInicialAngeloni from "./optimized/Angeloni/capa-large.webp";
+import miniaturaTelaInicialCursiva from "./optimized/Cursiva/tela-inicial-tour-large.webp";
 
 export const bookingImagem1Url = bookingImagem1;
 

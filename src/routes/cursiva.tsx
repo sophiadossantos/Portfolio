@@ -13,56 +13,55 @@ import {
 
 import { ImageGallery } from "@/components/site/ImageGallery";
 
-import cursivaCapa from "@/assets/Cursiva/Capa.png";
-import cursivaFigjam from "@/assets/Cursiva/Figjam.png";
-import cursivaConcorrentes from "@/assets/Cursiva/Concorrentes.png";
+import cursivaCapa from "@/assets/optimized/Cursiva/capa-large.webp";
+import cursivaFigjam from "@/assets/optimized/Cursiva/figjam-large.webp";
+import cursivaConcorrentes from "@/assets/optimized/Cursiva/concorrentes-large.webp";
 
-import cursivaLoginAntes from "@/assets/Cursiva/Login - antes.png";
-import cursivaLogin from "@/assets/Cursiva/Login.png";
+import cursivaLoginAntes from "@/assets/optimized/Cursiva/login-antes-large.webp";
+import cursivaLogin from "@/assets/optimized/Cursiva/login-large.webp";
 
-import cursivaDadosPessoaisAntes from "@/assets/Cursiva/Dados pessoais - antes.png";
-import cursivaDadosPessoais from "@/assets/Cursiva/Onboarding - Dados pessoais.png";
+import cursivaDadosPessoaisAntes from "@/assets/optimized/Cursiva/dados-pessoais-antes-large.webp";
+import cursivaDadosPessoais from "@/assets/optimized/Cursiva/onboarding-dados-pessoais-large.webp";
 
-import cursivaProvasAntes from "@/assets/Cursiva/Provas - antes.png";
-import cursivaProvas from "@/assets/Cursiva/Tela de provas-1.png";
+import cursivaProvasAntes from "@/assets/optimized/Cursiva/provas-antes-large.webp";
+import cursivaProvas from "@/assets/optimized/Cursiva/tela-de-provas-1-large.webp";
 
-import telasCursivaImportarProva from "@/assets/Cursiva/Importar prova.png";
-import telasCursivaLogin from "@/assets/Cursiva/Login.png";
-import telasCursivaOnboardingDadosPessoais from "@/assets/Cursiva/Onboarding - Dados pessoais.png";
-import telasCursivaOnboardingEscola from "@/assets/Cursiva/Onboarding - Escola.png";
-import telasCursivaOnboardingIniciar from "@/assets/Cursiva/Onboarding - Iniciar.png";
-import telasCursivaOnboardingMaterias from "@/assets/Cursiva/Onboarding - Matérias.png";
-import telasCursivaOnboardingModalidade from "@/assets/Cursiva/Onboarding - Modalidade.png";
-import telasCursivaOnboardingNivelDeEnsino from "@/assets/Cursiva/Onboarding - Nível de ensino.png";
-import telasCursivaOnboardingPreparandoAmbiente from "@/assets/Cursiva/Onboarding - Preparando ambiente.png";
-import telasCursivaTelaDeProvas from "@/assets/Cursiva/Tela de provas.png";
-import telasCursivaTelaDeProvas2 from "@/assets/Cursiva/Tela de provas-2.png";
-import telasCursivaTelaInicialAssistente from "@/assets/Cursiva/Tela inicial - Assistente.png";
-import telasCursivaTelaInicialTour from "@/assets/Cursiva/Tela inicial - Tour.png";
-import telasCursivaAnalisandoProva from "@/assets/Cursiva/Analisando prova.png";
+import telasCursivaImportarProva from "@/assets/optimized/Cursiva/importar-prova-large.webp";
+import telasCursivaLogin from "@/assets/optimized/Cursiva/login-large.webp";
+import telasCursivaOnboardingDadosPessoais from "@/assets/optimized/Cursiva/onboarding-dados-pessoais-large.webp";
+import telasCursivaOnboardingEscola from "@/assets/optimized/Cursiva/onboarding-escola-large.webp";
+import telasCursivaOnboardingIniciar from "@/assets/optimized/Cursiva/onboarding-iniciar-large.webp";
+import telasCursivaOnboardingMaterias from "@/assets/optimized/Cursiva/onboarding-materias-large.webp";
+import telasCursivaOnboardingModalidade from "@/assets/optimized/Cursiva/onboarding-modalidade-large.webp";
+import telasCursivaOnboardingNivelDeEnsino from "@/assets/optimized/Cursiva/onboarding-nivel-de-ensino-large.webp";
+import telasCursivaOnboardingPreparandoAmbiente from "@/assets/optimized/Cursiva/onboarding-preparando-ambiente-large.webp";
+import telasCursivaTelaDeProvas from "@/assets/optimized/Cursiva/tela-de-provas-large.webp";
+import telasCursivaTelaDeProvas2 from "@/assets/optimized/Cursiva/tela-de-provas-2-large.webp";
+import telasCursivaTelaInicialAssistente from "@/assets/optimized/Cursiva/tela-inicial-assistente-large.webp";
+import telasCursivaTelaInicialTour from "@/assets/optimized/Cursiva/tela-inicial-tour-large.webp";
+import telasCursivaAnalisandoProva from "@/assets/optimized/Cursiva/analisando-prova-large.webp";
 
-import capaBookingHome from "@/assets/Booking/Capa - home booking.png";
+import capaBookingHome from "@/assets/optimized/Booking/capa-home-booking-large.webp";
 
 export const Route = createFileRoute("/cursiva")({
   head: () => ({
     meta: [
-      { title: "Cursiva — Estudo de caso | Sophia dos Santos" },
+      { title: "Cursiva — Estudo de caso · Sophia dos Santos" },
       {
         name: "description",
         content:
-          "Estudo de caso da Cursiva: plataforma educacional com IA criada para simplificar a rotina de professores.",
+          "Como reestruturei a experiência de uma plataforma com IA para professores com níveis muito diferentes de familiaridade com tecnologia.",
       },
-      {
-        property: "og:title",
-        content: "Cursiva — Estudo de caso | Sophia dos Santos",
-      },
+      { property: "og:title", content: "Cursiva — Estudo de caso · Sophia dos Santos" },
       {
         property: "og:description",
         content:
-          "Como projetei uma experiência clara e intuitiva para professores com diferentes níveis de familiaridade com tecnologia.",
+          "Como reestruturei a experiência de uma plataforma com IA para professores com níveis muito diferentes de familiaridade com tecnologia.",
       },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://sophiadossantos.com/og-image.png" },
+      { name: "twitter:image", content: "https://sophiadossantos.com/og-image.png" },
     ],
   }),
   component: CursivaCase,
@@ -179,6 +178,7 @@ function CursivaCase() {
       >
         <PanelImage
           src={cursivaCapa}
+          priority
           alt="Visão geral das telas da Cursiva"
         />
       </CaseSection>
