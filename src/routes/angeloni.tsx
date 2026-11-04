@@ -1,3 +1,4 @@
+
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -5,10 +6,11 @@ import {
   CaseSection,
   CaseShell,
   NextProject,
-  Panel,
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
+
+import { ImageGallery } from "@/components/site/ImageGallery";
 
 import angeloniCapa from "@/assets/Angeloni/Capa.png";
 import angeloniFigjam from "@/assets/Angeloni/Figjam.png";
@@ -111,27 +113,10 @@ function ImageRow({
   }>;
 }) {
   return (
-    <Panel>
-      <div
-        className={`grid items-center gap-5 ${
-          images.length === 2
-            ? "md:grid-cols-2"
-            : images.length === 5
-              ? "md:grid-cols-5"
-              : "md:grid-cols-3"
-        }`}
-      >
-        {images.map((image) => (
-          <img
-            key={image.src}
-            src={image.src}
-            alt={image.alt}
-            loading="lazy"
-            className="block h-auto max-h-[420px] w-full object-contain"
-          />
-        ))}
-      </div>
-    </Panel>
+    <ImageGallery
+      items={images}
+      variant={images.length === 2 ? "carousel" : "default"}
+    />
   );
 }
 
@@ -225,7 +210,7 @@ function AngeloniCase() {
             },
             {
               src: angeloniSplash,
-              alt: "Tela inicial da primeira versão",
+              alt: "Splash screen da primeira versão",
             },
           ]}
         />
@@ -234,7 +219,7 @@ function AngeloniCase() {
           images={[
             {
               src: angeloniTelaInicial,
-              alt: "Tela inicial da nova versão",
+              alt: "Tela inicial da versão anterior",
             },
             {
               src: angeloniTelaInicialMobile,

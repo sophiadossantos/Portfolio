@@ -1,3 +1,5 @@
+
+import { ImageGallery } from "./ImageGallery";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
@@ -64,7 +66,10 @@ export function CaseSection({
         </h2>
         <div className="mt-3 max-w-[760px] space-y-4">
           {paragraphs.map((text) => (
-            <p key={text.slice(0, 32)} className="text-[13.5px] leading-[1.75] text-muted-foreground md:text-[14px]">
+            <p
+              key={text.slice(0, 32)}
+              className="text-[13.5px] leading-[1.75] text-muted-foreground md:text-[14px]"
+            >
               {text}
             </p>
           ))}
@@ -75,7 +80,6 @@ export function CaseSection({
   );
 }
 
-/** Soft gray panel that holds the project imagery, as in the Figma frames. */
 export function Panel({
   children,
   className = "",
@@ -96,11 +100,22 @@ export function Panel({
   );
 }
 
-export function PanelImage({ src, alt }: { src: string; alt: string }) {
+export function PanelImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
   return (
     <Reveal>
       <div className="overflow-hidden rounded-2xl bg-panel">
-        <img src={src} alt={alt} loading="lazy" className="block w-full" />
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="block w-full"
+        />
       </div>
     </Reveal>
   );
@@ -108,28 +123,11 @@ export function PanelImage({ src, alt }: { src: string; alt: string }) {
 
 export function ScreenGrid({
   items,
-  columns = 2,
 }: {
   items: { src: string; alt: string }[];
   columns?: 2 | 3;
 }) {
-  return (
-    <Panel>
-      <div
-        className={`grid gap-5 md:gap-7 ${columns === 3 ? "grid-cols-2 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}
-      >
-        {items.map((item) => (
-          <img
-            key={item.src}
-            src={item.src}
-            alt={item.alt}
-            loading="lazy"
-            className="block w-full rounded-lg transition-transform duration-500 hover:-translate-y-1"
-          />
-        ))}
-      </div>
-    </Panel>
-  );
+  return <ImageGallery items={items} />;
 }
 
 export function NextProject({
@@ -153,8 +151,11 @@ export function NextProject({
               className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.015]"
             />
           </Link>
+
           <div>
-            <p className="text-[13px] text-muted-foreground">Próximo projeto</p>
+            <p className="text-[13px] text-muted-foreground">
+              Próximo projeto
+            </p>
             <h2 className="font-display mt-1 text-[24px] font-bold tracking-tight md:text-[28px]">
               {name}
             </h2>

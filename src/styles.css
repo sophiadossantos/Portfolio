@@ -924,3 +924,15 @@
   }
 }
 
+
+@keyframes galleryFade {
+  from {
+    opacity: 0.65;
+    transform: translateX(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

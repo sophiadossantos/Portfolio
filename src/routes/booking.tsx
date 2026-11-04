@@ -1,4 +1,6 @@
+
 import { createFileRoute } from "@tanstack/react-router";
+
 import {
   CaseHero,
   CaseSection,
@@ -8,7 +10,9 @@ import {
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
-import { ScrollCard } from "@/components/site/ScrollCard";
+
+import { ImageGallery } from "@/components/site/ImageGallery";
+
 import {
   bookingImagem1Url,
   bookingImagem2Url,
@@ -30,36 +34,112 @@ import {
 export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
-      { title: "Booking.com — Redesign | Sophia dos Santos" },
+      {
+        title: "Booking.com — Redesign | Sophia dos Santos",
+      },
       {
         name: "description",
         content:
           "Estudo de caso do redesign das principais páginas da experiência de reserva do Booking.com para web e mobile.",
       },
-      { property: "og:title", content: "Booking.com — Redesign | Sophia dos Santos" },
+      {
+        property: "og:title",
+        content: "Booking.com — Redesign | Sophia dos Santos",
+      },
       {
         property: "og:description",
         content:
           "Redesign de uma experiência de reserva: análise das páginas atuais e nova organização visual para web e mobile.",
       },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
+      {
+        property: "og:type",
+        content: "article",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
     ],
   }),
+
   component: BookingCase,
 });
 
+const ORIGINAL_WEB_SCREENS = [
+  {
+    src: cardInterativoCapturaDeTelaInicioUrl,
+    alt: "Página inicial original do Booking.com para web",
+    title: "Página inicial",
+    caption: "Interface original do Booking.com para web",
+  },
+  {
+    src: cardInterativoCapturaDeTelaBuscaDeAcomodacoesUrl,
+    alt: "Busca original de acomodações do Booking.com para web",
+    title: "Busca de acomodações",
+    caption: "Interface original da busca para web",
+  },
+  {
+    src: cardInterativoScreencaptureBookingHotelBrSeteIlhasPtBrHtml202608262116121Url,
+    alt: "Página original de detalhes da acomodação do Booking.com para web",
+    title: "Detalhes da acomodação",
+    caption: "Interface original dos detalhes para web",
+  },
+];
+
+const ORIGINAL_MOBILE_SCREENS = [
+  {
+    src: cardInterativoGroup2Url,
+    alt: "Página inicial original do Booking.com para mobile",
+    title: "Página inicial",
+    caption: "Interface original do Booking.com para mobile",
+  },
+  {
+    src: cardInterativoGroup1Url,
+    alt: "Busca original de acomodações do Booking.com para mobile",
+    title: "Busca de acomodações",
+    caption: "Interface original da busca para mobile",
+  },
+  {
+    src: cardInterativoGroup4Url,
+    alt: "Página original de detalhes da acomodação para mobile",
+    title: "Detalhes da acomodação",
+    caption: "Interface original dos detalhes para mobile",
+  },
+];
+
 const SOLUTION_SCREENS = [
-  { src: telasBookingInicioWebBookingUrl, alt: "Página inicial redesenhada — web" },
-  { src: telasBookingBuscaDeAcomodacoesWebUrl, alt: "Busca de acomodações — web" },
-  { src: telasBookingDetalhesDaAcomodacaoWebUrl, alt: "Detalhes da acomodação — web" },
-  { src: telasBookingInicioBookingUrl, alt: "Página inicial redesenhada — mobile" },
-  { src: telasBookingBuscaDeAcomodacoesMobileUrl, alt: "Busca de acomodações — mobile" },
-  { src: telasBookingDetalhesDaAcomodacaoMobileUrl, alt: "Detalhes da acomodação — mobile" },
+  {
+    src: telasBookingInicioWebBookingUrl,
+    alt: "Página inicial redesenhada — web",
+  },
+  {
+    src: telasBookingBuscaDeAcomodacoesWebUrl,
+    alt: "Busca de acomodações — web",
+  },
+  {
+    src: telasBookingDetalhesDaAcomodacaoWebUrl,
+    alt: "Detalhes da acomodação — web",
+  },
+  {
+    src: telasBookingInicioBookingUrl,
+    alt: "Página inicial redesenhada — mobile",
+  },
+  {
+    src: telasBookingBuscaDeAcomodacoesMobileUrl,
+    alt: "Busca de acomodações — mobile",
+  },
+  {
+    src: telasBookingDetalhesDaAcomodacaoMobileUrl,
+    alt: "Detalhes da acomodação — mobile",
+  },
 ];
 
 const WEB_COMPARISONS: Array<[string, string, string]> = [
-  [cardInterativoCapturaDeTelaInicioUrl, telasBookingInicioWebBookingUrl, "Página inicial"],
+  [
+    cardInterativoCapturaDeTelaInicioUrl,
+    telasBookingInicioWebBookingUrl,
+    "Página inicial",
+  ],
   [
     cardInterativoCapturaDeTelaBuscaDeAcomodacoesUrl,
     telasBookingBuscaDeAcomodacoesWebUrl,
@@ -73,8 +153,16 @@ const WEB_COMPARISONS: Array<[string, string, string]> = [
 ];
 
 const MOBILE_COMPARISONS: Array<[string, string, string]> = [
-  [cardInterativoGroup2Url, telasBookingInicioBookingUrl, "Página inicial"],
-  [cardInterativoGroup1Url, telasBookingBuscaDeAcomodacoesMobileUrl, "Busca de acomodações"],
+  [
+    cardInterativoGroup2Url,
+    telasBookingInicioBookingUrl,
+    "Página inicial",
+  ],
+  [
+    cardInterativoGroup1Url,
+    telasBookingBuscaDeAcomodacoesMobileUrl,
+    "Busca de acomodações",
+  ],
   [
     cardInterativoGroup4Url,
     telasBookingDetalhesDaAcomodacaoMobileUrl,
@@ -82,13 +170,58 @@ const MOBILE_COMPARISONS: Array<[string, string, string]> = [
   ],
 ];
 
+function BookingComparison({
+  before,
+  after,
+  label,
+  device,
+}: {
+  before: string;
+  after: string;
+  label: string;
+  device: "web" | "mobile";
+}) {
+  const deviceLabel = device === "web" ? "web" : "mobile";
+
+  return (
+    <div>
+      <p className="mb-3 text-[13px] font-medium">
+        {label} · {device === "web" ? "Web" : "Mobile"}
+      </p>
+
+      <ImageGallery
+        variant="comparison"
+        items={[
+          {
+            src: before,
+            alt: `${label}: interface original em ${deviceLabel}`,
+            title: "Antes",
+            caption: `${label} — versão original para ${deviceLabel}`,
+          },
+          {
+            src: after,
+            alt: `${label}: interface redesenhada em ${deviceLabel}`,
+            title: "Depois",
+            caption: `${label} — versão redesenhada para ${deviceLabel}`,
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
 function BookingCase() {
   return (
     <CaseShell>
       <CaseHero
         title="Booking.com"
         subtitle="Redesign de uma experiência de reserva"
-        tags={["Projeto acadêmico · 2026", "Redesign", "UX/UI", "Web & Mobile"]}
+        tags={[
+          "Projeto acadêmico · 2026",
+          "Redesign",
+          "UX/UI",
+          "Web & Mobile",
+        ]}
       />
 
       <CaseSection
@@ -98,7 +231,10 @@ function BookingCase() {
           "Escolhi trabalhar com o Booking por já conhecer sua experiência como usuária e por enxergar oportunidades de melhoria na jornada de reserva. A proposta foi redesenhar as três principais páginas da experiência, tanto para web quanto para mobile.",
         ]}
       >
-        <PanelImage src={bookingImagem1Url} alt="Visão geral do redesign em web e mobile" />
+        <PanelImage
+          src={bookingImagem1Url}
+          alt="Visão geral do redesign em web e mobile"
+        />
       </CaseSection>
 
       <CaseSection
@@ -109,38 +245,22 @@ function BookingCase() {
         ]}
       >
         <Panel>
-          <div className="grid gap-5 md:grid-cols-3">
-            <ScrollCard
-              src={cardInterativoCapturaDeTelaInicioUrl}
-              alt="Captura da página inicial original do Booking.com"
-            />
-            <ScrollCard
-              src={cardInterativoCapturaDeTelaBuscaDeAcomodacoesUrl}
-              alt="Captura da busca de acomodações original do Booking.com"
-            />
-            <ScrollCard
-              src={
-                cardInterativoScreencaptureBookingHotelBrSeteIlhasPtBrHtml202608262116121Url
-              }
-              alt="Captura da página de detalhes da acomodação original do Booking.com"
-            />
-          </div>
-          <p className="mt-5 text-center text-[12.5px] text-muted-foreground">
-            Card interativo com scroll interno
-          </p>
-          <div className="mt-6 grid gap-5 md:grid-cols-3">
-            <ScrollCard
-              src={cardInterativoGroup2Url}
-              alt="Captura da página inicial original no mobile"
-            />
-            <ScrollCard
-              src={cardInterativoGroup1Url}
-              alt="Captura da busca de acomodações original no mobile"
-            />
-            <ScrollCard
-              src={cardInterativoGroup4Url}
-              alt="Captura dos detalhes da acomodação original no mobile"
-            />
+          <div className="space-y-3">
+            <div>
+              <h3 className="mb-3 text-sm font-semibold">
+                Experiência original · Web
+              </h3>
+
+              <ImageGallery items={ORIGINAL_WEB_SCREENS} />
+            </div>
+
+            <div className="pt-5">
+              <h3 className="mb-3 text-sm font-semibold">
+                Experiência original · Mobile
+              </h3>
+
+              <ImageGallery items={ORIGINAL_MOBILE_SCREENS} />
+            </div>
           </div>
         </Panel>
       </CaseSection>
@@ -152,7 +272,10 @@ function BookingCase() {
           "Esse processo me fez perceber que um redesign não significa simplesmente mudar aquilo que já existe. Antes de começar a criar, é importante entender a lógica da experiência e pensar no que realmente pode ser melhorado.",
         ]}
       >
-        <PanelImage src={bookingImagem2Url} alt="Análise das telas originais do Booking.com" />
+        <PanelImage
+          src={bookingImagem2Url}
+          alt="Análise das telas originais do Booking.com"
+        />
       </CaseSection>
 
       <CaseSection
@@ -165,31 +288,30 @@ function BookingCase() {
         ]}
       >
         <Panel>
-          <div className="mb-5 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-            <p className="text-center text-[12px] font-semibold uppercase text-muted-foreground">Antes</p>
-            <span className="text-muted-foreground" aria-hidden="true">→</span>
-            <p className="text-center text-[12px] font-semibold uppercase text-muted-foreground">Depois</p>
+          <div className="mb-5 grid grid-cols-2 gap-3 text-center text-[12px] font-semibold uppercase text-muted-foreground">
+            <p>Antes</p>
+            <p>Depois</p>
           </div>
+
           <div className="space-y-8">
             {WEB_COMPARISONS.map(([before, after, label]) => (
-              <div key={label}>
-                <p className="mb-3 text-[13px] font-medium">{label} · Web</p>
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-5">
-                  <ScrollCard src={before} alt={`${label}: interface anterior em web`} height={420} />
-                  <span className="text-muted-foreground" aria-hidden="true">→</span>
-                  <ScrollCard src={after} alt={`${label}: redesign atual em web`} height={420} />
-                </div>
-              </div>
+              <BookingComparison
+                key={`${label}-web`}
+                before={before}
+                after={after}
+                label={label}
+                device="web"
+              />
             ))}
+
             {MOBILE_COMPARISONS.map(([before, after, label]) => (
-              <div key={`${label}-mobile`}>
-                <p className="mb-3 text-[13px] font-medium">{label} · Mobile</p>
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-5">
-                  <ScrollCard src={before} alt={`${label}: interface anterior em mobile`} height={460} />
-                  <span className="text-muted-foreground" aria-hidden="true">→</span>
-                  <ScrollCard src={after} alt={`${label}: redesign atual em mobile`} height={460} />
-                </div>
-              </div>
+              <BookingComparison
+                key={`${label}-mobile`}
+                before={before}
+                after={after}
+                label={label}
+                device="mobile"
+              />
             ))}
           </div>
         </Panel>
@@ -207,7 +329,11 @@ function BookingCase() {
         <ScreenGrid items={SOLUTION_SCREENS} columns={3} />
       </CaseSection>
 
-      <NextProject to="/cursiva" name="Cursiva" thumb={miniaturaTelaInicialCursivaUrl} />
+      <NextProject
+        to="/cursiva"
+        name="Cursiva"
+        thumb={miniaturaTelaInicialCursivaUrl}
+      />
     </CaseShell>
   );
 }

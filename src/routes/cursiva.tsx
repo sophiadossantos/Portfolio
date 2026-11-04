@@ -1,4 +1,6 @@
+
 import { createFileRoute } from "@tanstack/react-router";
+
 import {
   CaseHero,
   CaseSection,
@@ -8,6 +10,8 @@ import {
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
+
+import { ImageGallery } from "@/components/site/ImageGallery";
 
 import cursivaCapa from "@/assets/Cursiva/Capa.png";
 import cursivaFigjam from "@/assets/Cursiva/Figjam.png";
@@ -35,6 +39,7 @@ import telasCursivaTelaDeProvas from "@/assets/Cursiva/Tela de provas.png";
 import telasCursivaTelaDeProvas2 from "@/assets/Cursiva/Tela de provas-2.png";
 import telasCursivaTelaInicialAssistente from "@/assets/Cursiva/Tela inicial - Assistente.png";
 import telasCursivaTelaInicialTour from "@/assets/Cursiva/Tela inicial - Tour.png";
+import telasCursivaAnalisandoProva from "@/assets/Cursiva/Analisando prova.png";
 
 import angeloniCapa from "@/assets/Angeloni/Capa.png";
 
@@ -117,7 +122,7 @@ const SOLUTION_SCREENS = [
     alt: "Histórico de provas",
   },
   {
-    src: "@/assets/Cursiva/Analisando prova.png",
+    src: telasCursivaAnalisandoProva,
     alt: "Análise de prova",
   },
 ];
@@ -135,21 +140,23 @@ function ComparisonPanel({
 }) {
   return (
     <Panel>
-      <div className="grid items-center gap-5 md:grid-cols-2">
-        <img
-          src={left}
-          alt={leftAlt}
-          loading="lazy"
-          className="block h-auto max-h-[360px] w-full object-contain"
-        />
-
-        <img
-          src={right}
-          alt={rightAlt}
-          loading="lazy"
-          className="block h-auto max-h-[360px] w-full object-contain"
-        />
-      </div>
+      <ImageGallery
+        variant="comparison"
+        items={[
+          {
+            src: left,
+            alt: leftAlt,
+            title: "Antes",
+            caption: leftAlt,
+          },
+          {
+            src: right,
+            alt: rightAlt,
+            title: "Depois",
+            caption: rightAlt,
+          },
+        ]}
+      />
     </Panel>
   );
 }
