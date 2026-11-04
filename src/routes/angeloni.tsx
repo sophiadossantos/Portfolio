@@ -32,7 +32,7 @@ import telasAngeloniSugestoes from "@/assets/Angeloni/Sugestões inteligentes - 
 import telasAngeloniTelaInicial from "@/assets/Angeloni/Tela inicial - mobile.png";
 import telasAngeloniTelaPesquisar from "@/assets/Angeloni/Tela pesquisar - mobile.png";
 
-import capaBookingHome from "@/assets/Booking/Capa - home booking.png";
+import { miniaturaTelaInicialCursivaUrl } from "@/assets/assets";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
@@ -242,9 +242,9 @@ function AngeloniCase() {
       </CaseSection>
 
       <NextProject
-        to="/booking"
-        name="Booking.com"
-        thumb={capaBookingHome}
+        to="/cursiva"
+        name="Cursiva"
+        thumb={miniaturaTelaInicialCursivaUrl}
       />
     </CaseShell>
   );

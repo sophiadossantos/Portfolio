@@ -41,7 +41,7 @@ import telasCursivaTelaInicialAssistente from "@/assets/Cursiva/Tela inicial - A
 import telasCursivaTelaInicialTour from "@/assets/Cursiva/Tela inicial - Tour.png";
 import telasCursivaAnalisandoProva from "@/assets/Cursiva/Analisando prova.png";
 
-import angeloniCapa from "@/assets/Angeloni/Capa.png";
+import capaBookingHome from "@/assets/Booking/Capa - home booking.png";
 
 export const Route = createFileRoute("/cursiva")({
   head: () => ({
@@ -253,9 +253,9 @@ function CursivaCase() {
       </CaseSection>
 
       <NextProject
-        to="/angeloni"
-        name="Angeloni: em casa"
-        thumb={angeloniCapa}
+        to="/booking"
+        name="Booking.com"
+        thumb={capaBookingHome}
       />
     </CaseShell>
   );

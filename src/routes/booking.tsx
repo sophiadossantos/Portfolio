@@ -22,7 +22,6 @@ import {
   cardInterativoGroup2Url,
   cardInterativoGroup4Url,
   cardInterativoScreencaptureBookingHotelBrSeteIlhasPtBrHtml202608262116121Url,
-  miniaturaTelaInicialCursivaUrl,
   telasBookingBuscaDeAcomodacoesMobileUrl,
   telasBookingBuscaDeAcomodacoesWebUrl,
   telasBookingDetalhesDaAcomodacaoMobileUrl,
@@ -30,6 +29,7 @@ import {
   telasBookingInicioBookingUrl,
   telasBookingInicioWebBookingUrl,
 } from "@/assets/assets";
+import angeloniCapa from "@/assets/Angeloni/Capa.png";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -330,9 +330,9 @@ function BookingCase() {
       </CaseSection>
 
       <NextProject
-        to="/cursiva"
-        name="Cursiva"
-        thumb={miniaturaTelaInicialCursivaUrl}
+        to="/angeloni"
+        name="Angeloni: em casa"
+        thumb={angeloniCapa}
       />
     </CaseShell>
   );

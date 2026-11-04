@@ -28,6 +28,13 @@ export function CaseHero({
   return (
     <Reveal>
       <header className="pb-10">
+        <Link
+          to="/"
+          hash="trabalhos"
+          className="mb-6 inline-block text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <span aria-hidden="true">←</span> Voltar aos projetos
+        </Link>
         <h1 className="font-display text-[34px] font-bold leading-tight tracking-tight md:text-[40px]">
           {title}
         </h1>

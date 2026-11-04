@@ -76,7 +76,7 @@ export function SoundtrackPlayer() {
         ref={audioRef}
         src={AUDIO_SRC}
         loop
-        preload="auto"
+        preload="none"
       />
 
       <button
@@ -86,7 +86,7 @@ export function SoundtrackPlayer() {
           togglePlayback();
         }}
         className="soundtrack-toggle"
-        aria-label={playing ? "Pausar música" : "Tocar música"}
+        aria-label={playing ? "Pausar música de fundo" : "Tocar música de fundo"}
       >
         {playing ? <Pause weight="fill" /> : <Play weight="fill" />}
       </button>
