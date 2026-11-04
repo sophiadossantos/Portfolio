@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState, type UIEvent } from "react";
 import {
   CaretLeft,
   CaretRight,
@@ -120,7 +120,7 @@ export function ImageGallery({
   if (variant === "comparison") {
     return (
       <>
-        <div className="grid grid-cols-2 gap-3 sm:gap-5">
+        <div className="snap-carousel grid grid-cols-2 gap-5">
           {items.map((item, index) => (
             <button
               key={`${item.src}-${index}`}
@@ -132,9 +132,9 @@ export function ImageGallery({
               className="group min-w-0 text-left"
               aria-label={`Ampliar ${item.title ?? item.alt}`}
             >
-              <div className="flex h-[220px] items-center justify-center overflow-hidden rounded-xl border border-border bg-muted sm:h-[300px] lg:h-[360px]">
+              <div className="flex h-[300px] items-center justify-center overflow-hidden rounded-xl border border-border bg-muted lg:h-[360px]">
                 <GalleryImage
-                  sizes="(min-width: 1240px) 570px, 50vw"
+                  sizes="(min-width: 1240px) 570px, (min-width: 768px) 50vw, 85vw"
                   item={item}
                   className="transition duration-300 group-hover:scale-[1.02]"
                 />
@@ -286,9 +286,55 @@ export function ImageGallery({
 
   const thumbnails = items.filter((_, index) => index !== activeIndex);
 
+  function syncActiveSlide(event: UIEvent<HTMLDivElement>) {
+    const track = event.currentTarget;
+    const [first, second] = track.children;
+    if (!(first instanceof HTMLElement) || !(second instanceof HTMLElement)) return;
+
+    const step = second.offsetLeft - first.offsetLeft;
+    const index = Math.round(track.scrollLeft / step);
+    setActiveIndex(Math.min(index, items.length - 1));
+  }
+
   return (
     <>
-      <section className="w-full space-y-3">
+      <section className="w-full md:hidden">
+        <div className="snap-carousel" onScroll={syncActiveSlide}>
+          {items.map((item, index) => (
+            <button
+              key={`${item.src}-${index}`}
+              type="button"
+              onClick={() => {
+                setActiveIndex(index);
+                setExpanded(true);
+              }}
+              aria-label={`Ampliar ${item.title ?? item.alt}`}
+              className="h-[300px] overflow-hidden rounded-2xl bg-muted"
+            >
+              <GalleryImage sizes="85vw" item={item} />
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-3 flex items-baseline justify-between gap-3">
+          <p className="min-w-0 truncate text-sm font-medium">
+            {activeImage.title ?? activeImage.alt}
+          </p>
+          <span className="shrink-0 text-xs text-muted-foreground">
+            {activeIndex + 1} / {items.length}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="mt-4 w-full rounded-full border border-border px-5 py-2.5 text-[13px] transition-colors hover:bg-foreground hover:text-background"
+        >
+          Ver todos
+        </button>
+      </section>
+
+      <section className="hidden w-full space-y-3 md:block">
         <div className="group relative flex h-[300px] items-center justify-center overflow-hidden rounded-2xl bg-muted sm:h-[420px] lg:h-[500px]">
           <button
             type="button"
@@ -536,6 +582,16 @@ export function ComparisonGallery({ pairs }: { pairs: ComparisonPair[] }) {
   const [index, setIndex] = useState(0);
   const pair = pairs[index];
 
+  // No celular, todos os pares ficam em um único carrossel.
+  const mobileItems = useMemo(
+    () =>
+      pairs.flatMap(({ label, before, after }) => [
+        { ...before, title: `${label} · ${before.title}` },
+        { ...after, title: `${label} · ${after.title}` },
+      ]),
+    [pairs],
+  );
+
   if (!pair) return null;
 
   function go(step: number) {
@@ -544,7 +600,11 @@ export function ComparisonGallery({ pairs }: { pairs: ComparisonPair[] }) {
 
   return (
     <section>
-      <div className="mb-4 flex items-center justify-between gap-3">
+      <div className="md:hidden">
+        <ImageGallery variant="comparison" items={mobileItems} />
+      </div>
+
+      <div className="mb-4 hidden items-center justify-between gap-3 md:flex">
         <p className="min-w-0 truncate text-sm font-medium">{pair.label}</p>
 
         <div className="flex shrink-0 items-center gap-2">
@@ -570,11 +630,13 @@ export function ComparisonGallery({ pairs }: { pairs: ComparisonPair[] }) {
         </div>
       </div>
 
-      <ImageGallery
-        key={pair.label}
-        variant="comparison"
-        items={[pair.before, pair.after]}
-      />
+      <div className="hidden md:block">
+        <ImageGallery
+          key={pair.label}
+          variant="comparison"
+          items={[pair.before, pair.after]}
+        />
+      </div>
     </section>
   );
 }

@@ -783,6 +783,28 @@
   }
 }
 
+/* Carrossel horizontal do celular: uma imagem por vez, com a próxima aparecendo na borda. */
+@media (max-width: 767px) {
+  .snap-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .snap-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-carousel > * {
+    flex: 0 0 88%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+
 /* Em tablets, o balão do "Sobre mim" abre para a esquerda para não passar da tela. */
 @media (min-width: 768px) and (max-width: 899px) {
   .about-links .contact-bubble-menu {
