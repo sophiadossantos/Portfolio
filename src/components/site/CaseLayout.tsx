@@ -190,7 +190,8 @@ export function NextProject({
             />
           </Link>
 
-          <div className="relative">
+          {/* O cartão da capa começa a 5,94% da borda da imagem e 5px do topo. */}
+          <div className="relative px-[5.94%] md:self-start md:px-0 md:pt-[5px]">
             <p className="text-[13px] text-muted-foreground">
               Próximo projeto
             </p>
