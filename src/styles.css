@@ -146,6 +146,18 @@
 
   --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "IBM Plex Serif", Georgia, serif;
+
+  --text-section-title: clamp(44px, 5vw, 72px);
+
+  --space-project-gap: 120px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --text-section-title: 42px;
+    --space-project-gap: 80px;
+  }
 }
 
 @theme inline {
@@ -179,6 +191,24 @@
 
 @utility font-display {
   font-family: var(--font-display);
+}
+
+/* ---- Título do Sobre mim ---- */
+
+.about-intro h2 {
+  font-family: var(--font-editorial);
+  font-size: var(--text-section-title);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+
+/* ---- Home ---- */
+
+.project-list {
+  display: grid;
+  gap: var(--space-project-gap);
 }
 
 /* ---- Hero ---- */
@@ -283,15 +313,6 @@
   grid-row: 1;
   width: 100%;
   padding: 0;
-}
-
-.about-intro h2 {
-  font-family: "IBM Plex Serif", Georgia, serif;
-  font-size: clamp(44px, 5vw, 72px);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.035em;
-  text-transform: none;
 }
 
 .about-intro > p {
@@ -679,7 +700,6 @@
   }
 
   .about-intro h2 {
-    font-size: 42px;
     line-height: 1;
   }
 

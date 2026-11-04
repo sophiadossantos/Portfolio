@@ -36,9 +36,9 @@ const PROJECTS = [
   {
     to: "/cursiva",
     name: "Cursiva",
-    role: "Sistema para professores",
+    role: "Plataforma para professores · Web",
     description:
-      "Projeto colaborativo de uma plataforma educacional que utiliza tecnologia e IA para simplificar tarefas repetitivas da rotina dos professores e tornar sua experiência mais clara e intuitiva.",
+      "Liderei o Product Design de uma plataforma com IA que simplifica tarefas repetitivas da rotina de professores, para quem tem muita ou pouca familiaridade com tecnologia.",
     thumb: capaCursiva,
   },
   {
@@ -46,15 +46,15 @@ const PROJECTS = [
     name: "Booking.com",
     role: "Redesign · Web & Mobile",
     description:
-      "Projeto acadêmico de redesign das principais etapas de uma experiência de reserva, explorando novas possibilidades de organização e navegação para web e mobile.",
+      "Redesign acadêmico das três principais páginas da jornada de reserva, repensando hierarquia, espaçamentos e navegação para web e mobile.",
     thumb: capaBooking,
   },
   {
     to: "/angeloni",
     name: "Angeloni: em casa",
-    role: "Experiência de compras",
+    role: "Experiência de compras · Mobile",
     description:
-      "Projeto acadêmico de uma experiência de compra personalizada, pensada para utilizar os hábitos do consumidor e tornar compras recorrentes mais rápidas e práticas.",
+      "App de compras que aprende com os hábitos do consumidor. Refiz o projeto do zero depois de aprofundar meus estudos, e a evolução da V1 para a V2 é parte do case.",
     thumb: capaAngeloni,
   },
 ] as const;
@@ -65,7 +65,7 @@ function Home() {
       <SiteHeader variant="pill" />
 
       <section className="hero-aurora">
-        <div className="mx-auto flex min-h-[78vh] max-w-[1240px] flex-col justify-center px-6 pb-24 pt-40 md:px-10">
+        <div className="mx-auto flex max-w-[1240px] flex-col justify-center px-6 pb-16 pt-32 md:px-10 md:pt-36">
           <Reveal>
             <h1 className="max-w-[900px] font-display text-[28px] leading-[1.35] tracking-tight md:text-[34px]">
               <span className="font-bold">Olá, eu sou a Sophia.</span>{" "}
@@ -88,10 +88,13 @@ function Home() {
         </div>
       </section>
 
-      <main id="trabalhos" className="mx-auto max-w-[1240px] px-6 pb-32 md:px-10">
+      <main
+        id="trabalhos"
+        className="mx-auto max-w-[1240px] scroll-mt-24 px-6 pb-32 pt-8 md:px-10 md:pt-12"
+      >
         <h2 className="sr-only">Projetos</h2>
 
-        <div className="space-y-20">
+        <div className="project-list">
           {PROJECTS.map((project, index) => (
             <Reveal key={project.to}>
               <article className="grid items-center gap-10 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-16">
@@ -119,7 +122,7 @@ function Home() {
 
                 <Link
                   to={project.to}
-                  className="group block overflow-hidden"
+                  className="group order-first block overflow-hidden md:order-none"
                   aria-label={`Ver estudo de caso ${project.name}`}
                 >
                   <ResponsiveImage
