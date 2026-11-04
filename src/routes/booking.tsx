@@ -34,7 +34,7 @@ import {
   telasBookingInicioBookingUrl,
   telasBookingInicioWebBookingUrl,
 } from "@/assets/assets";
-import angeloniCapa from "@/assets/optimized/Angeloni/capa-large.webp";
+import capaAngeloni from "@/assets/optimized/Angeloni/capa-home-angeloni-large.webp";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -285,7 +285,7 @@ function BookingCase() {
       <NextProject
         to="/angeloni"
         name="Angeloni: em casa"
-        thumb={angeloniCapa}
+        thumb={capaAngeloni}
       />
     </CaseShell>
   );

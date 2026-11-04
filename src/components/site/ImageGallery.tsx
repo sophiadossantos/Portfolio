@@ -469,7 +469,7 @@ function Lightbox({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label="Galeria de imagens"
@@ -488,7 +488,7 @@ function Lightbox({
         className="flex h-full w-full max-w-7xl flex-col items-center justify-center gap-4"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex w-full items-center justify-between gap-4 text-white">
+        <div className="flex w-full items-center justify-between gap-4 pr-14 text-white">
           <div className="min-w-0">
             <p className="truncate text-sm font-medium sm:text-base">
               {activeImage.title ?? activeImage.alt}

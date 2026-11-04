@@ -179,8 +179,9 @@ export function NextProject({
   return (
     <Reveal>
       <section className="mt-24 border-t border-border pt-12">
-        <div className="grid items-center gap-8 md:grid-cols-[1fr_1fr]">
-          <Link to={to} className="group block overflow-hidden">
+        <div className="grid items-center md:grid-cols-[minmax(0,560px)_1fr] md:gap-3">
+          {/* A capa tem uma área de sombra embaixo, compensada no celular. */}
+          <Link to={to} className="group -mb-12 block overflow-hidden md:mb-0">
             <ResponsiveImage
               src={thumb}
               sizes="(min-width: 768px) 560px, 100vw"
@@ -189,7 +190,7 @@ export function NextProject({
             />
           </Link>
 
-          <div>
+          <div className="relative">
             <p className="text-[13px] text-muted-foreground">
               Próximo projeto
             </p>
