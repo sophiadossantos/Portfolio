@@ -470,7 +470,10 @@ const META = [
     value: "Product Designer, responsável pela experiência e pela interface",
   },
   { label: "Equipe", value: "4 pessoas" },
-  // CONFIRMAR: Duração, ex. "4 meses". Fica oculto até ter o valor.
+  {
+    label: "Duração",
+    value: "Em andamento: desenvolvimento desde fevereiro de 2026, design desde maio de 2026",
+  },
   { label: "Ferramentas", value: "Figma, FigJam" },
 ];
 
@@ -487,8 +490,7 @@ const MAP_DECISION = {
 const LIGHT_INTERFACE_DECISION = {
   title: "Interface leve por padrão",
   problem:
-    "Parte dos professores usa computadores antigos, e elementos visuais pesados prejudicariam a experiência.",
-  // CONFIRMAR: foi por isso que a ilustração da coruja saiu do login?
+    "Em conversas com professores, vimos que parte deles usa computadores antigos, e elementos visuais pesados prejudicariam a experiência.",
   decision:
     "Priorizar layouts limpos, com poucos elementos decorativos, e concentrar a identidade visual em cor e tipografia.",
   why: "A interface precisava carregar bem e ser clara em qualquer dispositivo, sem perder a identidade da marca.",
@@ -517,8 +519,7 @@ const LOGIN_NOTES: ComparisonNote[] = [
   {
     x: 19,
     y: 28,
-    // CONFIRMAR
-    text: "A ilustração saiu do login e ficou para a tela de preparo do ambiente.",
+    text: "A ilustração saiu para deixar o login mais leve e focado no formulário, e ficou para a tela de preparo do ambiente.",
     area: [0, 0, 42, 100],
   },
   {
@@ -552,12 +553,11 @@ const PERSONAL_DATA_NOTES: ComparisonNote[] = [
   },
 ];
 
-// CONFIRMAR: notas escritas a partir da comparação entre as duas telas.
 const EXAMS_NOTES: ComparisonNote[] = [
   {
     x: 43,
     y: 32,
-    text: "As três rotas em carrossel viraram dois botões sempre visíveis.",
+    text: "A correção ficava escondida em um carrossel de três rotas, e agora gerar e corrigir são dois botões sempre visíveis.",
     area: [7, 28, 34, 8],
     ref: REFS.carousels,
   },
@@ -684,7 +684,6 @@ function CursivaCase() {
         <ScreenGrid items={SOLUTION_SCREENS} />
       </CaseSection>
 
-      {/* CONFIRMAR: texto da seção da landing page. */}
       <CaseSection
         title="A landing page"
         paragraphs={[

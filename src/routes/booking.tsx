@@ -486,7 +486,7 @@ const SOLUTION_SCREENS: GalleryItem[] = [
         h: 11.3,
       },
       {
-        text: "Quatro garantias curtas ficam logo após a busca e respondem às dúvidas mais comuns.",
+        text: "Quatro garantias curtas ficam logo após a busca e respondem a dúvidas comuns em sites de reserva.",
         ref: REFS.scanning,
         x: 7,
         y: 20,
@@ -533,7 +533,7 @@ const SOLUTION_SCREENS: GalleryItem[] = [
         h: 4.4,
       },
       {
-        text: "Os filtros mais usados ficam a um clique, sem abrir um painel.",
+        text: "Filtros comuns em sites de reserva ficam a um clique, sem abrir um painel.",
         ref: REFS.flexibility,
         x: 7.5,
         y: 15.7,
@@ -1031,7 +1031,6 @@ const META = [
   { label: "Ferramentas", value: "Figma" },
 ];
 
-// CONFIRMAR: ajuste as três decisões para refletir exatamente o que você mudou nas telas.
 const SEARCH_DECISION = {
   title: "Busca como protagonista",
   problem:
