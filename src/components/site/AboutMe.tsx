@@ -31,13 +31,12 @@ function BrasiliaClock() {
   }, []);
 
   return (
-    <div
+    <time
       className="about-clock"
       aria-label={`Horário atual em Criciúma, SC: ${time}`}
     >
-      <span>CRICIÚMA, SC</span>
-      <time>{time}</time>
-    </div>
+      {time}
+    </time>
   );
 }
 
@@ -98,11 +97,13 @@ export function AboutMe() {
           />
 
           <figcaption>
-            <MapPin weight="fill" aria-hidden="true" />
-            Criciúma, SC
-          </figcaption>
+            <span className="about-place">
+              <MapPin weight="fill" aria-hidden="true" />
+              Criciúma, SC
+            </span>
 
-          <BrasiliaClock />
+            <BrasiliaClock />
+          </figcaption>
 
           <span className="about-hover-label">essa sou eu</span>
         </figure>
