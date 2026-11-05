@@ -68,7 +68,7 @@ export function AboutMe() {
           </p>
 
           <div className="about-links">
-            <ContactDropdown className={`${aboutLinkClass} is-primary`} />
+            <ContactDropdown className={aboutLinkClass} />
 
             <a
               href={LINKEDIN_URL}
