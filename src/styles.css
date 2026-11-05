@@ -421,10 +421,6 @@
     animation: none;
   }
 
-  .snap-carousel {
-    scroll-behavior: auto;
-  }
-
   .tour-spotlight,
   .device-screen {
     transition: none;
@@ -1186,7 +1182,8 @@
 /* ---- Reduced motion ---- */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html,
+  .snap-carousel {
     scroll-behavior: auto;
   }
 

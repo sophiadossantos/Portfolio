@@ -234,6 +234,14 @@ export function ComparisonNotes({ notes }: { notes: ComparisonNote[] }) {
 }
 
 /** Índice do slide visível em um `.snap-carousel`. */
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function scrollBehavior(): ScrollBehavior {
+  return prefersReducedMotion() ? "auto" : "smooth";
+}
+
 function activeSlide(track: HTMLElement) {
   const [first, second] = track.children;
   if (!(first instanceof HTMLElement) || !(second instanceof HTMLElement)) return 0;
@@ -259,7 +267,7 @@ function useCascadeToggle(startOpen: boolean) {
 
   function close() {
     clearTimeout(timer.current);
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (prefersReducedMotion()) {
       setPhase("closed");
       return;
     }
@@ -387,7 +395,7 @@ export function ImageGallery({
     closeLightbox();
     document
       .getElementById(resultsTargetId ?? "")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      ?.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
   }
 
   function previous() {
@@ -826,7 +834,7 @@ function TourPanel({
 
   // Mantém o ponto ativo visível quando a lista é maior que o painel.
   useEffect(() => {
-    activeRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    activeRef.current?.scrollIntoView({ block: "nearest", behavior: scrollBehavior() });
   }, [step, screenKey]);
 
   return (

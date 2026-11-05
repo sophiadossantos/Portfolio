@@ -119,6 +119,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
           mobileOpen ? "is-open" : ""
         }`}
         aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
       >
         {!contactOpen ? (
           <div className="mobile-menu-content">
