@@ -70,9 +70,11 @@ export const Route = createFileRoute("/cursiva")({
       },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://sophiadossantos.com/cursiva" },
       { property: "og:image", content: "https://sophiadossantos.com/og-image.png" },
       { name: "twitter:image", content: "https://sophiadossantos.com/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "https://sophiadossantos.com/cursiva" }],
   }),
   component: CursivaCase,
 });

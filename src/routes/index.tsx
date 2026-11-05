@@ -25,9 +25,11 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://sophiadossantos.com/" },
       { property: "og:image", content: "https://sophiadossantos.com/og-image.png" },
       { name: "twitter:image", content: "https://sophiadossantos.com/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "https://sophiadossantos.com/" }],
   }),
   component: Home,
 });

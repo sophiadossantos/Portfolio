@@ -81,6 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Portfólio de Product Design e UX/UI de Sophia dos Santos." },
       { name: "author", content: "Sophia dos Santos" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Sophia dos Santos" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
