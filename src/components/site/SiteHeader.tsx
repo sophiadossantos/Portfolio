@@ -82,6 +82,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
             <a
               key={item.href}
               href={item.href}
+              {...(item.href === RESUME_URL ? { target: "_blank", rel: "noreferrer" } : {})}
               className="rounded-full px-3.5 py-1.5 text-[13px] text-foreground/80 transition-colors hover:text-foreground"
             >
               {item.label}
@@ -131,6 +132,8 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
 
             <a
               href={RESUME_URL}
+              target="_blank"
+              rel="noreferrer"
               onClick={closeMobileMenu}
               className="mobile-menu-link"
             >
