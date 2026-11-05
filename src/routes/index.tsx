@@ -65,7 +65,7 @@ function Home() {
       <SiteHeader variant="pill" />
 
       <section className="hero-aurora">
-        <div className="mx-auto flex min-h-[72svh] max-w-[1240px] flex-col justify-center px-6 pb-16 pt-32 md:min-h-[82svh] md:px-10 md:pt-36">
+        <div className="mx-auto flex min-h-svh max-w-[1240px] flex-col justify-center px-6 pb-16 pt-32 md:px-10 md:pt-36">
           <Reveal>
             <h1 className="max-w-[900px] font-display text-[28px] leading-[1.35] tracking-tight md:text-[34px]">
               <span className="font-bold">Olá, eu sou a Sophia.</span>{" "}

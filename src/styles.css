@@ -380,9 +380,12 @@
 
 /* ---- Hero ---- */
 
+/* A aurora passa da primeira tela e o fim do degradê fica abaixo da dobra. */
 .hero-aurora {
+  padding-bottom: 28svh;
   background-color: #ffffff;
   background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 74%, #ffffff 100%),
     radial-gradient(
       60% 55% at 6% 18%,
       rgba(186, 176, 226, 0.55) 0%,
@@ -407,8 +410,7 @@
       60% 60% at 96% 78%,
       rgba(214, 205, 238, 0.45) 0%,
       rgba(214, 205, 238, 0) 70%
-    ),
-    linear-gradient(180deg, rgba(255, 255, 255, 0) 62%, #ffffff 100%);
+    );
 }
 
 /* ---- Reveal ---- */
