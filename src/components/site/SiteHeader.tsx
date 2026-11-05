@@ -65,7 +65,7 @@ export function SiteHeader({ variant = "plain" }: SiteHeaderProps) {
         <Link
           to="/"
           onClick={closeMobileMenu}
-          className="relative z-[61] text-[13px] font-bold tracking-tight text-foreground transition-opacity hover:opacity-60"
+          className="relative z-[61] inline-flex min-h-6 items-center text-[13px] font-bold tracking-tight text-foreground transition-opacity hover:opacity-60"
         >
           Sophia dos Santos
         </Link>

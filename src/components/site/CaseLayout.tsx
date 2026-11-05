@@ -58,7 +58,7 @@ export function CaseHero({
         <Link
           to="/"
           hash="trabalhos"
-          className="mb-6 inline-block text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+          className="mb-6 inline-flex min-h-6 items-center text-[13px] text-muted-foreground transition-colors hover:text-foreground"
         >
           <span aria-hidden="true">←</span> Voltar aos projetos
         </Link>

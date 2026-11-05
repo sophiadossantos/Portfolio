@@ -203,6 +203,25 @@
   font-family: var(--font-display);
 }
 
+/* ---- Foco visível ---- */
+
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
+.lightbox:focus {
+  outline: none;
+}
+
+.lightbox :focus-visible {
+  outline-color: #fff;
+}
+
+.lightbox .tour-panel :focus-visible {
+  outline-color: var(--foreground);
+}
+
 /* ---- Título do Sobre mim ---- */
 
 .about-intro h2 {

@@ -25,6 +25,7 @@ import { REFS } from "@/components/site/references";
 import cursivaCapa from "@/assets/optimized/Cursiva/capa-large.webp";
 import cursivaFigjam from "@/assets/optimized/Cursiva/figjam-large.webp";
 import cursivaConcorrentes from "@/assets/optimized/Cursiva/concorrentes-large.webp";
+import cursivaLandingPage from "@/assets/optimized/Cursiva/landing-page-large.webp";
 
 import cursivaLoginAntes from "@/assets/optimized/Cursiva/login-antes-large.webp";
 import cursivaLogin from "@/assets/optimized/Cursiva/login-large.webp";
@@ -75,6 +76,81 @@ export const Route = createFileRoute("/cursiva")({
   }),
   component: CursivaCase,
 });
+
+// CONFIRMAR: porquês escritos a partir da landing page no Figma.
+const LANDING_SCREENS: GalleryItem[] = [
+  {
+    src: cursivaLandingPage,
+    alt: "Landing page da Cursiva para professores",
+    title: "Landing page",
+    caption: "Página de apresentação do Cursiva para web",
+    frame: "web",
+    reasons: [
+      {
+        text: "A promessa e um único botão abrem a página, e a frase abaixo avisa que não é preciso cadastro.",
+        ref: REFS.visualHierarchy,
+        x: 7.5,
+        y: 1.8,
+        w: 46,
+        h: 4.2,
+      },
+      {
+        text: "As dores vêm nas palavras do professor, como passar horas corrigindo, antes de qualquer recurso.",
+        ref: REFS.match,
+        x: 7.5,
+        y: 7.9,
+        w: 85,
+        h: 3.4,
+      },
+      {
+        text: "Cinco perguntas rápidas geram uma prova de verdade, e o valor aparece antes de pedir uma conta.",
+        ref: REFS.wizards,
+        x: 9.5,
+        y: 36.3,
+        w: 83,
+        h: 5,
+      },
+      {
+        text: "Cada ferramenta vira um card com nome, frase curta e prévia da tela.",
+        ref: REFS.chunking,
+        x: 7.7,
+        y: 42.5,
+        w: 92.3,
+        h: 7.7,
+      },
+      {
+        text: "O plano Completo é o único cheio de cor, o que orienta a escolha sem esconder os outros.",
+        ref: REFS.visualHierarchy,
+        x: 8,
+        y: 62.3,
+        w: 84,
+        h: 6.3,
+      },
+      {
+        text: "Um depoimento de professora aparece logo depois dos preços, quando a pessoa está decidindo.",
+        x: 14,
+        y: 70.2,
+        w: 72,
+        h: 4.5,
+      },
+      {
+        text: "As dúvidas ficam recolhidas, e cada pessoa abre só a pergunta que interessa.",
+        ref: REFS.progressiveDisclosure,
+        x: 7.5,
+        y: 80.5,
+        w: 85,
+        h: 8,
+      },
+      {
+        text: "A última seção repete a chamada para quem leu tudo e ainda não clicou.",
+        x: 7.5,
+        y: 90.2,
+        w: 85,
+        h: 3.2,
+      },
+    ],
+  },
+];
 
 // CONFIRMAR: porquês escritos a partir das telas e dos objetivos do projeto.
 const SOLUTION_SCREENS: GalleryItem[] = [
@@ -606,6 +682,16 @@ function CursivaCase() {
         <DecisionCards decision={GUIDANCE_DECISION} />
 
         <ScreenGrid items={SOLUTION_SCREENS} />
+      </CaseSection>
+
+      {/* CONFIRMAR: texto da seção da landing page. */}
+      <CaseSection
+        title="A landing page"
+        paragraphs={[
+          "Além da plataforma, desenhei a página que apresenta o Cursiva a novos professores. Ela fala primeiro da rotina de quem ensina, mostra o produto em uso e deixa gerar uma prova antes de criar uma conta.",
+        ]}
+      >
+        <ScreenGrid items={LANDING_SCREENS} />
       </CaseSection>
 
       <CaseSection

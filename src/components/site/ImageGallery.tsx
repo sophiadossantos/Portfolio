@@ -1,6 +1,7 @@
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import {
+  ArrowsOut,
   CaretLeft,
   CaretRight,
   Lightbulb,
@@ -69,7 +70,13 @@ export function ReferenceLink({
   } | null>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const bubbleRef = useRef<HTMLDivElement>(null);
+  const sourceLinkRef = useRef<HTMLAnchorElement>(null);
   const isOpen = position !== null;
+
+  // Leva o foco para o balão, que fica fora da ordem normal do teclado.
+  useEffect(() => {
+    if (isOpen) sourceLinkRef.current?.focus({ preventScroll: true });
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -139,7 +146,9 @@ export function ReferenceLink({
           event.stopPropagation();
           toggle();
         }}
-        className="inline-flex max-w-full items-center gap-1 text-left align-[-2px] text-[12px] opacity-70 transition-opacity hover:opacity-100"
+        className={`-my-1 inline-flex min-h-6 min-w-6 max-w-full items-center gap-1 text-left align-middle text-[12px] opacity-70 transition-opacity hover:opacity-100 ${
+          showLabel ? "" : "justify-center"
+        }`}
       >
         <Question size={15} aria-hidden="true" className="shrink-0" />
         {showLabel ? (
@@ -154,6 +163,12 @@ export function ReferenceLink({
               role="dialog"
               aria-label={reference.label}
               onClick={(event) => event.stopPropagation()}
+              onKeyDown={(event) => {
+                if (event.key !== "Tab") return;
+                event.preventDefault();
+                setPosition(null);
+                triggerRef.current?.focus();
+              }}
               className={`ref-bubble ${position.above ? "is-above" : ""}`}
               style={
                 {
@@ -168,6 +183,7 @@ export function ReferenceLink({
                 {reference.summary}
               </p>
               <a
+                ref={sourceLinkRef}
                 href={reference.href}
                 target="_blank"
                 rel="noreferrer"
@@ -593,24 +609,40 @@ export function ImageGallery({
           </span>
         </div>
 
-        {activeImage.reasons ? (
-          <div className="mt-3">
-            <ReasonsButton
-              onClick={() => {
-                setOpenTour(true);
-                setExpanded(true);
-              }}
-            />
+        {activeImage.reasons || items.length === 1 ? (
+          <div className="mt-3 flex items-center justify-between gap-3">
+            {activeImage.reasons ? (
+              <ReasonsButton
+                onClick={() => {
+                  setOpenTour(true);
+                  setExpanded(true);
+                }}
+              />
+            ) : (
+              <span />
+            )}
+            {items.length === 1 ? (
+              <button
+                type="button"
+                onClick={() => setExpanded(true)}
+                aria-label="Ampliar imagem"
+                className="grid size-11 shrink-0 place-items-center rounded-full border border-border transition-colors hover:bg-foreground hover:text-background"
+              >
+                <ArrowsOut size={18} aria-hidden="true" />
+              </button>
+            ) : null}
           </div>
         ) : null}
 
-        <button
-          type="button"
-          onClick={() => setExpanded(true)}
-          className="mt-4 w-full rounded-full border border-border px-5 py-2.5 text-[13px] transition-colors hover:bg-foreground hover:text-background"
-        >
-          Ver todos
-        </button>
+        {items.length > 1 ? (
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="mt-4 w-full rounded-full border border-border px-5 py-2.5 text-[13px] transition-colors hover:bg-foreground hover:text-background"
+          >
+            Ver todos
+          </button>
+        ) : null}
       </section>
 
       <section className="hidden w-full space-y-3 md:block">
@@ -650,7 +682,7 @@ export function ImageGallery({
                 <CaretRight size={22} />
               </button>
 
-              <div className="absolute bottom-3 left-3 rounded-full bg-black/50 px-3 py-1 text-xs text-white">
+              <div className="absolute bottom-3 left-3 rounded-full bg-black/75 px-3 py-1 text-xs text-white">
                 {activeIndex + 1} / {items.length}
               </div>
             </>
@@ -715,9 +747,9 @@ export function ImageGallery({
             <button
               type="button"
               onClick={() => setExpanded(true)}
-              className="text-sm text-muted-foreground transition hover:text-foreground"
+              className="min-h-6 text-sm text-muted-foreground transition hover:text-foreground"
             >
-              Ver todas
+              {items.length > 1 ? "Ver todas" : "Ampliar"}
             </button>
           </div>
         </div>
@@ -907,6 +939,37 @@ function Lightbox({
   const [step, setStep] = useState(0);
   const [zoomed, setZoomed] = useState(false);
   const pendingStep = useRef(0);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Leva o foco para a galeria e devolve ao botão de origem quando ela fecha.
+  useEffect(() => {
+    const opener = document.activeElement;
+    dialogRef.current?.focus({ preventScroll: true });
+
+    return () => {
+      if (opener instanceof HTMLElement) opener.focus({ preventScroll: true });
+    };
+  }, []);
+
+  /** Mantém a navegação por teclado dentro da galeria. */
+  function trapFocus(event: ReactKeyboardEvent<HTMLDivElement>) {
+    if (event.key !== "Tab" || !dialogRef.current) return;
+
+    const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+      "a[href], button:not([disabled])",
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey && (active === first || active === dialogRef.current)) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  }
   const activeImage = items[activeIndex];
   const reasons = activeImage?.reasons;
   const spot = tour.isOpen ? reasons?.[step] : undefined;
@@ -947,11 +1010,14 @@ function Lightbox({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm sm:p-8"
+      ref={dialogRef}
+      tabIndex={-1}
+      className="lightbox fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label="Galeria de imagens"
       onClick={onClose}
+      onKeyDown={trapFocus}
     >
       <button
         type="button"
@@ -979,23 +1045,27 @@ function Lightbox({
             </div>
 
             <div className="flex shrink-0 gap-2">
-              <button
-                type="button"
-                onClick={previous}
-                aria-label="Imagem anterior"
-                className="rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
-              >
-                <CaretLeft size={22} />
-              </button>
-
-              <button
-                type="button"
-                onClick={next}
-                aria-label="Próxima imagem"
-                className="rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
-              >
-                <CaretRight size={22} />
-              </button>
+              {items.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={previous}
+                    aria-label="Imagem anterior"
+                    className="rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+                  >
+                    <CaretLeft size={22} />
+                  </button>
+    
+                  <button
+                    type="button"
+                    onClick={next}
+                    aria-label="Próxima imagem"
+                    className="rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+                  >
+                    <CaretRight size={22} />
+                  </button>
+                </>
+              ) : null}
             </div>
           </div>
 

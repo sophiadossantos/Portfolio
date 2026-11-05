@@ -158,12 +158,15 @@ import image54W800 from "./Cursiva/tela-inicial-assistente-800.webp";
 import image55Large from "./Cursiva/tela-inicial-tour-large.webp";
 import image55W400 from "./Cursiva/tela-inicial-tour-400.webp";
 import image55W800 from "./Cursiva/tela-inicial-tour-800.webp";
-import image56Large from "./miniatura-tela-inicial-booking-large.webp";
-import image56W400 from "./miniatura-tela-inicial-booking-400.webp";
-import image56W800 from "./miniatura-tela-inicial-booking-800.webp";
-import image57Large from "./sophia-dos-santos-large.webp";
-import image57W400 from "./sophia-dos-santos-400.webp";
-import image57W800 from "./sophia-dos-santos-800.webp";
+import image56Large from "./Cursiva/landing-page-large.webp";
+import image56W400 from "./Cursiva/landing-page-400.webp";
+import image56W800 from "./Cursiva/landing-page-800.webp";
+import image57Large from "./miniatura-tela-inicial-booking-large.webp";
+import image57W400 from "./miniatura-tela-inicial-booking-400.webp";
+import image57W800 from "./miniatura-tela-inicial-booking-800.webp";
+import image58Large from "./sophia-dos-santos-large.webp";
+import image58W400 from "./sophia-dos-santos-400.webp";
+import image58W800 from "./sophia-dos-santos-800.webp";
 
 export type ImageMeta = { srcSet: string; width: number; height: number };
 
@@ -187,12 +190,12 @@ export const imageMeta: Record<string, ImageMeta> = {
   [image16Large]: { srcSet: `${image16W400} 400w, ${image16W800} 800w, ${image16Large} 1600w`, width: 1600, height: 1190 },
   [image17Large]: { srcSet: `${image17W400} 400w, ${image17W800} 800w, ${image17Large} 1199w`, width: 1199, height: 351 },
   [image18Large]: { srcSet: `${image18W400} 400w, ${image18W800} 800w, ${image18Large} 1199w`, width: 1199, height: 535 },
-  [image19Large]: { srcSet: `${image19W400} 400w, ${image19W800} 800w, ${image19Large} 1440w`, width: 1440, height: 1400 },
+  [image19Large]: { srcSet: `${image19W400} 400w, ${image19W800} 800w, ${image19Large} 1440w`, width: 1440, height: 2838 },
   [image20Large]: { srcSet: `${image20W400} 400w, ${image20W800} 800w, ${image20Large} 1600w`, width: 1600, height: 3999 },
-  [image21Large]: { srcSet: `${image21W400} 400w, ${image21Large} 582w`, width: 582, height: 1825 },
-  [image22Large]: { srcSet: `${image22W400} 400w, ${image22Large} 786w`, width: 786, height: 3390 },
-  [image23Large]: { srcSet: `${image23W400} 400w, ${image23Large} 590w`, width: 590, height: 2344 },
-  [image24Large]: { srcSet: `${image24W400} 400w, ${image24W800} 800w, ${image24Large} 1600w`, width: 1600, height: 4444 },
+  [image21Large]: { srcSet: `${image21W400} 400w, ${image21Large} 750w`, width: 750, height: 5154 },
+  [image22Large]: { srcSet: `${image22W400} 400w, ${image22Large} 786w`, width: 786, height: 5844 },
+  [image23Large]: { srcSet: `${image23W400} 400w, ${image23Large} 562w`, width: 562, height: 15781 },
+  [image24Large]: { srcSet: `${image24W400} 400w, ${image24W800} 800w, ${image24Large} 1600w`, width: 1600, height: 9094 },
   [image25Large]: { srcSet: `${image25Large} 393w`, width: 393, height: 1603 },
   [image26Large]: { srcSet: `${image26W400} 400w, ${image26W800} 800w, ${image26Large} 1440w`, width: 1440, height: 3014 },
   [image27Large]: { srcSet: `${image27Large} 393w`, width: 393, height: 3833 },
@@ -224,6 +227,7 @@ export const imageMeta: Record<string, ImageMeta> = {
   [image53Large]: { srcSet: `${image53W400} 400w, ${image53W800} 800w, ${image53Large} 1600w`, width: 1600, height: 1138 },
   [image54Large]: { srcSet: `${image54W400} 400w, ${image54W800} 800w, ${image54Large} 1600w`, width: 1600, height: 1138 },
   [image55Large]: { srcSet: `${image55W400} 400w, ${image55W800} 800w, ${image55Large} 1600w`, width: 1600, height: 1138 },
-  [image56Large]: { srcSet: `${image56W400} 400w, ${image56W800} 800w, ${image56Large} 819w`, width: 819, height: 609 },
-  [image57Large]: { srcSet: `${image57W400} 400w, ${image57W800} 800w, ${image57Large} 1536w`, width: 1536, height: 2048 },
+  [image56Large]: { srcSet: `${image56W400} 400w, ${image56W800} 800w, ${image56Large} 1600w`, width: 1600, height: 11594 },
+  [image57Large]: { srcSet: `${image57W400} 400w, ${image57W800} 800w, ${image57Large} 819w`, width: 819, height: 609 },
+  [image58Large]: { srcSet: `${image58W400} 400w, ${image58W800} 800w, ${image58Large} 1536w`, width: 1536, height: 2048 },
 };
