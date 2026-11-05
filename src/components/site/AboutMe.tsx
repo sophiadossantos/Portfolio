@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { MapPin } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
@@ -70,19 +69,7 @@ export function AboutMe() {
           </p>
 
           <div className="about-links">
-            <Link to="/" hash="trabalhos" className={aboutLinkClass}>
-              <img
-                src="/favicon.png"
-                width={14}
-                height={14}
-                alt=""
-                className="about-link-star"
-                aria-hidden="true"
-              />
-              Portfólio
-            </Link>
-
-            <ContactDropdown className={aboutLinkClass} />
+            <ContactDropdown className={`${aboutLinkClass} is-primary`} />
 
             <a
               href={LINKEDIN_URL}
