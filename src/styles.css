@@ -152,7 +152,7 @@
   --text-case-label: 13px;
   --text-body-small: 13.5px;
 
-  --space-project-gap: 120px;
+  --space-project-gap: 80px;
   --space-case-section: 96px;
   --space-case-content: 32px;
   --space-case-stack: 24px;
@@ -161,7 +161,7 @@
 
 @media (max-width: 767px) {
   :root {
-    --space-project-gap: 80px;
+    --space-project-gap: 56px;
     --space-case-section: 72px;
     --text-case-title: 18px;
   }

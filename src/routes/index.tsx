@@ -65,7 +65,7 @@ function Home() {
       <SiteHeader variant="pill" />
 
       <section className="hero-aurora">
-        <div className="mx-auto flex max-w-[1240px] flex-col justify-center px-6 pb-16 pt-32 md:px-10 md:pt-36">
+        <div className="mx-auto flex min-h-[72svh] max-w-[1240px] flex-col justify-center px-6 pb-16 pt-32 md:min-h-[82svh] md:px-10 md:pt-36">
           <Reveal>
             <h1 className="max-w-[900px] font-display text-[28px] leading-[1.35] tracking-tight md:text-[34px]">
               <span className="font-bold">Olá, eu sou a Sophia.</span>{" "}
@@ -99,7 +99,7 @@ function Home() {
             <Reveal key={project.to}>
               <article className="grid items-center gap-10 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-16">
                 <div>
-                  <h3 className="font-display text-[22px] font-bold tracking-tight">
+                  <h3 className="font-display text-[28px] font-bold tracking-tight">
                     {project.name}
                   </h3>
 
@@ -107,7 +107,7 @@ function Home() {
                     {project.role}
                   </p>
 
-                  <p className="mt-5 max-w-[380px] text-[13.5px] leading-[1.75] text-muted-foreground">
+                  <p className="mt-5 max-w-[380px] text-[16px] leading-[1.75] text-muted-foreground">
                     {project.description}
                   </p>
 
