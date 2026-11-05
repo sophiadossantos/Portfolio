@@ -11,6 +11,7 @@ import {
 import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { CookieNotice } from "@/components/site/CookieNotice";
 import { Footer } from "../components/site/Footer";
 import { SoundtrackPlayer } from "../components/site/SoundtrackPlayer";
 
@@ -126,6 +127,7 @@ function RootComponent() {
       <Outlet />
       <Footer />
       <SoundtrackPlayer />
+      <CookieNotice />
     </QueryClientProvider>
   );
 }
