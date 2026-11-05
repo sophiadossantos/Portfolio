@@ -612,7 +612,6 @@ function CursivaCase() {
         subtitle="Uma plataforma com IA criada para simplificar a rotina de professores."
         tags={["Projeto colaborativo · 2026", "Product Design", "UX/UI", "Web"]}
         meta={META}
-        action={{ label: "Ver produto ao vivo ↗", href: "https://cursiva.pro" }}
       />
 
       <CaseSection
