@@ -179,7 +179,6 @@ const FIRST_VERSION_SCREENS: GalleryItem[] = [
   },
 ];
 
-// CONFIRMAR: porquês escritos a partir das telas e dos objetivos do projeto.
 const SOLUTION_SCREENS: GalleryItem[] = [
   {
     src: angeloniSplash,

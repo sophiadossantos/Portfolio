@@ -77,7 +77,6 @@ export const Route = createFileRoute("/cursiva")({
   component: CursivaCase,
 });
 
-// CONFIRMAR: porquês escritos a partir da landing page no Figma.
 const LANDING_SCREENS: GalleryItem[] = [
   {
     src: cursivaLandingPage,
@@ -152,7 +151,6 @@ const LANDING_SCREENS: GalleryItem[] = [
   },
 ];
 
-// CONFIRMAR: porquês escritos a partir das telas e dos objetivos do projeto.
 const SOLUTION_SCREENS: GalleryItem[] = [
   {
     src: telasCursivaLogin,

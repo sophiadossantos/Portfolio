@@ -462,7 +462,6 @@ const ORIGINAL_MOBILE_SCREENS = [
   },
 ];
 
-// CONFIRMAR: porquês escritos a partir das telas e dos objetivos do projeto.
 const SOLUTION_SCREENS: GalleryItem[] = [
   {
     src: telasBookingInicioWebBookingUrl,
