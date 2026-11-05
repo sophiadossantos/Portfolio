@@ -315,7 +315,6 @@ function GalleryImage({
 type ImageGalleryProps = {
   items: GalleryItem[];
   variant?: "default" | "carousel" | "comparison";
-  onSlideChange?: (index: number) => void;
   /** Seção com os resultados, oferecida ao fim do tour de telas com defeitos. */
   resultsTargetId?: string;
 };
@@ -323,7 +322,6 @@ type ImageGalleryProps = {
 export function ImageGallery({
   items,
   variant = "default",
-  onSlideChange,
   resultsTargetId,
 }: ImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -394,10 +392,7 @@ export function ImageGallery({
 
     return (
       <>
-        <div
-          className="snap-carousel grid grid-cols-2 gap-5"
-          onScroll={(event) => onSlideChange?.(activeSlide(event.currentTarget))}
-        >
+        <div className="snap-carousel grid grid-cols-2 gap-5">
           {items.map((item, index) => (
             <button
               key={`${item.src}-${index}`}
@@ -1183,28 +1178,35 @@ export type ComparisonPair = {
   notes: ComparisonNote[];
 };
 
+/** No celular, cada par é um bloco próprio, com título, imagens e notas. */
+function MobileComparison({ pair }: { pair: ComparisonPair }) {
+  const items = useMemo(
+    () => [
+      pair.before,
+      {
+        ...pair.after,
+        markers: pair.notes,
+        reasons: notesToReasons(pair.after, pair.notes),
+      },
+    ],
+    [pair],
+  );
+
+  return (
+    <article>
+      <h3 className="case-subheading mb-3">{pair.label}</h3>
+      <ImageGallery variant="comparison" items={items} />
+      <div className="mt-5">
+        <ComparisonNotes notes={pair.notes} />
+      </div>
+    </article>
+  );
+}
+
 /** Antes/depois lado a lado, passando para os lados entre os pares. */
 export function ComparisonGallery({ pairs }: { pairs: ComparisonPair[] }) {
   const [index, setIndex] = useState(0);
-  const [mobileSlide, setMobileSlide] = useState(0);
   const pair = pairs[index];
-  // Cada par ocupa dois slides no carrossel do celular.
-  const mobilePair = pairs[Math.floor(mobileSlide / 2)];
-
-  // No celular, todos os pares ficam em um único carrossel.
-  const mobileItems = useMemo(
-    () =>
-      pairs.flatMap(({ label, before, after, notes }) => [
-        { ...before, title: `${label} · ${before.title}` },
-        {
-          ...after,
-          title: `${label} · ${after.title}`,
-          markers: notes,
-          reasons: notesToReasons(after, notes),
-        },
-      ]),
-    [pairs],
-  );
 
   if (!pair) return null;
 
@@ -1214,17 +1216,10 @@ export function ComparisonGallery({ pairs }: { pairs: ComparisonPair[] }) {
 
   return (
     <section>
-      <div className="md:hidden">
-        <ImageGallery
-          variant="comparison"
-          items={mobileItems}
-          onSlideChange={setMobileSlide}
-        />
-        {mobilePair ? (
-          <div className="mt-5">
-            <ComparisonNotes notes={mobilePair.notes} />
-          </div>
-        ) : null}
+      <div className="space-y-10 md:hidden">
+        {pairs.map((item) => (
+          <MobileComparison key={item.label} pair={item} />
+        ))}
       </div>
 
       <div className="mb-4 hidden items-center justify-between gap-3 md:flex">
