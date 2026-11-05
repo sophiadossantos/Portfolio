@@ -68,7 +68,6 @@ export const Route = createFileRoute("/angeloni")({
   component: AngeloniCase,
 });
 
-// CONFIRMAR: pontos observados nas telas da primeira versão.
 const FIRST_VERSION_SCREENS: GalleryItem[] = [
   {
     src: angeloniLogin,
@@ -415,7 +414,6 @@ const COLOR_DECISION = {
 };
 
 // Posição dos marcadores em % sobre a imagem "Depois".
-// CONFIRMAR: ajuste a posição dos marcadores sobre as telas.
 const HOME_NOTES: ComparisonNote[] = [
   {
     x: 50,

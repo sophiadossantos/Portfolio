@@ -64,7 +64,6 @@ export const Route = createFileRoute("/booking")({
   component: BookingCase,
 });
 
-// CONFIRMAR: pontos observados nas telas originais.
 const ORIGINAL_WEB_SCREENS = [
   {
     src: cardInterativoCapturaDeTelaInicioUrl,
