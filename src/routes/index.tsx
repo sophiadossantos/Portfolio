@@ -11,13 +11,13 @@ import capaAngeloni from "@/assets/optimized/Angeloni/capa-home-angeloni-large.w
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sophia dos Santos — Product Designer UX/UI" },
+      { title: "Sophia dos Santos · Product Designer UX/UI" },
       {
         name: "description",
         content:
           "Portfólio de Sophia dos Santos, designer de produto em formação. Estudos de caso de UX/UI: Cursiva, redesign do Booking.com e Angeloni: em casa.",
       },
-      { property: "og:title", content: "Sophia dos Santos — Product Designer UX/UI" },
+      { property: "og:title", content: "Sophia dos Santos · Product Designer UX/UI" },
       {
         property: "og:description",
         content:

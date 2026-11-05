@@ -5,12 +5,22 @@ import {
   CaseHero,
   CaseSection,
   CaseShell,
-  ComparisonPanel,
+  DecisionCards,
   NextProject,
+  Panel,
   PanelImage,
   ScreenGrid,
 } from "@/components/site/CaseLayout";
 
+
+import {
+  ComparisonGallery,
+  comparisonPair,
+  type ComparisonNote,
+  type GalleryItem,
+} from "@/components/site/ImageGallery";
+
+import { REFS } from "@/components/site/references";
 
 import cursivaCapa from "@/assets/optimized/Cursiva/capa-large.webp";
 import cursivaFigjam from "@/assets/optimized/Cursiva/figjam-large.webp";
@@ -45,13 +55,13 @@ import capaBookingHome from "@/assets/optimized/Booking/capa-home-booking-large.
 export const Route = createFileRoute("/cursiva")({
   head: () => ({
     meta: [
-      { title: "Cursiva — Estudo de caso · Sophia dos Santos" },
+      { title: "Cursiva · Estudo de caso · Sophia dos Santos" },
       {
         name: "description",
         content:
           "Como reestruturei a experiência de uma plataforma com IA para professores com níveis muito diferentes de familiaridade com tecnologia.",
       },
-      { property: "og:title", content: "Cursiva — Estudo de caso · Sophia dos Santos" },
+      { property: "og:title", content: "Cursiva · Estudo de caso · Sophia dos Santos" },
       {
         property: "og:description",
         content:
@@ -66,63 +76,458 @@ export const Route = createFileRoute("/cursiva")({
   component: CursivaCase,
 });
 
-const SOLUTION_SCREENS = [
+// CONFIRMAR: porquês escritos a partir das telas e dos objetivos do projeto.
+const SOLUTION_SCREENS: GalleryItem[] = [
   {
     src: telasCursivaLogin,
     alt: "Tela de login da Cursiva",
+    reasons: [
+      {
+        text: "Um único cartão com poucos campos reduz o que precisa ser processado para entrar.",
+        ref: REFS.minimalist,
+        x: 55,
+        y: 9,
+        w: 41,
+        h: 82,
+      },
+      {
+        text: "A mensagem sobre o roxo usa texto branco e peso forte para continuar legível.",
+        ref: REFS.contrast,
+        x: 4,
+        y: 68,
+        w: 42,
+        h: 22,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingIniciar,
     alt: "Onboarding: iniciar",
+    reasons: [
+      {
+        text: "Seis palavras com ícone resumem a proposta e se escaneiam mais rápido que um parágrafo.",
+        ref: REFS.scanning,
+        x: 45,
+        y: 43,
+        w: 48,
+        h: 16,
+      },
+      {
+        text: "Avisar que leva menos de 2 minutos antecipa o esforço antes de o cadastro começar.",
+        ref: REFS.status,
+        x: 45,
+        y: 72,
+        w: 28,
+        h: 6,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingDadosPessoais,
     alt: "Onboarding: dados pessoais",
+    reasons: [
+      {
+        text: "A barra mostra em qual etapa o professor está e quantas faltam.",
+        ref: REFS.wizards,
+        x: 19,
+        y: 15,
+        w: 62,
+        h: 6,
+      },
+      {
+        text: "Os rótulos ficam fixos acima dos campos e seguem visíveis durante o preenchimento.",
+        ref: REFS.labels,
+        x: 19,
+        y: 30,
+        w: 62,
+        h: 58,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingNivelDeEnsino,
     alt: "Onboarding: nível de ensino",
+    reasons: [
+      {
+        text: "Escolher entre opções à vista pede reconhecer, sem precisar lembrar ou digitar.",
+        ref: REFS.recognition,
+        x: 19,
+        y: 33,
+        w: 62,
+        h: 20,
+      },
+      {
+        text: "O título faz uma pergunta direta, então a tarefa fica clara antes da ação.",
+        ref: REFS.headings,
+        x: 19,
+        y: 22,
+        w: 30,
+        h: 9,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingMaterias,
     alt: "Onboarding: matérias",
+    reasons: [
+      {
+        text: "A grade mostra todas as matérias de uma vez, sem escondê-las em uma lista suspensa.",
+        ref: REFS.dropdowns,
+        x: 19,
+        y: 33,
+        w: 62,
+        h: 42,
+      },
+      {
+        text: "O campo Outra matéria atende quem leciona algo fora da lista, sem travar o cadastro.",
+        ref: REFS.flexibility,
+        x: 19,
+        y: 76,
+        w: 62,
+        h: 11,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingModalidade,
     alt: "Onboarding: modalidade",
+    reasons: [
+      {
+        text: "Presencial, Híbrido e Remoto são os termos que o professor já usa no dia a dia.",
+        ref: REFS.match,
+        x: 19,
+        y: 32,
+        w: 62,
+        h: 17,
+      },
+      {
+        text: "A opção escolhida ganha uma borda em volta do cartão inteiro, fácil de perceber.",
+        ref: REFS.nonTextContrast,
+        x: 39,
+        y: 32,
+        w: 20,
+        h: 17,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingEscola,
     alt: "Onboarding: escola",
+    reasons: [
+      {
+        text: "O texto explica para que a escola será usada e responde à dúvida antes de ela surgir.",
+        ref: REFS.help,
+        x: 19,
+        y: 22,
+        w: 55,
+        h: 8,
+      },
+      {
+        text: "Iniciar minha jornada troca o rótulo do botão e sinaliza que esta é a última etapa.",
+        ref: REFS.wizards,
+        x: 34,
+        y: 64,
+        w: 31,
+        h: 7,
+      },
+    ],
   },
   {
     src: telasCursivaOnboardingPreparandoAmbiente,
     alt: "Onboarding: preparando o ambiente",
+    reasons: [
+      {
+        text: "A barra indica que o sistema segue trabalhando enquanto o ambiente é criado.",
+        ref: REFS.progress,
+        x: 7,
+        y: 32,
+        w: 24,
+        h: 5,
+      },
+      {
+        text: "A coruja humaniza a espera, um momento sem nenhuma tarefa para o professor.",
+        ref: REFS.aesthetics,
+        x: 59,
+        y: 40,
+        w: 29,
+        h: 57,
+      },
+    ],
   },
   {
     src: telasCursivaTelaInicialTour,
     alt: "Tela inicial com tour guiado",
+    reasons: [
+      {
+        text: "O tour pode ser pulado, então quem já conhece a plataforma não fica preso nele.",
+        ref: REFS.control,
+        x: 61,
+        y: 63,
+        w: 34,
+        h: 30,
+      },
+      {
+        text: "Três indicadores agrupam o trabalho do professor em um único olhar.",
+        ref: REFS.chunking,
+        x: 8,
+        y: 28,
+        w: 84,
+        h: 16,
+      },
+    ],
   },
   {
     src: telasCursivaTelaInicialAssistente,
     alt: "Tela inicial com assistente",
+    reasons: [
+      {
+        text: "A ajuda abre sobre a tela e não tira o professor da tarefa que estava fazendo.",
+        ref: REFS.help,
+        x: 60,
+        y: 18,
+        w: 35,
+        h: 75,
+      },
+      {
+        text: "Perguntas prontas dão exemplos do que pedir à IA, sem exigir que a pessoa invente um comando.",
+        ref: REFS.recognition,
+        x: 61,
+        y: 52,
+        w: 33,
+        h: 15,
+      },
+    ],
   },
   {
     src: telasCursivaTelaDeProvas,
     alt: "Tela de provas",
+    reasons: [
+      {
+        text: "Gerar prova é um botão cheio e Corrigir prova é contornado, o que define a ação principal.",
+        ref: REFS.visualHierarchy,
+        x: 7,
+        y: 28,
+        w: 34,
+        h: 8,
+      },
+      {
+        text: "As listas vazias explicam o estado atual em vez de mostrar um espaço em branco.",
+        ref: REFS.emptyStates,
+        x: 8,
+        y: 47,
+        w: 84,
+        h: 37,
+      },
+    ],
   },
   {
     src: telasCursivaImportarProva,
     alt: "Tela de importar prova",
+    reasons: [
+      {
+        text: "A área de envio diz o que fazer e aceita tanto PDF quanto fotos.",
+        ref: REFS.labels,
+        x: 8,
+        y: 42,
+        w: 84,
+        h: 20,
+      },
+      {
+        text: "Matéria e turma são escolhidas em listas, o que evita erros de digitação.",
+        ref: REFS.errors,
+        x: 8,
+        y: 64,
+        w: 84,
+        h: 9,
+      },
+    ],
   },
   {
     src: telasCursivaTelaDeProvas2,
-    alt: "Histórico de provas",
+    alt: "Correção da prova de inglês",
+    reasons: [
+      {
+        text: "Todos os cartões seguem a mesma estrutura, o que facilita comparar os alunos.",
+        ref: REFS.consistency,
+        x: 8,
+        y: 46,
+        w: 84,
+        h: 40,
+      },
+      {
+        text: "O status une cor e texto, então a informação não depende de enxergar vermelho ou verde.",
+        ref: REFS.useOfColor,
+        x: 26,
+        y: 47,
+        w: 66,
+        h: 6,
+      },
+    ],
   },
   {
     src: telasCursivaAnalisandoProva,
     alt: "Análise de prova",
+    reasons: [
+      {
+        text: "O título diz o que está acontecendo enquanto a IA lê o material.",
+        ref: REFS.statusMessages,
+        x: 7,
+        y: 20,
+        w: 35,
+        h: 12,
+      },
+      {
+        text: "Mostrar as questões conforme ficam prontas reduz a sensação de espera.",
+        ref: REFS.responseTimes,
+        x: 8,
+        y: 41,
+        w: 84,
+        h: 18,
+      },
+    ],
   },
+];
+
+const META = [
+  {
+    label: "Meu papel",
+    value: "Product Designer, responsável pela experiência e pela interface",
+  },
+  // CONFIRMAR: Equipe, ex. "2 desenvolvedores e 1 designer (eu)". Fica oculto até ter o valor.
+  // CONFIRMAR: Duração, ex. "4 meses". Fica oculto até ter o valor.
+  { label: "Ferramentas", value: "Figma, FigJam" },
+];
+
+const MAP_DECISION = {
+  title: "Mapear tudo antes de redesenhar",
+  problem:
+    "O produto tinha sido pensado funcionalidade por funcionalidade, e as telas pareciam partes isoladas.",
+  decision:
+    "Registrar todas as telas em um mapa de fluxos antes de mexer em qualquer interface.",
+  why: "Só vendo a jornada inteira dava para criar padrões consistentes e entender o que o professor precisa ver primeiro.",
+  ref: REFS.consistency,
+};
+
+const LIGHT_INTERFACE_DECISION = {
+  title: "Interface leve por padrão",
+  problem:
+    "Parte dos professores usa computadores antigos, e elementos visuais pesados prejudicariam a experiência.",
+  // CONFIRMAR: foi por isso que a ilustração da coruja saiu do login?
+  decision:
+    "Priorizar layouts limpos, com poucos elementos decorativos, e concentrar a identidade visual em cor e tipografia.",
+  why: "A interface precisava carregar bem e ser clara em qualquer dispositivo, sem perder a identidade da marca.",
+  ref: REFS.minimalist,
+};
+
+const GUIDANCE_DECISION = {
+  title: "Orientação que aparece só quando é necessária",
+  problem:
+    "Guiar iniciantes com textos e avisos fixos deixaria a experiência pesada para quem já sabe usar.",
+  decision:
+    "Criar um onboarding em etapas, um tour guiado na tela inicial e um assistente disponível quando o professor precisar.",
+  why: "Quem precisa de ajuda encontra, e quem não precisa não é interrompido.",
+  ref: REFS.progressiveDisclosure,
+};
+
+// Posição dos marcadores em % sobre a imagem "Depois".
+const LOGIN_NOTES: ComparisonNote[] = [
+  {
+    x: 90,
+    y: 14,
+    text: "A divisão meio a meio saiu, e o formulário virou o único bloco em primeiro plano.",
+    area: [55, 9, 41, 82],
+    ref: REFS.visualHierarchy,
+  },
+  {
+    x: 19,
+    y: 28,
+    // CONFIRMAR
+    text: "A ilustração saiu do login e ficou para a tela de preparo do ambiente.",
+    area: [0, 0, 42, 100],
+  },
+  {
+    x: 88,
+    y: 83,
+    text: "O rodapé do cartão ficou com um único convite: criar conta.",
+    area: [60, 78, 30, 9],
+    ref: REFS.minimalist,
+  },
+];
+
+const PERSONAL_DATA_NOTES: ComparisonNote[] = [
+  {
+    x: 81,
+    y: 18,
+    text: "O fluxo perdeu as etapas Endereço e Plano e ficou mais curto.",
+    area: [19, 15, 62, 6],
+  },
+  {
+    x: 78,
+    y: 30,
+    text: "Saiu o cartão cinza em volta dos campos, o que reduz uma camada visual.",
+    area: [19, 22, 62, 67],
+  },
+  {
+    x: 29,
+    y: 13,
+    text: "Voltar substituiu Sair no topo, o que evita abandonar o cadastro por engano.",
+    area: [19, 10, 11, 6],
+    ref: REFS.control,
+  },
+];
+
+// CONFIRMAR: notas escritas a partir da comparação entre as duas telas.
+const EXAMS_NOTES: ComparisonNote[] = [
+  {
+    x: 43,
+    y: 32,
+    text: "As três rotas em carrossel viraram dois botões sempre visíveis.",
+    area: [7, 28, 34, 8],
+    ref: REFS.carousels,
+  },
+  {
+    x: 28,
+    y: 46,
+    text: "Busca e filtro entraram para quem acumula muitas provas.",
+    area: [8, 43, 84, 14],
+    ref: REFS.flexibility,
+  },
+  {
+    x: 60,
+    y: 64,
+    text: "Ir para correção aparece só na prova que pede essa ação.",
+    area: [8, 58, 84, 18],
+  },
+];
+
+const COMPARISON_PAIRS = [
+  comparisonPair({
+    label: "Login",
+    before: cursivaLoginAntes,
+    after: cursivaLogin,
+    beforeAlt: "Tela de login da versão anterior",
+    afterAlt: "Tela de login reconstruída",
+    frame: "web",
+    notes: LOGIN_NOTES,
+  }),
+  comparisonPair({
+    label: "Dados pessoais",
+    before: cursivaDadosPessoaisAntes,
+    after: cursivaDadosPessoais,
+    beforeAlt: "Tela de dados pessoais da versão anterior",
+    afterAlt: "Tela de dados pessoais reconstruída",
+    frame: "web",
+    notes: PERSONAL_DATA_NOTES,
+  }),
+  comparisonPair({
+    label: "Provas",
+    before: cursivaProvasAntes,
+    after: cursivaProvas,
+    beforeAlt: "Tela de provas da versão anterior",
+    afterAlt: "Tela de provas reconstruída",
+    frame: "web",
+    notes: EXAMS_NOTES,
+  }),
 ];
 
 function CursivaCase() {
@@ -130,15 +535,17 @@ function CursivaCase() {
     <CaseShell>
       <CaseHero
         title="Cursiva"
-        subtitle="Uma plataforma educacional criada para simplificar a rotina de professores."
-        tags={["Projeto pessoal · 2026", "Product Design", "UX/UI", "Web"]}
+        subtitle="Uma plataforma com IA criada para simplificar a rotina de professores."
+        tags={["Projeto colaborativo · 2026", "Product Design", "UX/UI", "Web"]}
+        meta={META}
+        action={{ label: "Ver produto ao vivo ↗", href: "https://cursiva.pro" }}
       />
 
       <CaseSection
         title="Visão geral"
+        highlight="Entrei em um produto que já sabia o que fazer. Meu trabalho foi definir como as pessoas fariam."
         paragraphs={[
-          "O Cursiva surgiu como um projeto pessoal desenvolvido em conjunto, a partir da ideia de utilizar tecnologia e inteligência artificial para reduzir tarefas repetitivas na rotina de professores. No início do projeto, o foco estava principalmente em definir os recursos que a plataforma deveria oferecer e como eles poderiam funcionar.",
-          "Quando entrei no projeto, assumi a frente de Product Design com o objetivo de olhar para além das funcionalidades e construir uma experiência que fosse clara, intuitiva e agradável de utilizar.",
+          "O Cursiva nasceu como um projeto colaborativo para usar tecnologia e IA na redução de tarefas repetitivas da rotina de professores. Quando entrei, o foco estava nos recursos que a plataforma deveria oferecer. Assumi a frente de Product Design para transformar essa lista de funcionalidades em uma experiência clara, intuitiva e agradável de usar.",
         ]}
       >
         <PanelImage
@@ -150,23 +557,18 @@ function CursivaCase() {
 
       <CaseSection
         title="O desafio"
+        highlight="A mesma interface precisava guiar quem tem pouca familiaridade com tecnologia sem limitar quem já é experiente."
         paragraphs={[
-          "Projetar para professores trazia um desafio que ia além da própria complexidade do produto. A experiência precisava funcionar para pessoas com níveis muito diferentes de familiaridade com tecnologia e em dispositivos que também poderiam variar bastante.",
-          "Enquanto alguns professores poderiam acessar a plataforma em computadores mais modernos e ter bastante facilidade com ferramentas digitais, outros poderiam utilizar equipamentos mais antigos ou menos potentes e ter pouca familiaridade com esse tipo de tecnologia. Por isso, a experiência precisava ser simples e compreensível sem depender de um dispositivo de alto desempenho ou de um usuário com grande conhecimento tecnológico.",
-          "Meu desafio como designer foi encontrar esse equilíbrio: criar uma interface que orientasse quem tivesse pouca familiaridade com tecnologia, sem tornar a experiência limitada para quem já estivesse acostumado com ferramentas digitais.",
+          "Professores acessam a plataforma com níveis muito diferentes de familiaridade digital e em dispositivos que variam de computadores modernos a equipamentos antigos e pouco potentes. A experiência precisava ser compreensível sem depender de um usuário experiente ou de um dispositivo de alto desempenho.",
         ]}
       >
-        <PanelImage
-          src={cursivaFigjam}
-          alt="Mapa de fluxos e telas da plataforma"
-        />
+        <DecisionCards decision={LIGHT_INTERFACE_DECISION} />
       </CaseSection>
 
       <CaseSection
         title="Entendendo o mercado"
         paragraphs={[
-          "Como ponto de partida, busquei referências em plataformas já existentes no mercado. Analisei diferentes sistemas utilizados no contexto educacional e observei como eles organizavam funcionalidades, fluxos e informações.",
-          "Esse levantamento me ajudou a identificar padrões de interação e entender quais soluções poderiam ser aproveitadas, adaptadas ou repensadas para a Cursiva.",
+          "Analisei plataformas educacionais existentes para entender como organizavam funcionalidades, fluxos e informações. Esse levantamento me ajudou a separar o que valia reaproveitar, adaptar ou repensar.",
         ]}
       >
         <PanelImage
@@ -178,44 +580,40 @@ function CursivaCase() {
       <CaseSection
         title="Reconstruindo a experiência"
         paragraphs={[
-          "Como a estrutura inicial do produto estava muito concentrada nos recursos que o sistema deveria oferecer, comecei fazendo um levantamento completo das telas necessárias para o funcionamento da plataforma. Registrei todas as telas do sistema e passei a analisá-las individualmente, questionando a organização das informações, a hierarquia dos elementos e a forma como o professor entenderia o que fazer em cada etapa.",
-          "A partir dessa análise, comecei a reestruturar cada tela, levando em consideração não apenas o que o sistema precisava fazer, mas principalmente como o usuário iria realizar essas tarefas. Considerei o contexto de uso dos professores, a variedade de dispositivos que poderiam utilizar e os diferentes níveis de familiaridade com tecnologia, buscando criar uma experiência que fosse clara para quem precisasse de mais orientação e, ao mesmo tempo, eficiente para usuários mais experientes.",
-          "Também trabalhei na consistência entre as diferentes partes da plataforma, fazendo com que as telas deixassem de parecer funcionalidades isoladas e passassem a funcionar como partes de uma mesma experiência.",
+          "Comecei mapeando todas as telas do sistema e analisando cada uma individualmente: organização das informações, hierarquia dos elementos e se o professor entenderia o que fazer em cada etapa. A partir disso, reestruturei as telas pensando menos no que o sistema faz e mais em como o usuário realiza cada tarefa.",
         ]}
       >
-        <ComparisonPanel
-          left={cursivaLoginAntes}
-          right={cursivaLogin}
-          leftAlt="Tela de login da versão anterior"
-          rightAlt="Tela de login reconstruída"
-        />
+        <DecisionCards decision={MAP_DECISION} />
 
-        <ComparisonPanel
-          left={cursivaDadosPessoaisAntes}
-          right={cursivaDadosPessoais}
-          leftAlt="Tela de dados pessoais da versão anterior"
-          rightAlt="Tela de dados pessoais reconstruída"
+        <PanelImage
+          src={cursivaFigjam}
+          alt="Mapa de fluxos e telas da plataforma"
         />
+      </CaseSection>
 
-        <ComparisonPanel
-          left={cursivaProvasAntes}
-          right={cursivaProvas}
-          leftAlt="Tela de provas da versão anterior"
-          rightAlt="Tela de provas reconstruída"
-        />
+      <CaseSection title="Antes e depois">
+        <Panel>
+          <ComparisonGallery pairs={COMPARISON_PAIRS} />
+        </Panel>
       </CaseSection>
 
       <CaseSection
         title="A solução"
         paragraphs={[
-          "A solução final transformou a estrutura inicial do Cursiva em uma experiência mais organizada, coerente e acessível. Os recursos definidos no início do projeto foram mantidos, mas passaram a fazer parte de uma jornada pensada também a partir das necessidades de quem utilizaria o produto.",
-          "A interface foi construída buscando equilibrar clareza e simplicidade, considerando tanto a variedade de dispositivos quanto os diferentes níveis de familiaridade tecnológica dos professores. O trabalho transformou uma estrutura inicialmente muito orientada aos recursos do sistema em uma proposta de produto que também considera as pessoas, os dispositivos e os diferentes contextos em que a plataforma poderia ser utilizada.",
-          "Assumir a frente de Product Design em um projeto colaborativo me fez perceber que projetar vai muito além de criar telas. Muitas das decisões mais importantes estão em entender como as funcionalidades se conectam, o que o usuário precisa enxergar primeiro e como tornar uma solução complexa mais simples de compreender.",
-          "O Cursiva foi uma experiência importante para mim por me permitir acompanhar de perto essa transformação e assumir a responsabilidade pela experiência de um produto desde sua estrutura até a interface.",
+          "Os recursos definidos no início foram mantidos, mas passaram a fazer parte de uma jornada pensada a partir de quem usa o produto: um onboarding que prepara o ambiente do professor, uma tela inicial com tour e assistente e fluxos de provas consistentes entre si.",
         ]}
       >
+        <DecisionCards decision={GUIDANCE_DECISION} />
+
         <ScreenGrid items={SOLUTION_SCREENS} />
       </CaseSection>
+
+      <CaseSection
+        title="O que aprendi"
+        paragraphs={[
+          "Liderar o design em um projeto colaborativo me mostrou que muitas das decisões mais importantes não estão na tela, e sim em entender como as funcionalidades se conectam e no que o usuário precisa enxergar primeiro.",
+        ]}
+      />
 
       <NextProject
         to="/booking"

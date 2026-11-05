@@ -1,7 +1,14 @@
 
-import { ImageGallery, type GalleryItem } from "./ImageGallery";
+import { ImageGallery, ReferenceLink, type GalleryItem } from "./ImageGallery";
+import type { DesignReference } from "./references";
 import { ResponsiveImage } from "./ResponsiveImage";
 import { Link } from "@tanstack/react-router";
+import {
+  Lightbulb,
+  Question,
+  WarningCircle,
+  type Icon as PhosphorIcon,
+} from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { Reveal } from "./Reveal";
@@ -10,10 +17,25 @@ export function CaseShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-[1240px] px-6 pb-24 pt-28 md:px-10 md:pt-32">
+      <main className="mx-auto w-full max-w-[1240px] px-6 pt-28 md:px-10 md:pt-32">
         {children}
       </main>
     </div>
+  );
+}
+
+export type MetaItem = { label: string; value: string };
+
+export function ProjectMeta({ items }: { items: MetaItem[] }) {
+  return (
+    <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 md:grid-cols-4">
+      {items.map(({ label, value }) => (
+        <div key={label}>
+          <dt className="case-label">{label}</dt>
+          <dd className="mt-1 text-[14px] leading-[1.55]">{value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 
@@ -21,14 +43,18 @@ export function CaseHero({
   title,
   subtitle,
   tags,
+  meta,
+  action,
 }: {
   title: string;
   subtitle: string;
   tags: string[];
+  meta: MetaItem[];
+  action?: { label: string; href: string };
 }) {
   return (
     <Reveal>
-      <header className="pb-10">
+      <header>
         <Link
           to="/"
           hash="trabalhos"
@@ -42,6 +68,16 @@ export function CaseHero({
         <p className="mt-2 max-w-[760px] text-[14px] text-muted-foreground md:text-[15px]">
           {subtitle}
         </p>
+        {action ? (
+          <a
+            href={action.href}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center rounded-full bg-foreground px-5 py-2.5 text-[13px] text-background transition-opacity hover:opacity-85"
+          >
+            {action.label}
+          </a>
+        ) : null}
         <ul className="mt-6 flex flex-wrap gap-2.5">
           {tags.map((tag) => (
             <li
@@ -52,39 +88,108 @@ export function CaseHero({
             </li>
           ))}
         </ul>
+        <ProjectMeta items={meta} />
       </header>
     </Reveal>
   );
 }
 
 export function CaseSection({
+  id,
   title,
-  paragraphs,
+  highlight,
+  paragraphs = [],
   children,
 }: {
+  id?: string;
   title: string;
-  paragraphs: string[];
+  highlight?: string;
+  paragraphs?: string[];
   children?: ReactNode;
 }) {
+  const body = highlight ? [highlight, ...paragraphs] : paragraphs;
+
   return (
-    <section className="pt-14 first:pt-0">
+    <section id={id} className="case-section">
       <Reveal>
-        <h2 className="font-display text-[15px] font-semibold tracking-tight md:text-[16px]">
-          {title}
-        </h2>
-        <div className="mt-3 max-w-[760px] space-y-4">
-          {paragraphs.map((text) => (
-            <p
-              key={text.slice(0, 32)}
-              className="text-[13.5px] leading-[1.75] text-muted-foreground md:text-[14px]"
+        <h2 className="case-section-title">{title}</h2>
+        {body.length > 0 ? (
+          <div className="mt-3 max-w-[760px] space-y-4">
+            {body.map((text) => (
+              <p
+                key={text.slice(0, 32)}
+                className="text-[13.5px] leading-[1.75] text-muted-foreground md:text-[14px]"
+              >
+                {text}
+              </p>
+            ))}
+          </div>
+        ) : null}
+      </Reveal>
+      {children ? <div className="case-content">{children}</div> : null}
+    </section>
+  );
+}
+
+export type Decision = {
+  title: string;
+  problem: string;
+  decision: string;
+  why: string;
+  ref?: DesignReference;
+};
+
+const DECISION_BLOCKS = [
+  { key: "problem", label: "Problema", Icon: WarningCircle },
+  { key: "decision", label: "Decisão", Icon: Lightbulb },
+  { key: "why", label: "Por quê", Icon: Question },
+] as const;
+
+export function DecisionCard({
+  label,
+  Icon,
+  reference,
+  children,
+}: {
+  label: string;
+  Icon: PhosphorIcon;
+  reference: DesignReference | undefined;
+  children: ReactNode;
+}) {
+  return (
+    <div className="group rounded-2xl bg-panel p-5 transition-colors duration-300 hover:bg-foreground hover:text-background">
+      <Icon
+        size={20}
+        aria-hidden="true"
+        className="text-muted-foreground transition-colors duration-300 group-hover:text-background"
+      />
+      <h4 className="mt-3 text-[13px] font-semibold">{label}</h4>
+      <p className="mt-1 text-[14px] leading-[1.65] text-muted-foreground transition-colors duration-300 group-hover:text-background/80">
+        {children} {reference ? <ReferenceLink reference={reference} /> : null}
+      </p>
+    </div>
+  );
+}
+
+export function DecisionCards({ decision }: { decision: Decision }) {
+  return (
+    <Reveal>
+      <article>
+        <h3 className="case-subheading">{decision.title}</h3>
+        <div className="mt-3 grid gap-3 lg:grid-cols-3">
+          {DECISION_BLOCKS.map(({ key, label, Icon }) => (
+            <DecisionCard
+              key={key}
+              label={label}
+              Icon={Icon}
+              reference={key === "why" ? decision.ref : undefined}
             >
-              {text}
-            </p>
+              {decision[key]}
+            </DecisionCard>
           ))}
         </div>
-      </Reveal>
-      {children ? <div className="mt-8 space-y-6">{children}</div> : null}
-    </section>
+      </article>
+    </Reveal>
   );
 }
 
@@ -132,32 +237,6 @@ export function PanelImage({
   );
 }
 
-export function ComparisonPanel({
-  left,
-  right,
-  leftAlt,
-  rightAlt,
-  frame,
-}: {
-  left: string;
-  right: string;
-  leftAlt: string;
-  rightAlt: string;
-  frame?: GalleryItem["frame"];
-}) {
-  return (
-    <Panel>
-      <ImageGallery
-        variant="comparison"
-        items={[
-          { src: left, alt: leftAlt, title: "Antes", caption: leftAlt, frame },
-          { src: right, alt: rightAlt, title: "Depois", caption: rightAlt, frame },
-        ]}
-      />
-    </Panel>
-  );
-}
-
 export function ScreenGrid({
   items,
 }: {
@@ -178,10 +257,10 @@ export function NextProject({
 }) {
   return (
     <Reveal>
-      <section className="mt-24 border-t border-border pt-12">
+      <section className="next-project">
         <div className="grid items-center md:grid-cols-[minmax(0,560px)_1fr] md:gap-3">
-          {/* A capa tem uma área de sombra embaixo, compensada no celular. */}
-          <Link to={to} className="group -mb-12 block overflow-hidden md:mb-0">
+          {/* A capa tem uma faixa de sombra embaixo, compensada para o cartão marcar o fim do bloco. */}
+          <Link to={to} className="group -mb-[17%] block overflow-hidden md:-mb-[21%]">
             <ResponsiveImage
               src={thumb}
               sizes="(min-width: 768px) 560px, 100vw"
@@ -190,8 +269,8 @@ export function NextProject({
             />
           </Link>
 
-          {/* O cartão da capa começa a 5,94% da borda da imagem e 5px do topo. */}
-          <div className="relative px-[5.94%] md:self-start md:px-0 md:pt-[5px]">
+          {/* O cartão da capa começa a 5,94% da borda da imagem. */}
+          <div className="relative px-[5.94%] md:self-end md:px-0">
             <p className="text-[13px] text-muted-foreground">
               Próximo projeto
             </p>
