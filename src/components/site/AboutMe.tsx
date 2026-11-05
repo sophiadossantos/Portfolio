@@ -92,7 +92,7 @@ export function AboutMe() {
         <figure className="about-photo">
           <ResponsiveImage
             src={sophiaPhoto}
-            alt="Sophia dos Santos sorrindo"
+            alt="Retrato de Sophia dos Santos"
             sizes="290px"
           />
 

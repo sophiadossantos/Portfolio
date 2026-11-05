@@ -229,5 +229,5 @@ export const imageMeta: Record<string, ImageMeta> = {
   [image55Large]: { srcSet: `${image55W400} 400w, ${image55W800} 800w, ${image55Large} 1600w`, width: 1600, height: 1138 },
   [image56Large]: { srcSet: `${image56W400} 400w, ${image56W800} 800w, ${image56Large} 1600w`, width: 1600, height: 11594 },
   [image57Large]: { srcSet: `${image57W400} 400w, ${image57W800} 800w, ${image57Large} 819w`, width: 819, height: 609 },
-  [image58Large]: { srcSet: `${image58W400} 400w, ${image58W800} 800w, ${image58Large} 1536w`, width: 1536, height: 2048 },
+  [image58Large]: { srcSet: `${image58W400} 400w, ${image58W800} 800w, ${image58Large} 960w`, width: 960, height: 1280 },
 };
