@@ -187,7 +187,8 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  html {
+  /* Só na home, para os links internos. Fora dela, a troca de página vai direto ao topo. */
+  html:has(.hero-aurora) {
     scroll-behavior: smooth;
   }
 
