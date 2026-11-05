@@ -469,7 +469,7 @@ const META = [
     label: "Meu papel",
     value: "Product Designer, responsável pela experiência e pela interface",
   },
-  // CONFIRMAR: Equipe, ex. "2 desenvolvedores e 1 designer (eu)". Fica oculto até ter o valor.
+  { label: "Equipe", value: "4 pessoas" },
   // CONFIRMAR: Duração, ex. "4 meses". Fica oculto até ter o valor.
   { label: "Ferramentas", value: "Figma, FigJam" },
 ];

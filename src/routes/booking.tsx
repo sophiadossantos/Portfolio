@@ -1027,7 +1027,7 @@ const META = [
     value: "Projeto individual: análise e redesign web e mobile",
   },
   { label: "Equipe", value: "Individual, na disciplina de UX/UI" },
-  // CONFIRMAR: Duração, ex. "6 semanas". Fica oculto até ter o valor.
+  { label: "Duração", value: "Menos de 1 mês" },
   { label: "Ferramentas", value: "Figma" },
 ];
 

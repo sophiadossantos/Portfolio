@@ -378,7 +378,10 @@ const META = [
     value: "Projeto individual: conceito, UX e interface (V1 e V2)",
   },
   { label: "Equipe", value: "Individual, na disciplina de UX/UI" },
-  // CONFIRMAR: Duração, ex. "V1 em 2025, V2 em 2026". Fica oculto até ter o valor.
+  {
+    label: "Duração",
+    value: "1 mês (V1 em novembro de 2025, V2 em junho de 2026)",
+  },
   { label: "Ferramentas", value: "Figma" },
 ];
 
