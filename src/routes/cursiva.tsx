@@ -693,6 +693,14 @@ function CursivaCase() {
       </CaseSection>
 
       <CaseSection
+        title="Resultados"
+        paragraphs={[
+          "O Cursiva está no ar e já é usado por um primeiro grupo de professores. Eles contam que a plataforma é fácil de usar, que economiza tempo e que o novo visual deixou tudo mais organizado.",
+          "Esse retorno também trouxe pedidos de melhorias e novos recursos, que seguem orientando as próximas decisões de design.",
+        ]}
+      />
+
+      <CaseSection
         title="O que aprendi"
         paragraphs={[
           "Liderar o design em um projeto colaborativo me mostrou que muitas das decisões mais importantes não estão na tela, e sim em entender como as funcionalidades se conectam e no que o usuário precisa enxergar primeiro.",

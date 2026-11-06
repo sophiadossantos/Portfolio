@@ -1127,6 +1127,7 @@ function BookingCase() {
       <CaseSection
         title="O que aprendi"
         paragraphs={[
+          "O projeto recebeu nota máxima na disciplina de UX/UI.",
           "Um redesign começa muito antes de mudar cores ou elementos. É preciso observar, questionar e entender o que pode ser melhorado sem perder o que já funciona. Projetar para web e mobile também me mostrou como cada formato exige decisões próprias.",
         ]}
       />

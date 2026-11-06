@@ -589,6 +589,7 @@ function AngeloniCase() {
       <CaseSection
         title="O que aprendi"
         paragraphs={[
+          "A primeira versão recebeu nota máxima na disciplina de UX/UI. A V2 foi uma evolução pessoal, feita depois, para aplicar o que aprendi.",
           "Voltar a uma solução depois de adquirir mais conhecimento revela problemas que antes eu nem conseguia enxergar. Hoje questiono mais minhas próprias decisões: cada escolha visual pode ajudar, ou dificultar, a forma como alguém entende um produto.",
         ]}
       />
