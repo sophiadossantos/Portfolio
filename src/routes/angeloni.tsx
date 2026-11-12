@@ -64,7 +64,8 @@ import v2FormasDePagamento from "@/assets/optimized/Angeloni/V2/24-formas-de-pag
 import v2Notificacoes from "@/assets/optimized/Angeloni/V2/25-notificacoes-large.webp";
 import v2Ajuda from "@/assets/optimized/Angeloni/V2/26-ajuda-large.webp";
 
-import designSystem from "@/assets/optimized/Angeloni/design-system-large.webp";
+import v1PrimeiroAcesso from "@/assets/optimized/Angeloni/primeiro-acesso/v1-large.webp";
+import v2PrimeiroAcesso from "@/assets/optimized/Angeloni/primeiro-acesso/v2-large.webp";
 
 import capaCursiva from "@/assets/optimized/Cursiva/capa-home-cursiva-large.webp";
 
@@ -755,55 +756,36 @@ type PairSpec = {
   after: string;
   beforeAlt: string;
   afterAlt: string;
+  frame?: "mobile" | "trio";
   notes: ComparisonNote[];
 };
 
 // CONFIRMAR: notas das 14 comparações.
 const PAIRS: PairSpec[] = [
   {
-    label: "Abertura",
-    before: v1Splash,
-    after: v2Splash,
-    beforeAlt: "Abertura da primeira versão, só com o logo",
-    afterAlt: "Abertura da nova versão, com a frase e as opções de entrar e se cadastrar",
+    label: "Primeiro acesso",
+    before: v1PrimeiroAcesso,
+    after: v2PrimeiroAcesso,
+    beforeAlt: "Abertura, entrar e criar conta da primeira versão",
+    afterAlt: "Abertura, entrar e cadastro da nova versão",
+    frame: "trio",
     notes: [
-      note("A V1 abria só com o logo. Agora a frase resume a proposta do app.", [6, 63, 88, 7]),
       note(
-        "As duas entradas aparecem já na abertura, com Entrar em destaque.",
-        [6, 73, 88, 13],
+        "A V1 abria só com o logo. Agora a frase resume a proposta e já mostra as duas entradas.",
+        [2, 63, 28, 23],
         REFS.control,
       ),
-    ],
-  },
-  {
-    label: "Entrar",
-    before: v1Entrar,
-    after: v2Entrar,
-    beforeAlt: "Tela de entrar da primeira versão",
-    afterAlt: "Tela de entrar da nova versão",
-    notes: [
-      note("Logo, abas e padronagem saíram, e sobrou só o formulário.", [6, 12, 88, 6]),
       note(
-        "Os campos ganharam borda fina sobre fundo branco, no lugar do bloco cinza.",
-        [6, 20, 88, 22],
+        "Logo, abas e padronagem saíram do entrar, e sobrou só o formulário com campos de borda fina.",
+        [36, 12, 28, 30],
         REFS.nonTextContrast,
       ),
-      note("Esqueceu a senha? virou link de texto e não compete com o botão.", [6, 53, 88, 4]),
-    ],
-  },
-  {
-    label: "Cadastro",
-    before: v1Cadastro,
-    after: v2Cadastro,
-    beforeAlt: "Tela de criar conta da primeira versão",
-    afterAlt: "Tela de cadastro da nova versão",
-    notes: [
+      note("Esqueceu a senha? virou link de texto e não compete com o botão.", [36, 53, 28, 4]),
       note(
         "Sem abas: o cadastro é uma tela própria, no mesmo padrão de entrar.",
-        [6, 12, 88, 51],
+        [70, 12, 28, 51],
         REFS.consistency,
       ),
-      note("Cada campo tem rótulo acima e borda visível.", [6, 43, 88, 11], REFS.forms),
     ],
   },
   {
@@ -978,7 +960,9 @@ const PAIRS: PairSpec[] = [
   },
 ];
 
-const COMPARISON_PAIRS = PAIRS.map((pair) => comparisonPair({ ...pair, frame: "mobile" }));
+const COMPARISON_PAIRS = PAIRS.map(({ frame = "mobile", ...pair }) =>
+  comparisonPair({ ...pair, frame }),
+);
 
 function AngeloniCase() {
   return (
@@ -1026,19 +1010,6 @@ function AngeloniCase() {
         <Panel>
           <ComparisonGallery pairs={COMPARISON_PAIRS} />
         </Panel>
-      </CaseSection>
-
-      <CaseSection
-        title="Design system"
-        paragraphs={[
-          // CONFIRMAR: parágrafo do design system.
-          "Para dar conta das telas novas, montei um design system com cores, tipografia, ícones e componentes. Ele garante que todas as telas da V2 sigam o mesmo padrão.",
-        ]}
-      >
-        <PanelImage
-          src={designSystem}
-          alt="Colagem do design system da V2: componentes, cores, tipografia, ícones e rastreio no mapa"
-        />
       </CaseSection>
 
       <CaseSection

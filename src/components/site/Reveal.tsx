@@ -29,7 +29,9 @@ export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      // Limite zero: blocos mais altos que a tela (como as 14 comparações no celular)
+      // nunca chegariam a uma fração visível e ficariam em branco.
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
     );
 
     observer.observe(el);

@@ -251,7 +251,8 @@ function activeSlide(track: HTMLElement) {
 }
 
 /** Proporções das telas da Cursiva (web) e do iPhone (mobile). */
-const FRAME_RATIO = { web: 1600 / 1138, mobile: 1179 / 2556 } as const;
+// "trio": três telas de celular lado a lado numa só imagem (2478 × 1704).
+const FRAME_RATIO = { web: 1600 / 1138, mobile: 1179 / 2556, trio: 2478 / 1704 } as const;
 
 /** Tempo para os motivos saírem em cascata antes de sumirem da tela. */
 const CASCADE_CLOSE_MS = 420;
@@ -411,8 +412,10 @@ export function ImageGallery({
   }
 
   if (variant === "comparison") {
-    // Telas web com marcadores precisam da proporção exata para os pontos não saírem do lugar.
-    const fitsScreen = items.some((item) => item.frame === "web" && item.markers);
+    // Telas largas com marcadores precisam da proporção exata para os pontos não saírem do lugar.
+    const fitFrame = items.find(
+      (item) => (item.frame === "web" || item.frame === "trio") && item.markers,
+    )?.frame;
 
     return (
       <>
@@ -430,8 +433,9 @@ export function ImageGallery({
             >
               <div
                 className={`flex items-center justify-center overflow-hidden rounded-xl border border-border bg-muted ${
-                  fitsScreen ? "aspect-[1600/1138]" : "h-[300px] lg:h-[360px]"
+                  fitFrame ? "" : "h-[300px] lg:h-[360px]"
                 }`}
+                style={fitFrame ? { aspectRatio: FRAME_RATIO[fitFrame] } : undefined}
               >
                 <GalleryImage
                   sizes="(min-width: 1240px) 570px, (min-width: 768px) 50vw, 85vw"
@@ -1231,7 +1235,7 @@ export function comparisonPair({
   after: string;
   beforeAlt: string;
   afterAlt: string;
-  frame: "web" | "mobile";
+  frame: "web" | "mobile" | "trio";
   notes: ComparisonNote[];
 }): ComparisonPair {
   return {
@@ -1242,7 +1246,7 @@ export function comparisonPair({
       title: "Antes",
       caption: beforeAlt,
       // As telas antigas da Cursiva têm outra proporção e aparecem inteiras.
-      frame: frame === "mobile" ? frame : undefined,
+      frame: frame === "web" ? undefined : frame,
     },
     after: { src: after, alt: afterAlt, title: "Depois", caption: afterAlt, frame },
     notes,
