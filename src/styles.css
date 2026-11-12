@@ -536,49 +536,6 @@
   line-height: 16px;
 }
 
-/* Espaço reservado no fim do título onde a estrela encaixa. */
-.hero-star-slot {
-  display: inline-block;
-  width: 0.72em;
-  height: 0.72em;
-  margin-left: 0.18em;
-  vertical-align: -0.02em;
-}
-
-.hero-star {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: var(--foreground);
-  transition-property: transform, opacity;
-  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1), ease;
-  touch-action: none;
-  will-change: transform;
-}
-
-.hero-star svg {
-  display: block;
-}
-
-.hero-star.is-placed {
-  pointer-events: auto;
-  cursor: grab;
-}
-
-.hero-star.is-grabbing {
-  cursor: grabbing;
-}
-
-.hero-star.is-selected,
-.hero-star.is-placed:hover {
-  outline: 1px solid #0d99ff;
-  outline-offset: 3px;
-}
-
-.hero-star.is-selected .figma-handle {
-  opacity: 1;
-}
-
 /* ---- Reveal ---- */
 
 .reveal {

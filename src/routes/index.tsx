@@ -130,6 +130,16 @@ function Home() {
           <Reveal>
             <HeroTitle />
           </Reveal>
+
+          <Reveal delay={120}>
+            <a
+              href="#trabalhos"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-foreground/25 bg-white/40 px-5 py-2.5 text-[13px] backdrop-blur transition-colors hover:bg-foreground hover:text-background"
+            >
+              Conheça o meu trabalho
+              <span aria-hidden="true">↓</span>
+            </a>
+          </Reveal>
         </div>
       </section>
 
