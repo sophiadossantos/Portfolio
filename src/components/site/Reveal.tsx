@@ -31,7 +31,9 @@ export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
       },
       // Limite zero: blocos mais altos que a tela (como as 14 comparações no celular)
       // nunca chegariam a uma fração visível e ficariam em branco.
-      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
+      // A margem positiva dispara a animação um pouco antes de o bloco entrar na tela,
+      // para não sobrar uma faixa em branco no pé da tela enquanto a pessoa rola.
+      { threshold: 0, rootMargin: "0px 0px 12% 0px" },
     );
 
     observer.observe(el);
