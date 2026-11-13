@@ -6,6 +6,8 @@ import {
   CaseSection,
   CaseShell,
   DecisionCards,
+  DifficultyBlock,
+  MetricCards,
   NextProject,
   Panel,
   PanelImage,
@@ -467,7 +469,7 @@ const SOLUTION_SCREENS: GalleryItem[] = [
 const META = [
   {
     label: "Meu papel",
-    value: "Product Designer, responsável pela experiência e pela interface",
+    value: "Cuidei da experiência e da interface",
   },
   { label: "Equipe", value: "4 pessoas" },
   {
@@ -492,7 +494,7 @@ const LIGHT_INTERFACE_DECISION = {
   problem:
     "Em conversas com professores, vimos que parte deles usa computadores antigos, e elementos visuais pesados prejudicariam a experiência.",
   decision:
-    "Priorizar layouts limpos, com poucos elementos decorativos, e concentrar a identidade visual em cor e tipografia.",
+    "Priorizar layouts limpos, com poucas animações e imagens, concentrar a identidade visual em cor e tipografia e conferir as telas em um computador antigo.",
   why: "A interface precisava carregar bem e ser clara em qualquer dispositivo, sem perder a identidade da marca.",
   ref: REFS.minimalist,
 };
@@ -506,6 +508,70 @@ const GUIDANCE_DECISION = {
   why: "Quem precisa de ajuda encontra, e quem não precisa não é interrompido.",
   ref: REFS.progressiveDisclosure,
 };
+
+const UPLOAD_DIFFICULTY = {
+  title: "Enviar as provas sem trocar o aluno",
+  context:
+    "A correção depende de o professor anexar fotos das provas. É o passo com mais chance de erro: foto escura ou torta, página fora de ordem e uma turma inteira para enviar.",
+  options:
+    "Subir a turma inteira de uma vez, mas o envio ficava pesado em internet e computador fracos, sem mostrar o progresso, e uma foto ruim se perdia no meio. Escolher o aluno à mão em cada foto, lento demais para uma turma de 30. Aceitar só arquivos, o que obrigava a tirar a foto, passar para o computador e subir.",
+  decision:
+    "O professor sobe ou fotografa as provas e o Cursiva identifica o aluno pelo código impresso na prova. Quando a prova não foi gerada na plataforma, a identificação é pelo nome, e o professor revisa. Antes do envio há uma prévia, e a plataforma avisa quando a foto está ilegível. A ideia veio de professores próximos do time: propus o fluxo, debatemos e validamos com eles.",
+  tradeoff:
+    "O fluxo ficou mais complexo de construir. Ler o código ou o nome e detectar uma foto ilegível exigiu bem mais do desenvolvimento do que um upload simples.",
+  mobile:
+    "No celular, o botão já abre a câmera, as ações têm áreas de toque maiores e o envio é dividido em etapas menores.",
+  ref: REFS.errors,
+};
+
+const SIGNUP_DIFFICULTY = {
+  title: "Um cadastro curto que também servisse ao pagamento",
+  context:
+    "Eu queria um cadastro curto, para o professor chegar rápido à primeira prova. Essa decisão foi questionada: o desenvolvimento precisava de alguns dados já no cadastro para a etapa de pagamento.",
+  decision: "Os campos necessários para o pagamento voltaram ao cadastro.",
+  tradeoff: "O cadastro ficou mais longo do que eu queria.",
+};
+
+const AI_LIMITS_DECISION = {
+  title: "Os limites da IA na interface",
+  problem:
+    "A IA leva um tempo para gerar ou corrigir uma prova e, às vezes, não consegue ler uma foto ou chegar ao resultado esperado.",
+  decision:
+    "Tudo o que a IA gera ou corrige pode ser revisado e editado pelo professor, há telas de espera enquanto ela processa e mensagens claras quando algo dá errado.",
+  why: "O professor continua no controle do resultado e sempre sabe o que está acontecendo.",
+  ref: REFS.status,
+};
+
+const METRICS = [
+  {
+    status: "real" as const,
+    name: "Dúvidas de uso no suporte",
+    value: "0",
+    detail: "em mais de três meses com professores usando a plataforma.",
+    why: "Mostra se a interface se explica sozinha.",
+  },
+  {
+    status: "meta" as const,
+    name: "Fluxos de correção concluídos",
+    value: "≥ 90%",
+    detail: "dos fluxos iniciados, do envio das fotos até receber a correção.",
+    why: "A correção é a função principal da plataforma.",
+  },
+  {
+    status: "meta" as const,
+    name: "Fotos enviadas de novo",
+    value: "< 5%",
+    detail: "dos envios refeitos por foto ilegível ou página faltando.",
+    why: "O envio das fotos foi o ponto mais debatido do fluxo.",
+  },
+  {
+    status: "meta" as const,
+    name: "Tempo até a primeira prova",
+    value: "< 10 min",
+    detail: "no primeiro acesso, do cadastro à primeira prova gerada.",
+    why: "Mede a curva de aprendizado de quem tem pouca familiaridade digital.",
+  },
+];
 
 // Posição dos marcadores em % sobre a imagem "Depois".
 const LOGIN_NOTES: ComparisonNote[] = [
@@ -620,7 +686,7 @@ function CursivaCase() {
         title="Visão geral"
         highlight="Entrei em um produto que já sabia o que fazer. Meu trabalho foi definir como as pessoas fariam."
         paragraphs={[
-          "O Cursiva nasceu como um projeto colaborativo para usar tecnologia e IA na redução de tarefas repetitivas da rotina de professores. Quando entrei, o foco estava nos recursos que a plataforma deveria oferecer. Assumi a frente de Product Design para transformar essa lista de funcionalidades em uma experiência clara, intuitiva e agradável de usar.",
+          "O Cursiva nasceu como um projeto colaborativo para usar tecnologia e IA na redução de tarefas repetitivas da rotina de professores. Quando entrei, o foco estava nos recursos que a plataforma deveria oferecer. Fiquei responsável pela experiência e pela interface, para transformar essa lista de funcionalidades em uma experiência clara, intuitiva e agradável de usar.",
         ]}
       >
         <PanelImage
@@ -693,17 +759,32 @@ function CursivaCase() {
       </CaseSection>
 
       <CaseSection
-        title="Resultados"
+        title="Dificuldades e decisões"
         paragraphs={[
-          "O Cursiva está no ar e já é usado por um primeiro grupo de professores. Eles contam que a plataforma é fácil de usar, que economiza tempo e que o novo visual deixou tudo mais organizado.",
-          "Esse retorno também trouxe pedidos de melhorias e novos recursos, que seguem orientando as próximas decisões de design.",
+          "O projeto tinha quatro restrições ao mesmo tempo: professores com níveis muito diferentes de familiaridade digital, computadores antigos nas escolas, um time de quatro pessoas com o desenvolvimento já em andamento quando o design entrou e os limites da própria IA.",
+          "Como também programo, desenhei pensando nos componentes que já existiam e conversando com o desenvolvimento na mesma língua, o que encurtou muitas dessas decisões.",
         ]}
-      />
+      >
+        <DifficultyBlock difficulty={UPLOAD_DIFFICULTY} />
+        <DifficultyBlock difficulty={SIGNUP_DIFFICULTY} />
+        <DecisionCards decision={AI_LIMITS_DECISION} />
+      </CaseSection>
+
+      <CaseSection
+        title="Como medir o impacto"
+        paragraphs={[
+          "O Cursiva está com professores há mais de três meses, com um primeiro grupo de até 20 professores, e já tem clientes. Nesse período, nenhuma dúvida sobre como usar a plataforma chegou ao time: o que chegou foram problemas técnicos pontuais ao gerar provas e pedidos de novas funcionalidades.",
+          "Os professores contam que a plataforma é fácil de usar, que conseguem usar sem pedir ajuda, que a correção ficou mais rápida e que o visual novo deixou tudo mais organizado.",
+          "Ainda não há dados de uso medidos, então defini metas para acompanhar o fluxo principal. Elas são critérios de sucesso, não resultados.",
+        ]}
+      >
+        <MetricCards metrics={METRICS} />
+      </CaseSection>
 
       <CaseSection
         title="O que aprendi"
         paragraphs={[
-          "Liderar o design em um projeto colaborativo me mostrou que muitas das decisões mais importantes não estão na tela, e sim em entender como as funcionalidades se conectam e no que o usuário precisa enxergar primeiro.",
+          "Cuidar da experiência e da interface em um projeto colaborativo me mostrou que muitas das decisões mais importantes não estão na tela, e sim em entender como as funcionalidades se conectam e no que o usuário precisa enxergar primeiro.",
         ]}
       />
 

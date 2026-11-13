@@ -55,7 +55,7 @@ const FEATURED: Project = {
   context: "Projeto aplicado · Web",
   badge: "Em uso por professores",
   description:
-    "Liderei o Product Design de uma plataforma com IA que simplifica tarefas repetitivas da rotina de professores, para quem tem muita ou pouca familiaridade com tecnologia.",
+    "Cuidei da experiência e da interface de uma plataforma com IA que simplifica tarefas repetitivas da rotina de professores, para quem tem muita ou pouca familiaridade com tecnologia.",
   thumb: capaCursiva,
 };
 

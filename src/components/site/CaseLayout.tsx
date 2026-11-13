@@ -4,8 +4,12 @@ import type { DesignReference } from "./references";
 import { ResponsiveImage } from "./ResponsiveImage";
 import { Link } from "@tanstack/react-router";
 import {
+  DeviceMobile,
+  GitFork,
   Lightbulb,
   Question,
+  Scales,
+  Signpost,
   WarningCircle,
   type Icon as PhosphorIcon,
 } from "@phosphor-icons/react";
@@ -157,7 +161,7 @@ export function DecisionCard({
   children: ReactNode;
 }) {
   return (
-    <div className="group rounded-2xl bg-panel p-5 transition-colors duration-300 hover:bg-foreground hover:text-background">
+    <div className="group h-full rounded-2xl bg-panel p-5 transition-colors duration-300 hover:bg-foreground hover:text-background">
       <Icon
         size={20}
         aria-hidden="true"
@@ -189,6 +193,97 @@ export function DecisionCards({ decision }: { decision: Decision }) {
           ))}
         </div>
       </article>
+    </Reveal>
+  );
+}
+
+export type Difficulty = {
+  title: string;
+  context: string;
+  options?: string;
+  decision: string;
+  tradeoff: string;
+  mobile?: string;
+  ref?: DesignReference;
+};
+
+const DIFFICULTY_BLOCKS = [
+  { key: "context", label: "Contexto", Icon: Signpost },
+  { key: "options", label: "Opções consideradas", Icon: GitFork },
+  { key: "decision", label: "Decisão", Icon: Lightbulb },
+  { key: "tradeoff", label: "Trade-off", Icon: Scales },
+  { key: "mobile", label: "No celular", Icon: DeviceMobile },
+] as const;
+
+/** Uma dificuldade contada sempre no mesmo formato: contexto → opções → decisão → trade-off. */
+export function DifficultyBlock({ difficulty }: { difficulty: Difficulty }) {
+  const blocks = DIFFICULTY_BLOCKS.filter(({ key }) => difficulty[key]);
+
+  return (
+    <Reveal>
+      <article>
+        <h3 className="case-subheading">{difficulty.title}</h3>
+        {/* Três blocos ficam lado a lado; com número ímpar maior, o último ocupa a linha toda. */}
+        <div
+          className={`mt-3 grid gap-3 ${blocks.length === 3 ? "lg:grid-cols-3" : "md:grid-cols-2"}`}
+        >
+          {blocks.map(({ key, label, Icon }, index) => (
+            <div
+              key={key}
+              className={
+                blocks.length > 3 && blocks.length % 2 === 1 && index === blocks.length - 1
+                  ? "md:col-span-2"
+                  : undefined
+              }
+            >
+              <DecisionCard
+                label={label}
+                Icon={Icon}
+                reference={key === "decision" ? difficulty.ref : undefined}
+              >
+                {difficulty[key]}
+              </DecisionCard>
+            </div>
+          ))}
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
+export type Metric = {
+  status: "real" | "meta";
+  name: string;
+  value: string;
+  detail: string;
+  why: string;
+};
+
+/** Métricas do case: "real" é resultado observado; "meta" é critério de sucesso ainda não medido. */
+export function MetricCards({ metrics }: { metrics: Metric[] }) {
+  return (
+    <Reveal>
+      <ul className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {metrics.map((metric) => (
+          <li key={metric.name} className="flex flex-col rounded-2xl bg-panel p-5">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-background px-2.5 py-1 text-[11px] font-medium">
+              <span
+                aria-hidden="true"
+                className={`size-1.5 rounded-full ${metric.status === "real" ? "bg-emerald-500" : "bg-foreground/30"}`}
+              />
+              {metric.status === "real" ? "Resultado" : "Meta definida"}
+            </span>
+            <h4 className="mt-4 text-[13px] font-semibold">{metric.name}</h4>
+            <p className="mt-2 text-[28px] font-semibold leading-none tracking-tight">
+              {metric.value}
+            </p>
+            <p className="mt-2 text-[13px] leading-[1.6] text-muted-foreground">{metric.detail}</p>
+            <p className="mt-4 border-t border-border pt-3 text-[13px] leading-[1.6] text-muted-foreground">
+              {metric.why}
+            </p>
+          </li>
+        ))}
+      </ul>
     </Reveal>
   );
 }
