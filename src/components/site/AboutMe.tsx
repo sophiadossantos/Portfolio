@@ -1,5 +1,5 @@
 import { MapPin } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import sophiaPhoto from "@/assets/optimized/sophia-dos-santos-large.webp";
 import { ContactDropdown } from "@/components/site/ContactDropdown";
@@ -40,15 +40,51 @@ function BrasiliaClock() {
   );
 }
 
+const NUDGE_DELAY_MS = 4000;
+
+/**
+ * Depois de alguns segundos com o Sobre mim na tela, destaca uma vez o "Vamos conversar".
+ * O tempo zera se a pessoa sair da seção antes.
+ */
+function useContactNudge() {
+  const ref = useRef<HTMLElement>(null);
+  const [nudged, setNudged] = useState(false);
+
+  useEffect(() => {
+    const section = ref.current;
+    if (!section || nudged) return;
+
+    let timer: number | undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        window.clearTimeout(timer);
+        if (entry?.isIntersecting) timer = window.setTimeout(() => setNudged(true), NUDGE_DELAY_MS);
+      },
+      { threshold: 0.6 },
+    );
+
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
+  }, [nudged]);
+
+  return { ref, nudged };
+}
+
 const aboutLinkClass =
   "about-link inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-[13px] transition-colors hover:bg-foreground hover:text-background";
 
 export function AboutMe() {
+  const { ref, nudged } = useContactNudge();
+
   return (
     <Reveal>
       <section
+        ref={ref}
         id="sobre-mim"
-        className="about-space"
+        className={`about-space ${nudged ? "is-nudged" : ""}`}
         aria-labelledby="about-title"
       >
         <div className="about-intro p-4">
@@ -70,11 +106,6 @@ export function AboutMe() {
             Foi assim que encontrei o design de produto. A engenharia me ajuda a entender como as
             coisas são construídas e a conversar bem com quem desenvolve, sem perder o olhar de
             quem usa.
-          </p>
-
-          <p>
-            Hoje estou aberta a novas oportunidades. Se você tem uma vaga ou um projeto em mente,
-            vou adorar conversar.
           </p>
 
           <div className="about-links">
