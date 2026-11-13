@@ -37,7 +37,7 @@ import {
   telasBookingInicioWebBookingUrl,
 } from "@/assets/assets";
 import { REFS } from "@/components/site/references";
-import capaAngeloni from "@/assets/optimized/Angeloni/capa-home-angeloni-large.webp";
+import capaCursiva from "@/assets/optimized/Cursiva/capa-home-cursiva-large.webp";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -1080,6 +1080,7 @@ function BookingCase() {
         highlight="O objetivo não era reinventar o Booking, e sim entender o que já funcionava e o que podia ficar mais claro."
         paragraphs={[
           "A proposta da disciplina de UX/UI era escolher um sistema usado no dia a dia e redesenhá-lo. Escolhi o Booking porque conheço a experiência como usuária e via oportunidades de melhoria na jornada de reserva. Redesenhei as três páginas principais (inicial, busca e detalhes da acomodação) para web e mobile.",
+          "O Booking é conhecido por testar quase tudo com testes A/B, e muitas escolhas que parecem carregadas existem porque funcionam para quem reserva. Por isso, este redesign é um exercício de hierarquia visual, não uma crítica ao produto: sem os dados deles, não dá para afirmar que a minha versão converteria melhor.",
         ]}
       >
         <PanelImage
@@ -1132,11 +1133,7 @@ function BookingCase() {
         ]}
       />
 
-      <NextProject
-        to="/angeloni"
-        name="Angeloni: em casa"
-        thumb={capaAngeloni}
-      />
+      <NextProject to="/cursiva" name="Cursiva" thumb={capaCursiva} />
     </CaseShell>
   );
 }

@@ -63,8 +63,18 @@ export function AboutMe() {
             Tenho 20 anos, sou de Santa Catarina e curso Engenharia de Software. Sempre me
             interessei pela parte estética das coisas e, com o tempo, fui percebendo que o que
             mais me prende é o que existe por trás de uma boa experiência: entender como as
-            pessoas pensam e transformar isso em interfaces claras. Hoje estou construindo minha
-            trajetória em Product Design, unindo o olhar visual com a base técnica da engenharia.
+            pessoas pensam e transformar isso em interfaces claras.
+          </p>
+
+          <p>
+            Foi assim que encontrei o design de produto. A engenharia me ajuda a entender como as
+            coisas são construídas e a conversar bem com quem desenvolve, sem perder o olhar de
+            quem usa.
+          </p>
+
+          <p>
+            Hoje estou aberta a novas oportunidades. Se você tem uma vaga ou um projeto em mente,
+            vou adorar conversar.
           </p>
 
           <div className="about-links">

@@ -53,7 +53,7 @@ import telasCursivaTelaInicialAssistente from "@/assets/optimized/Cursiva/tela-i
 import telasCursivaTelaInicialTour from "@/assets/optimized/Cursiva/tela-inicial-tour-large.webp";
 import telasCursivaAnalisandoProva from "@/assets/optimized/Cursiva/analisando-prova-large.webp";
 
-import capaBookingHome from "@/assets/optimized/Booking/capa-home-booking-large.webp";
+import capaAngeloniHome from "@/assets/optimized/Angeloni/capa-home-angeloni-large.webp";
 
 export const Route = createFileRoute("/cursiva")({
   head: () => ({
@@ -788,11 +788,7 @@ function CursivaCase() {
         ]}
       />
 
-      <NextProject
-        to="/booking"
-        name="Booking.com"
-        thumb={capaBookingHome}
-      />
+      <NextProject to="/angeloni" name="Angeloni: em casa" thumb={capaAngeloniHome} />
     </CaseShell>
   );
 }

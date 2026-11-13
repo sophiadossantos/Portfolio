@@ -69,7 +69,7 @@ import v2Ajuda from "@/assets/optimized/Angeloni/V2/26-ajuda-large.webp";
 import v1PrimeiroAcesso from "@/assets/optimized/Angeloni/primeiro-acesso/v1-large.webp";
 import v2PrimeiroAcesso from "@/assets/optimized/Angeloni/primeiro-acesso/v2-large.webp";
 
-import capaCursiva from "@/assets/optimized/Cursiva/capa-home-cursiva-large.webp";
+import capaBooking from "@/assets/optimized/Booking/capa-home-booking-large.webp";
 
 export const Route = createFileRoute("/angeloni")({
   head: () => ({
@@ -1086,7 +1086,7 @@ function AngeloniCase() {
         ]}
       />
 
-      <NextProject to="/cursiva" name="Cursiva" thumb={capaCursiva} />
+      <NextProject to="/booking" name="Booking.com" thumb={capaBooking} />
     </CaseShell>
   );
 }
