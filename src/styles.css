@@ -92,7 +92,7 @@
 
 @media (max-width: 767px) {
   :root {
-    --space-project-gap: 56px;
+    --space-project-gap: 80px;
     --space-case-section: 72px;
     --text-case-title: 18px;
   }
@@ -505,6 +505,13 @@
 .figma-frame.is-settled .figma-handle,
 .figma-frame.is-settled .figma-size {
   opacity: 1;
+}
+
+/* No celular o título quebra em mais linhas e a etiqueta cobriria a linha de baixo. */
+@media (max-width: 767px) {
+  .figma-size {
+    display: none;
+  }
 }
 
 .figma-cursor {
@@ -1193,12 +1200,13 @@
 /* ---- Mobile ---- */
 
 @media (max-width: 767px) {
+  /* Foto em cima, como nos cases; depois o texto e os dois botões lado a lado. */
   .about-space {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
     margin-block: 128px 16px;
-    padding: 0 20px 28px;
+    padding: 12px 12px 24px;
     scroll-margin-top: 160px;
     border-radius: 24px;
   }
@@ -1210,18 +1218,15 @@
     width: 100%;
     height: auto;
     min-height: 0;
-    padding: 0;
-  }
-
-  .about-photo {
-    order: -1;
+    padding: 0 8px;
   }
 
   .about-intro > p {
     width: 100%;
     max-width: 100%;
     margin-top: 16px;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.65;
   }
 
   .about-links {
@@ -1229,9 +1234,9 @@
     grid-template-columns: 1.35fr 1fr;
     position: relative;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     width: 100%;
-    margin-top: 34px;
+    margin-top: 24px;
   }
 
   .contact-bubble {
@@ -1255,9 +1260,9 @@
     min-width: 0;
     width: 100%;
     justify-content: center;
-    gap: 5px;
-    padding: 9px 6px;
-    font-size: 11px;
+    gap: 6px;
+    padding: 12px 8px;
+    font-size: 13px;
     white-space: nowrap;
   }
 
@@ -1266,34 +1271,56 @@
     height: 12px;
   }
 
+  /* Sem polaroide no celular: foto como as dos cases, com um glass fino e a pill do lugar. */
   .about-photo {
     position: relative;
     top: auto;
     left: auto;
     grid-column: auto;
     grid-row: auto;
-    width: 68%;
-    max-width: 290px;
-    margin: -44px auto 0;
-    padding: 8px 8px 0;
+    order: -1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 70%);
     border-radius: 16px;
-    transform: rotate(3deg);
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    transform: none;
+  }
+
+  .about-photo:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   .about-photo img {
-    border-radius: 9px;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+    object-position: center 40%;
   }
 
   .about-photo figcaption {
-    gap: 8px;
-    padding: 10px 3px 12px;
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    padding: 0;
+  }
+
+  .about-place {
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid rgb(255 255 255 / 70%);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 72%);
     font-size: 12px;
+    backdrop-filter: blur(12px) saturate(160%);
   }
 
-  .about-clock {
-    font-size: 11px;
-  }
-
+  .about-clock,
   .about-hover-label {
     display: none;
   }

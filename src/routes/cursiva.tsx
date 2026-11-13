@@ -762,7 +762,7 @@ function CursivaCase() {
         title="Dificuldades e decisões"
         paragraphs={[
           "O projeto tinha quatro restrições ao mesmo tempo: professores com níveis muito diferentes de familiaridade digital, computadores antigos nas escolas, um time de quatro pessoas com o desenvolvimento já em andamento quando o design entrou e os limites da própria IA.",
-          "Como também programo, desenhei pensando nos componentes que já existiam e conversando com o desenvolvimento na mesma língua, o que encurtou muitas dessas decisões.",
+          "Como venho da engenharia, desenhei pensando nos componentes que já existiam e conversando com o desenvolvimento na mesma língua, o que encurtou muitas dessas decisões.",
         ]}
       >
         <DifficultyBlock difficulty={UPLOAD_DIFFICULTY} />

@@ -154,7 +154,7 @@ function Home() {
                 {FEATURED.badge}
               </p>
 
-              <h3 className="mt-4 font-sans text-[26px] leading-[1.25] tracking-tight md:text-[28px]">
+              <h3 className="mt-4 font-sans text-[22px] leading-[1.3] tracking-tight md:text-[28px]">
                 <span className="font-bold">{FEATURED.name}</span>
                 <span className="font-normal text-foreground/75"> — {FEATURED.impact}</span>
               </h3>
@@ -168,7 +168,10 @@ function Home() {
               <CaseLink to={FEATURED.to} name={FEATURED.name} />
             </div>
 
-            <CaseThumb project={FEATURED} priority sizes="(min-width: 768px) 780px, 100vw" />
+            {/* No celular a imagem vem antes do texto, como nos outros cases. */}
+            <div className="order-first md:order-none">
+              <CaseThumb project={FEATURED} priority sizes="(min-width: 768px) 780px, 100vw" />
+            </div>
           </article>
         </Reveal>
 
