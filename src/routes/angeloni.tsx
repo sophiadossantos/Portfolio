@@ -5,6 +5,8 @@ import {
   CaseSection,
   CaseShell,
   DecisionCards,
+  DifficultyBlock,
+  MetricCards,
   NextProject,
   Panel,
   PanelImage,
@@ -715,6 +717,38 @@ const META = [
   { label: "Ferramentas", value: "Figma" },
 ];
 
+const INFORMATION_DIFFICULTY = {
+  title: "Muita coisa disputando a tela inicial",
+  context:
+    "A tela inicial e a lista de recompra juntavam ofertas, recomendações, atalhos e os itens que a pessoa sempre compra, tudo pedindo atenção ao mesmo tempo.",
+  decision:
+    "Dar prioridade ao que vem do hábito de cada pessoa, agrupar o conteúdo em blocos com títulos e espaços claros e deixar a tipografia e a cor indicarem o que importa.",
+  tradeoff:
+    "As ofertas genéricas ficaram menos à vista, e a cor da marca passou a aparecer de forma mais contida.",
+  ref: REFS.chunking,
+};
+
+const TARGET_METRICS = [
+  {
+    status: "alvo" as const,
+    name: "Recorrência de compra",
+    detail: "Pessoas que voltam a fazer a compra pelo app.",
+    why: "Mostra se a experiência personalizada faz a pessoa voltar.",
+  },
+  {
+    status: "alvo" as const,
+    name: "Recomendações aceitas",
+    detail: "Itens sugeridos pelo app que vão para o carrinho.",
+    why: "Mostra se o app realmente aprende com o hábito de cada pessoa.",
+  },
+  {
+    status: "alvo" as const,
+    name: "Tempo para montar a compra",
+    detail: "Do app aberto até o carrinho pronto.",
+    why: "A promessa do app é deixar a compra do dia a dia mais rápida.",
+  },
+];
+
 const SPACING_DECISION = {
   title: "Respiro antes de conteúdo",
   problem: "Na V1, os elementos ficavam colados e a tela parecia sempre cheia.",
@@ -996,7 +1030,8 @@ function AngeloniCase() {
       <CaseSection
         title="Olhando de novo para a V1"
         paragraphs={[
-          "Depois de continuar estudando, voltei ao projeto e vi o que antes não enxergava: muitas informações competindo pela atenção, pouco espaço entre os elementos e uma hierarquia visual confusa. Em vez de ajustar a interface, decidi refazer o projeto com o que tinha aprendido.",
+          "Entre as duas versões, segui as disciplinas da faculdade, fiz cursos online e estudei as heurísticas de Nielsen e os artigos do Nielsen Norman Group.",
+          "Com esse repertório, voltei ao projeto e vi o que antes não enxergava: muitas informações competindo pela atenção, pouco espaço entre os elementos e uma hierarquia visual confusa. Em vez de ajustar a interface, decidi refazer o projeto com o que tinha aprendido.",
           // CONFIRMAR: resumo da auditoria da V1 que estava no Figma (Processo / 01-auditoria-da-v1).
           "Antes de desenhar as telas que faltavam, auditei o protótipo inteiro. Encontrei 78 textos sem estilo, duas fontes fora da escala, cores soltas fora da paleta e áreas de toque de 24 px na barra de navegação. Na V2, todos os textos seguem a escala, as cores vêm só da paleta e as áreas de toque passaram para 69 × 40 px.",
         ]}
@@ -1013,6 +1048,15 @@ function AngeloniCase() {
       </CaseSection>
 
       <CaseSection
+        title="Dificuldades e decisões"
+        paragraphs={[
+          "A parte mais difícil da V2 foi organizar a informação. A personalização só funciona se a pessoa enxerga primeiro o que é dela.",
+        ]}
+      >
+        <DifficultyBlock difficulty={INFORMATION_DIFFICULTY} />
+      </CaseSection>
+
+      <CaseSection
         id="resultados"
         title="A solução"
         paragraphs={[
@@ -1022,6 +1066,16 @@ function AngeloniCase() {
         <DecisionCards decision={COLOR_DECISION} />
 
         <ImageRow images={SOLUTION_SCREENS} />
+      </CaseSection>
+
+      <CaseSection
+        title="Como medir o impacto"
+        paragraphs={[
+          "O Angeloni: em casa é um conceito e não foi lançado, então não há resultados de uso. O retorno que existe veio dos colegas e da avaliação na disciplina.",
+          "Se o app fosse lançado, estas seriam as métricas para saber se a personalização funciona. Elas mostram o que medir, não resultados.",
+        ]}
+      >
+        <MetricCards metrics={TARGET_METRICS} />
       </CaseSection>
 
       <CaseSection

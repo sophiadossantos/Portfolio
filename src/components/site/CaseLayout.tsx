@@ -252,18 +252,23 @@ export function DifficultyBlock({ difficulty }: { difficulty: Difficulty }) {
 }
 
 export type Metric = {
-  status: "real" | "meta";
+  /** real: resultado observado; meta: critério com valor; alvo: o que medir, sem valor. */
+  status: "real" | "meta" | "alvo";
   name: string;
-  value: string;
+  value?: string;
   detail: string;
   why: string;
 };
 
-/** Métricas do case: "real" é resultado observado; "meta" é critério de sucesso ainda não medido. */
+const METRIC_LABEL = { real: "Resultado", meta: "Meta definida", alvo: "Métrica-alvo" } as const;
+
+/** Métricas do case, sempre rotuladas: só "real" é resultado; "meta" e "alvo" ainda não foram medidas. */
 export function MetricCards({ metrics }: { metrics: Metric[] }) {
   return (
     <Reveal>
-      <ul className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <ul
+        className={`grid gap-3 md:grid-cols-2 ${metrics.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}
+      >
         {metrics.map((metric) => (
           <li key={metric.name} className="flex flex-col rounded-2xl bg-panel p-5">
             <span className="inline-flex w-fit items-center gap-2 rounded-full bg-background px-2.5 py-1 text-[11px] font-medium">
@@ -271,12 +276,14 @@ export function MetricCards({ metrics }: { metrics: Metric[] }) {
                 aria-hidden="true"
                 className={`size-1.5 rounded-full ${metric.status === "real" ? "bg-emerald-500" : "bg-foreground/30"}`}
               />
-              {metric.status === "real" ? "Resultado" : "Meta definida"}
+              {METRIC_LABEL[metric.status]}
             </span>
             <h4 className="mt-4 text-[13px] font-semibold">{metric.name}</h4>
-            <p className="mt-2 text-[28px] font-semibold leading-none tracking-tight">
-              {metric.value}
-            </p>
+            {metric.value ? (
+              <p className="mt-2 text-[28px] font-semibold leading-none tracking-tight">
+                {metric.value}
+              </p>
+            ) : null}
             <p className="mt-2 text-[13px] leading-[1.6] text-muted-foreground">{metric.detail}</p>
             <p className="mt-4 border-t border-border pt-3 text-[13px] leading-[1.6] text-muted-foreground">
               {metric.why}
