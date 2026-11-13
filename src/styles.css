@@ -74,7 +74,8 @@
   --ring: oklch(0.72 0.005 285);
   --panel: oklch(0.968 0.002 285);
 
-  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Títulos usam a mesma DM Sans da navbar e da home. */
+  --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
   --text-section-title: 22px;
