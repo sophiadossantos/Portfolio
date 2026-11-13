@@ -551,24 +551,21 @@ const METRICS = [
     why: "Mostra se a interface se explica sozinha.",
   },
   {
-    status: "meta" as const,
+    status: "alvo" as const,
     name: "Fluxos de correção concluídos",
-    value: "≥ 90%",
-    detail: "dos fluxos iniciados, do envio das fotos até receber a correção.",
+    detail: "Quantos fluxos iniciados chegam ao fim, do envio das fotos até receber a correção.",
     why: "A correção é a função principal da plataforma.",
   },
   {
-    status: "meta" as const,
+    status: "alvo" as const,
     name: "Fotos enviadas de novo",
-    value: "< 5%",
-    detail: "dos envios refeitos por foto ilegível ou página faltando.",
+    detail: "Quantos envios precisam ser refeitos por foto ilegível ou página faltando.",
     why: "O envio das fotos foi o ponto mais debatido do fluxo.",
   },
   {
-    status: "meta" as const,
+    status: "alvo" as const,
     name: "Tempo até a primeira prova",
-    value: "< 10 min",
-    detail: "no primeiro acesso, do cadastro à primeira prova gerada.",
+    detail: "Quanto tempo leva, no primeiro acesso, do cadastro à primeira prova gerada.",
     why: "Mede a curva de aprendizado de quem tem pouca familiaridade digital.",
   },
 ];
@@ -775,7 +772,7 @@ function CursivaCase() {
         paragraphs={[
           "O Cursiva está com professores há mais de três meses, com um primeiro grupo de até 20 professores, e já tem clientes. Nesse período, nenhuma dúvida sobre como usar a plataforma chegou ao time: o que chegou foram problemas técnicos pontuais ao gerar provas e pedidos de novas funcionalidades.",
           "Os professores contam que a plataforma é fácil de usar, que conseguem usar sem pedir ajuda, que a correção ficou mais rápida e que o visual novo deixou tudo mais organizado.",
-          "Ainda não há dados de uso medidos, então defini metas para acompanhar o fluxo principal. Elas são critérios de sucesso, não resultados.",
+          "Ainda não há dados de uso medidos, então estas são as métricas que queremos acompanhar no fluxo principal. Elas mostram o que medir, não resultados.",
         ]}
       >
         <MetricCards metrics={METRICS} />
