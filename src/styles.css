@@ -866,7 +866,8 @@
 
 /* ---- Cookie notice ---- */
 
-.cookie-notice {
+/* Nomes sem "cookie": bloqueadores de aviso de cookies escondem essas classes e somem com os botões. */
+.privacy-notice {
   position: fixed;
   right: 84px;
   bottom: 18px;
@@ -886,21 +887,21 @@
   backdrop-filter: blur(20px) saturate(170%);
 }
 
-.cookie-notice h2 {
+.privacy-notice h2 {
   font-family: var(--font-body);
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-.cookie-notice > p {
+.privacy-notice > p {
   margin-top: 6px;
   color: color-mix(in oklab, var(--foreground) 80%, transparent);
   font-size: 14px;
   line-height: 1.6;
 }
 
-.cookie-details {
+.privacy-details {
   display: grid;
   gap: 8px;
   margin-top: 12px;
@@ -910,15 +911,15 @@
   line-height: 1.5;
 }
 
-.cookie-details dt {
+.privacy-details dt {
   font-weight: 600;
 }
 
-.cookie-details dd {
+.privacy-details dd {
   color: color-mix(in oklab, var(--foreground) 80%, transparent);
 }
 
-.cookie-footer {
+.privacy-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -926,7 +927,7 @@
   margin-top: 14px;
 }
 
-.cookie-more {
+.privacy-more {
   padding: 4px 0;
   border: 0;
   background: none;
@@ -937,13 +938,13 @@
   cursor: pointer;
 }
 
-.cookie-actions {
+.privacy-actions {
   display: flex;
   flex-shrink: 0;
   gap: 8px;
 }
 
-.cookie-actions button {
+.privacy-actions button {
   padding: 7px 16px;
   border: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
   border-radius: 999px;
@@ -956,13 +957,13 @@
     color 200ms ease;
 }
 
-.cookie-actions button:hover {
+.privacy-actions button:hover {
   background: var(--foreground);
   color: var(--background);
 }
 
 @media (max-width: 767px) {
-  .cookie-notice {
+  .privacy-notice {
     right: 10px;
     bottom: 74px;
     left: 10px;

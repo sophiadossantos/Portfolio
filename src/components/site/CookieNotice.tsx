@@ -40,8 +40,8 @@ export function CookieNotice() {
   if (!visible) return null;
 
   return (
-    <section className="cookie-notice" aria-labelledby="cookie-title">
-      <h2 id="cookie-title">Este site usa cookies</h2>
+    <section className="privacy-notice" aria-labelledby="privacy-title">
+      <h2 id="privacy-title">Este site usa cookies</h2>
 
       <p>
         Usamos cookies para melhorar sua experiência e analisar o tráfego do site. Ao clicar em
@@ -49,7 +49,7 @@ export function CookieNotice() {
       </p>
 
       {detailsOpen && (
-        <dl id="cookie-details" className="cookie-details">
+        <dl id="privacy-details" className="privacy-details">
           <div>
             <dt>O que é coletado</dt>
             <dd>Dados de navegação, como páginas visitadas, dispositivo e navegador.</dd>
@@ -65,18 +65,18 @@ export function CookieNotice() {
         </dl>
       )}
 
-      <div className="cookie-footer">
+      <div className="privacy-footer">
         <button
           type="button"
-          className="cookie-more"
+          className="privacy-more"
           aria-expanded={detailsOpen}
-          aria-controls="cookie-details"
+          aria-controls="privacy-details"
           onClick={() => setDetailsOpen((open) => !open)}
         >
           {detailsOpen ? "Ver menos" : "Saber mais"}
         </button>
 
-        <div className="cookie-actions">
+        <div className="privacy-actions">
           <button type="button" onClick={() => choose("declined")}>
             Recusar
           </button>
